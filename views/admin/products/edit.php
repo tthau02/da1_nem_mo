@@ -20,7 +20,7 @@
                     </div>
                 </form>
             </div>
-            <form action="<?= ADMIN_URL . '?ctl=updatesp' ?> class=" pb-5 mt-4 ms-4 mb-4 col-md-11" method="POST" enctype="multipart/form-data">
+            <form action="<?= ADMIN_URL . '?ctl=updatesp' ?> " class=" pb-5 mt-4 ms-4 mb-4 col-md-11" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="productName">Tên sản phẩm</label>
                     <input type="text" class="form-control mt-2 mb-3" name="name" value="<?= $product['name'] ?>"">
@@ -63,7 +63,7 @@
                     <input type="radio" name="status" value="0" <?= $product['status'] == 0 ? 'checked' : '' ?> id=""> Ngừng kinh doanh
                 </div>
 
-                <button type="submit" class="btn btn-info text-light" name="submitFormUpdateProduct">Cập nhật</button>
+                <button type="submit" class="btn btn-info text-light" >Cập nhật</button>
 
                 <button type="reset" class="btn btn-secondary text-light">Nhập lại</button>
                 <a href="?ctl=listsp" class="btn btn-info text-light">Danh sách</a>

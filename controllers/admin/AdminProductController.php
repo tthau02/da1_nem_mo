@@ -5,8 +5,9 @@ class AdminProductController
     //Hàm index để hiển thị ds sản phẩm
     public function index()
     {
+        $title = "List sản phẩm";
         $products = (new Product)->all();
-        return view("admin.products.list", compact('products'));
+        return view("admin.products.list", compact('products', 'title'));
     }
 
     //Hàm create hiển thị form thêm mới
@@ -24,18 +25,23 @@ class AdminProductController
     public function store()
     {
         $data = $_POST;
+        
 
-        $image = ""; //Khi người dùng không upload ảnh
+         //Khi người dùng không upload ảnh
         //Nếu người dùng upload hình ảnh
         $file = $_FILES['image'];
         if ($file['size'] > 0) {
             //lấy ảnh
-            $image = "images/" . $file['name'];
+            $image = "assets/images/product" . $file['name'];
             //Upload ảnh
             move_uploaded_file($file['tmp_name'], ROOT_DIR . $image);
+        }else{
+            $image = "";
         }
         //đưa ảnh vào $data
         $data['image'] = $image;
+        
+        unset($data['submitFormAddProduct']);
         $product = new Product;
         $product->create($data);
         header("location: " . ADMIN_URL . "?ctl=listsp");
@@ -70,6 +76,8 @@ class AdminProductController
             $image = "images/" . $file['name'];
             //Upload ảnh
             move_uploaded_file($file['tmp_name'], ROOT_DIR . $image);
+        }else{
+            $image = "";
         }
         //đưa ảnh vào $data
         $data['image'] = $image;

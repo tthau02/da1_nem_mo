@@ -37,7 +37,7 @@
                 </div>
                 <div class="form-group">
                     <label for="image">Hình ảnh</label>
-                    <input type="file" class="form-control mt-2 mb-3" name="image">
+                    <input type="file" class="form-control mt-2 mb-3" name="img">
                 </div>
                 <div class="form-group">
                     <label for="price">Giá</label>

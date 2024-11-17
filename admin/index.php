@@ -23,10 +23,6 @@ match ($ctl) {
     'updatesp' => (new AdminProductController)->update(),
     
     'listdm' => (new AdminCategoryController)->index(),
-    'adddm' => (new AdminCategoryController)->create(),
-    'storedm' => (new AdminCategoryController)->store(),
-    'deletedm' => (new AdminCategoryController)->delete(),
-    'editdm' => (new AdminCategoryController)->edit(),
-    'updatedm' => (new AdminCategoryController)->update(),
+    'addsp' => (new AdminProductController)->create(),
     default => view('errors.404'),
 };
