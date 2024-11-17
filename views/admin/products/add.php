@@ -20,7 +20,7 @@
                     </div>
                 </form>
             </div>
-            <form action="<?= ADMIN_URL . '?ctl=storesp' ?> class=" pb-5 mt-4 ms-4 mb-4 col-md-11" method="POST" enctype="multipart/form-data">
+            <form action="<?= ADMIN_URL . '?ctl=storesp' ?>" class="pb-5 mt-4 ms-4 mb-4 col-md-11"  method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="name">Tên sản phẩm</label>
                     <input type="text" class="form-control mt-2 mb-3" name="name" required>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="form-group">
                     <label for="image">Hình ảnh</label>
-                    <input type="file" class="form-control mt-2 mb-3" name="productImage">
+                    <input type="file" class="form-control mt-2 mb-3" name="image">
                 </div>
                 <div class="form-group">
                     <label for="price">Giá</label>
@@ -52,7 +52,7 @@
                     <input type="radio" name="status" value="1" checked> Đang kinh doanh
                     <input type="radio" name="status" value="0"> Ngừng kinh doanh
                 </div>
-                <div class="form-group">
+                <div class="form-group mt-3">
                     <label for="description">Mô tả</label>
                     <textarea name="description" rows="6" class="form-control mt-2 mb-3"></textarea>
                 </div>

@@ -2,81 +2,83 @@
 //AdminProductController Điều sản phẩm
 class AdminCategoryController
 {
-  //Hàm index để hiển thị ds sản phẩm
   public function index()
   {
+    $message = $_SESSION['message'] ?? '';
+    unset($_SESSION['message']);
     $categories = (new Category)->all();
+    $title = "Danh mục";
     return view("admin.categories.list", compact('categories'));
   }
 
-  //Hàm create hiển thị form thêm mới
   public function create()
   {
-    $categories = (new Category)->all();
-    $title = "Thêm sản phẩm";
-    return view(
-      "admin.products.add",
-      compact('categories', 'title')
-    );
+      $categories = (new Category)->all(); 
+      $title = "Thêm Danh mục";
+      return view(
+          "admin.categories.add",
+          compact('categories', 'title')
+      );
   }
-
-  //Hàm store dùng để lưu dữ liệu thêm vào database
+  
   public function store()
   {
     $data = $_POST;
 
-    $image = ""; //Khi người dùng không upload ảnh
-    //Nếu người dùng upload hình ảnh
+    $image = "";
     $file = $_FILES['image'];
     if ($file['size'] > 0) {
-      //lấy ảnh
-      $image = "images/" . $file['name'];
-      //Upload ảnh
+      $image = "assets/images/category" . $file['name'];
       move_uploaded_file($file['tmp_name'], ROOT_DIR . $image);
     }
-    //đưa ảnh vào $data
     $data['image'] = $image;
-    $product = new Product;
-    $product->create($data);
-    header("location: " . ADMIN_URL . "?ctl=listsp");
+    unset($data['submitFormAddCategory']);
+    $category = new Category;
+    $category->create($data);
+    $_SESSION['message'] = "Thêm mới danh mục thành công";
+    header("location: " . ADMIN_URL . "?ctl=adddm");
   }
 
-  //Hmf edit dùng để hiển thị form cập nhật
   public function edit()
   {
     $id = $_GET['id'];
-    $product = (new Product)->find($id);
-    $categories = (new Category)->all();
-    $title = "Cập nhật sản phẩm: " . $product['name'];
+    $category = (new Category)->find($id);
+    $title = "Cập nhật: " . $category['cate_name'];
     return view(
-      "admin.products.edit",
-      compact('product', 'categories', 'title')
+      "admin.categories.edit",
+      compact('category', 'title')
     );
   }
 
-  //Cập nhật sản phẩm
   public function update()
   {
-    $data = $_POST;
-
-    //Lấy sản phẩm hiện tại
-    $product = new Product;
-    $item = $product->find($data['id']);
-    $image = $item['image']; //Khi người dùng không upload ảnh
-    //Nếu người dùng upload hình ảnh
-    $file = $_FILES['image'];
-    if ($file['size'] > 0) {
-      //lấy ảnh
-      $image = "images/" . $file['name'];
-      //Upload ảnh
-      move_uploaded_file($file['tmp_name'], ROOT_DIR . $image);
-    }
-    //đưa ảnh vào $data
-    $data['image'] = $image;
-
-    $product->update($data['id'], $data);
-
-    header("location: " . ADMIN_URL . "?ctl=editsp&id=" . $data['id']);
-    die;
+      $data = $_POST;
+      var_dump($_POST);
+      $category = new Category;
+      $item = $category->find($data['id']);
+      $image = $item['image'];
+      $file = $_FILES['image'];
+      if ($file['size'] > 0) {
+          //lấy ảnh
+          $image = "assets/images/category" . $file['name'];
+          //Upload ảnh
+          move_uploaded_file($file['tmp_name'], ROOT_DIR . $image);
+      }
+      $data['image'] = $image;
+    
+      unset($data['submitFormUpdateCategory']);
+      $category->update($data['id'], $data);
+      $_SESSION['message'] = "Cập nhật dữ liệu thành công";
+      header("location: " . ADMIN_URL . "?ctl=editdm&id=" . $data['id']);
+      die;
   }
+
+  public function delete()
+    {
+        $id = $_GET['id'];
+        (new Category)->delete($id);
+        $_SESSION['message'] = "Xóa dữ liệu thành công";
+        header("location: " . ADMIN_URL . "?ctl=listdm");
+        die;
+    }
 }
