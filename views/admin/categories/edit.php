@@ -1,6 +1,6 @@
-<?php include 'views/components/sidebar.php'; ?>
+<?php include ROOT_DIR . "views/admin/sidebar.php"; ?>
 <div class="main">
-    <?php include "views/components/header.php" ?>
+    <?php include ROOT_DIR . "views/admin/header.php" ?>
     <!--danh sach danh muc-->
     <main class="container-fluid content px-3 py-4">
         <div class="shadow bg-white pb-5 mt-4 ms-4 mb-4 col-md-11" style="width: 96%;">
@@ -20,33 +20,33 @@
                     </div>
                 </form>
             </div>
-            <form class="pb-5 mt-4 ms-4 mb-4 col-md-11" method="POST" enctype="multipart/form-data">
+            <form action="<?= ADMIN_URL . '?ctl=updatedm' ?>" class="pb-5 mt-4 ms-4 mb-4 col-md-11" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="<?= $category['id'] ?>">
                 <div class="form-group">
-                    <label for="categoryName">Tên danh mục</label>
-                    <input type="text" class="form-control mt-2 mb-3" name="categoryName" required value="<?= $category->categorie_name ?>">
+                    <label for="cate_name">Tên danh mục</label>
+                    <input type="text" class="form-control mt-2 mb-3" name="cate_name" required value="<?= $category['cate_name'] ?>">
                 </div>
                 <div class="form-group">
-                    <label for="categoryDesc">Mô tả</label>
-                    <input type="text" class="form-control mt-2 mb-3" name="categoryDesc" value="<?= $category->description ?>">
-                </div>
-                <div class="form-group">
-                    <label for="categorie_image">Hình ảnh</label>
-                    <input type="file" class="form-control mt-2 mb-3" name="categorie_image" value="<?= $category->categorie_image ?>">
+                    <label for="image">Hình ảnh</label>
+                    <input type="file" class="form-control mt-2 mb-3" name="image">
+                    <?php if (!empty($category['image'])): ?>
+                        <img src="<?= ROOT_URL . $category['image'] ?>" alt="Hình ảnh danh mục" class="img-thumbnail m-2" style="max-width: 200px; height: auto;">
+                    <?php else: ?>
+                        <p>Chưa có hình ảnh</p>
+                    <?php endif; ?>
                 </div>
                 <button type="submit" class="btn btn-info text-light" name="submitFormUpdateCategory">Cập nhật</button>
                 <button type="reset" class="btn btn-secondary text-light">Nhập lại</button>
-                <a href="?act=list-category" class="btn btn-info text-light">Danh sách</a>
+                <a href="<?= ADMIN_URL . '?ctl=listdm' ?>" class="btn btn-info text-light">Danh sách</a>
 
-                <?php if (isset($successMessage)): ?>
-                    <div class="alert alert-success mt-3" role="alert">
-                        <?= htmlspecialchars($successMessage); ?>
-                    </div>
-                <?php elseif (isset($errorMessage)): ?>
-                    <div class="alert alert-danger mt-3" role="alert">
-                        <?= htmlspecialchars($errorMessage); ?>
-                    </div>
-                <?php endif; ?>
+                <?php
+                    if (isset($_SESSION['message'])) {
+                        echo "<div class='alert alert-success mt-2'>" . $_SESSION['message'] . "</div>";
+                        unset($_SESSION['message']); 
+                    }
+                ?>
             </form>
+
 
         </div>
 

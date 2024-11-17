@@ -22,14 +22,14 @@ class Category extends BaseModel
     //$data: mảng dữ liệu chứa bản ghi 1 danh mục
     public function create($data)
     {
-        $sql = "INSERT INTO categories(cate_name, type) VALUES(:cate_name, :type)";
+        $sql = "INSERT INTO categories(cate_name, image) VALUES(:cate_name, :image)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute($data);
     }
     //Cập nhật
     public function update($id, $data)
     {
-        $sql = "UPDATE categories SET cate_name=:cate_name, type=:type WHERE id=:id";
+        $sql = "UPDATE categories SET cate_name=:cate_name, image=:image WHERE id=:id";
         $stmt = $this->conn->prepare($sql);
         //Thêm id vào data
         $data['id'] = $id;

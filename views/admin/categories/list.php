@@ -27,8 +27,8 @@
                             <th scope="col" class="text-center align-middle"></th>
                             <th scope="col" class="text-center align-middle">Mã danh mục</th>
                             <th scope="col" class="text-center align-middle">Tên danh mục</th>
-                            <th scope="col" class="text-center align-middle">Type</th>
-                            <th scope="col" class="text-center align-middle">Ngừng kinh doanh</th>
+                            <th scope="col" class="text-center align-middle">Ảnh danh mục</th>
+                            <th scope="col" class="text-center align-middle"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,21 +43,20 @@
                                 </th>
                                 <td class="text-center align-middle"><?= $categorie['id'] ?></td>
                                 <td class="text-center align-middle"><?= $categorie['cate_name'] ?></td>
-                                <td class="text-center align-middle"><?= $categorie['type'] ?></td>
-                                <td class="text-center align-middle"><?= $categorie['soft_delete'] ?></td>
                                 <td class="text-center align-middle">
-                                    <form action="" method="post">
-                                        <a href="?act=update-cate&id=<?= $categorie['id']; ?>">
+                                    <img src="<?= ROOT_URL . $categorie['image'] ?>" width="60" alt="">
+                                </td>
+                                <td class="text-center align-middle">
+                                        <a href="?ctl=editdm&id=<?= $categorie['id']; ?>">
                                             <button type="button" class="btn btn-outline-primary">
                                                 <i class="lni lni-pencil"></i>
                                             </button>
                                         </a>
-                                        <a onclick="return confirm ('Bạn có chắc chắn muốn xóa danh mục này không!')" href="?act=delete-cate&id=<?= $categorie['id'] ?>">
+                                        <a onclick="return confirm ('Bạn có chắc chắn muốn xóa danh mục này không!')" href="?ctl=deletedm&id=<?= $categorie['id'] ?>">
                                             <button type="button" class="btn btn-outline-danger">
                                                 <i class="lni lni-close"></i>
                                             </button>
                                         </a>
-                                    </form>
                                 </td>
                             </tr>
                         <?php
@@ -69,7 +68,7 @@
 
             <form class="pb-5 mt-4 ms-4 mb-4 col-md-11">
                 <button type="submit" class="btn btn-info text-light">Chọn tất cả</button>
-                <button type="submit" class="btn btn-info"><a href="?act=adddm" class="text-light">Nhập thêm</a></button>
+                <button type="submit" class="btn btn-info"><a href="?ctl=adddm" class="text-light">Nhập thêm</a></button>
             </form>
         </div>
 

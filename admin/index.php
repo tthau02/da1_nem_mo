@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once __DIR__ . "/../env.php";
 require_once __DIR__ . "/../common/function.php";
 
@@ -19,7 +21,12 @@ match ($ctl) {
     'storesp' => (new AdminProductController)->store(),
     'editsp' => (new AdminProductController)->edit(),
     'updatesp' => (new AdminProductController)->update(),
+    
     'listdm' => (new AdminCategoryController)->index(),
-    // 'addsp' => (new AdminProductController)->create(),
+    'adddm' => (new AdminCategoryController)->create(),
+    'storedm' => (new AdminCategoryController)->store(),
+    'deletedm' => (new AdminCategoryController)->delete(),
+    'editdm' => (new AdminCategoryController)->edit(),
+    'updatedm' => (new AdminCategoryController)->update(),
     default => view('errors.404'),
 };
