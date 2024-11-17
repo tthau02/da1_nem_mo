@@ -1,5 +1,5 @@
-<?php include "header.php" ?>
-<?php include "banner.php" ?>
+<?php include_once ROOT_DIR . "views/client/header.php" ?>
+<?php include_once ROOT_DIR . "views/client/banner.php" ?>
 
 <section class="section-specials padding-y border-bottom mt-5">
     <div class="container">
@@ -212,4 +212,4 @@
     </div>
 </section>  
 
-<?php include "footer.php" ?>
+<?php include_once ROOT_DIR . "views/client/footer.php" ?>
