@@ -20,6 +20,6 @@ match ($ctl) {
     'editsp' => (new AdminProductController)->edit(),
     'updatesp' => (new AdminProductController)->update(),
     'listdm' => (new AdminCategoryController)->index(),
-    'addsp' => (new AdminProductController)->create(),
+    // 'addsp' => (new AdminProductController)->create(),
     default => view('errors.404'),
 };

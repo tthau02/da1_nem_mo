@@ -6,6 +6,7 @@ require_once __DIR__ . "/models/Category.php";
 require_once __DIR__ . "/models/Product.php";
 
 require_once __DIR__ . "/controllers/HomeController.php";
+require_once __DIR__ . "/controllers/admin/AdminProductController.php";
 
 $ctl = $_GET['ctl'] ?? '';
 
