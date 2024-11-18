@@ -27,13 +27,13 @@
                             <th scope="col" class="text-center align-middle"></th>
                             <th scope="col" class="text-center align-middle">#ID</th>
                             <th scope="col" class="text-center align-middle">Name</th>
-                            <th scope="col" class="text-center align-middle">Category</th>
                             <th scope="col" class="text-center align-middle">Image</th>
                             <th scope="col" class="text-center align-middle">Price</th>
                             <th scope="col" class="text-center align-middle">Quantity</th>
                             <th scope="col" class="text-center align-middle">Status</th>
-                            
-                            <th scope="col" class="text-center align-middle">Thao Tác</th>
+                            <th scope="col" class="text-center align-middle">Category</th>
+                            <th scope="col" class="text-center align-middle">Description</th>
+                            <th scope="col" class="text-center align-middle">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,22 +46,28 @@
                                 </td>
                                 <td class="text-center align-middle"><?= $pro['id'] ?></td>
                                 <td class="text-center align-middle"><?= $pro['name'] ?></td>
-                                <td class="text-center align-middle"><?= $pro['cate_name'] ?></td>
-                                <td class="text-center align-middle">
-                                    <img src="<?= ROOT_URL . $pro['image'] ?>" width="60" alt="">
+                                <td class="text-center align-middle image-product">
+                                    <img src="<?= ROOT_URL . $pro['image'] ?>" class="img-thumbnail" alt="">
                                 </td>
                                 <td class="text-center align-middle"><?= $pro['price'] ?></td>
                                 <td class="text-center align-middle"><?= $pro['quantity'] ?></td>
-                                
-                                <td class="text-center align-middle"><?= $pro['status'] ? 'Đang kinh doanh' : 'Ngừng kinh doanh' ?></td>
-                                
+                                <td class="text-center align-middle" style="color: green; font-size:14px; font-weight: bold;">
+                                    <?= $pro['status'] ? 'Đang kinh doanh' : '<span style="color: red;">Ngừng kinh doanh</span>' ?>
+                                </td>
+
+                                <td class="text-center align-middle"><?= $pro['cate_name'] ?></td>
+                                <td class="text-center align-middle">
+                                    <div style="max-height: 150px; overflow-y: auto; display: block;">
+                                        <?= $pro['description'] ?>
+                                    </div>
+                                </td>
                                 <td class="text-center align-middle">
                                     <a href="<?= ADMIN_URL . '?ctl=editsp&id=' . $pro['id'] ?>">
                                         <button type="button" class="btn btn-outline-primary">
                                             <i class="lni lni-pencil"></i>
                                         </button>
                                     </a>
-                                    <a onclick="return confirm ('Bạn có chắc chắn muốn xóa danh mục này không!')" href="<?= ADMIN_URL . '?ctl=deletesp&id=' . $pro['id'] ?>">
+                                    <a onclick="return confirm ('Bạn có chắc chắn muốn xóa sản phẩm này không!')" href="?ctl=deletesp&id=<?= $pro['id'] ?>">
                                         <button type="button" class="btn btn-outline-danger">
                                             <i class="lni lni-close"></i>
                                         </button>

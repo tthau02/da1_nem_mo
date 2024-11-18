@@ -26,6 +26,7 @@ class Product extends BaseModel
         $stmt = $this->conn->prepare($sql);
         //thêm id và mảng data
         $data['id'] = $id;
+        var_dump($data);
         $stmt->execute($data);
     }
     //lấy ra 1 bản ghi
@@ -37,11 +38,20 @@ class Product extends BaseModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+
     // Tìm kiếm sản phẩm theo tên 
     public function search($keyword = null){
         $sql = "SELECT * FROM products WHERE name LIKE '%$keyword%'";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    //Xóa (xóa mềm), không xóa dữ liệu khỏi database mà thay đổi trang thái của thuộc tính soft_delete
+    public function delete($id)
+    {
+        $sql = "UPDATE products  SET status=0  WHERE id=:id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(['id' => $id]);
+
     }
 }

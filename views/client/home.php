@@ -1,5 +1,5 @@
-<?php include "header.php" ?>
-<?php include "banner.php" ?>
+<?php include_once ROOT_DIR . "views/client/header.php" ?>
+<?php include_once ROOT_DIR . "views/client/banner.php" ?>
 
 <section class="section-specials padding-y border-bottom mt-5">
     <div class="container">
@@ -54,43 +54,18 @@
         Danh Mục Nổi Bật
     </div>
     <div class="product-slider">
-      <div class="card">
-        <img src="https://flexhouse.vn/wp-content/uploads/2023/04/Bo-chan-ga-goi-dem-hoat-hinh-gau-tay-dai-ZH7938-4.jpg" class="card-img-top" alt="Product 1">
-        <div class="card-body">
-          <h5 class="card-title">Ten danh muc</h5>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://flexhouse.vn/wp-content/uploads/2023/04/Bo-chan-ga-goi-dem-hoat-hinh-gau-tay-dai-ZH7938-4.jpg" class="card-img-top" alt="Ten danh muc">
-        <div class="card-body">
-          <h5 class="card-title">Ten danh muc</h5>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://flexhouse.vn/wp-content/uploads/2023/04/Bo-chan-ga-goi-dem-hoat-hinh-gau-tay-dai-ZH7938-4.jpg" class="card-img-top" alt="Ten danh muc">
-        <div class="card-body">
-          <h5 class="card-title">Ten danh muc</h5>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://flexhouse.vn/wp-content/uploads/2023/04/Bo-chan-ga-goi-dem-hoat-hinh-gau-tay-dai-ZH7938-4.jpg" class="card-img-top" alt="Ten danh muc">
-        <div class="card-body">
-          <h5 class="card-title">Ten danh muc</h5>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://flexhouse.vn/wp-content/uploads/2023/04/Bo-chan-ga-goi-dem-hoat-hinh-gau-tay-dai-ZH7938-4.jpg" class="card-img-top" alt="Ten danh muc">
-        <div class="card-body">
-          <h5 class="card-title">Ten danh muc</h5>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://flexhouse.vn/wp-content/uploads/2023/04/Bo-chan-ga-goi-dem-hoat-hinh-gau-tay-dai-ZH7938-4.jpg" class="card-img-top" alt="Ten danh muc">
-        <div class="card-body">
-          <h5 class="card-title">Ten danh muc</h5>
-        </div>
-      </div>
-   
+      <?php
+            foreach ($categories as $category){
+                ?>
+                    <div class="card">
+                        <img src="<?= ROOT_URL . $category["image"] ?>" class="card-img-top" alt="Product 1">
+                        <div class="card-body">
+                        <h5 class="card-title"><?= $category["cate_name"] ?></h5>
+                        </div>
+                    </div>
+                <?php
+            }
+      ?>
     <!-- Thêm các sản phẩm khác ở đây -->
   </div>
 </div>
@@ -212,4 +187,4 @@
     </div>
 </section>  
 
-<?php include "footer.php" ?>
+<?php include_once ROOT_DIR . "views/client/footer.php" ?>

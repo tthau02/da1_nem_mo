@@ -19,9 +19,10 @@ match ($ctl) {
     'listsp' => (new AdminProductController)->index(),
     'addsp' => (new AdminProductController)->create(),
     'storesp' => (new AdminProductController)->store(),
+    'deletesp' => (new AdminProductController)->delete(),
     'editsp' => (new AdminProductController)->edit(),
     'updatesp' => (new AdminProductController)->update(),
-    
+
     'listdm' => (new AdminCategoryController)->index(),
     'adddm' => (new AdminCategoryController)->create(),
     'storedm' => (new AdminCategoryController)->store(),

@@ -25,9 +25,9 @@ class AdminProductController
     public function store()
     {
         $data = $_POST;
-        
 
-         //Khi người dùng không upload ảnh
+
+        //Khi người dùng không upload ảnh
         //Nếu người dùng upload hình ảnh
         $file = $_FILES['image'];
         if ($file['size'] > 0) {
@@ -35,12 +35,13 @@ class AdminProductController
             $image = "assets/images/product" . $file['name'];
             //Upload ảnh
             move_uploaded_file($file['tmp_name'], ROOT_DIR . $image);
-        }else{
+        } else {
             $image = "";
         }
         //đưa ảnh vào $data
         $data['image'] = $image;
-        
+        var_dump($data);
+
         unset($data['submitFormAddProduct']);
         $product = new Product;
         $product->create($data);
@@ -73,18 +74,29 @@ class AdminProductController
         $file = $_FILES['image'];
         if ($file['size'] > 0) {
             //lấy ảnh
-            $image = "images/" . $file['name'];
+            $image = "assets/images/product" . $file['name'];
             //Upload ảnh
             move_uploaded_file($file['tmp_name'], ROOT_DIR . $image);
-        }else{
+        } else {
             $image = "";
         }
         //đưa ảnh vào $data
         $data['image'] = $image;
 
-        $product->update($data['id'], $data);
 
-        header("location: " . ADMIN_URL . "?ctl=editsp&id=" . $data['id']);
+        $product->update($data['id'], $data);
+        var_dump($data);
+
+        header("location: " . ADMIN_URL . "?ctl=listsp");
+        die;
+    }
+
+    public function delete()
+    {
+        $id = $_GET['id'];
+        (new Product)->delete($id);
+        $_SESSION['message'] = "Xóa dữ liệu thành công";
+        header("location: " . ADMIN_URL . "?ctl=listsp");
         die;
     }
 }
