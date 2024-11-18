@@ -40,6 +40,7 @@ class AdminProductController
         }
         //đưa ảnh vào $data
         $data['image'] = $image;
+        var_dump($data);
 
         unset($data['submitFormAddProduct']);
         $product = new Product;
@@ -86,6 +87,15 @@ class AdminProductController
         $product->update($data['id'], $data);
         var_dump($data);
 
+        header("location: " . ADMIN_URL . "?ctl=listsp");
+        die;
+    }
+
+    public function delete()
+    {
+        $id = $_GET['id'];
+        (new Product)->delete($id);
+        $_SESSION['message'] = "Xóa dữ liệu thành công";
         header("location: " . ADMIN_URL . "?ctl=listsp");
         die;
     }

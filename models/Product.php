@@ -1,9 +1,5 @@
 <?php
-require_once __DIR__ . "/BaseModel.php";
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 class Product extends BaseModel
 {
     //lấy toàn bộ sản phẩm
@@ -40,5 +36,12 @@ class Product extends BaseModel
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    //Xóa (xóa mềm), không xóa dữ liệu khỏi database mà thay đổi trang thái của thuộc tính soft_delete
+    public function delete($id)
+    {
+        $sql = "UPDATE products  SET status=0  WHERE id=:id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(['id' => $id]);
     }
 }
