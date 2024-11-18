@@ -36,4 +36,12 @@ class Product extends BaseModel
         $stmt->execute(['id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    // Tìm kiếm sản phẩm theo tên 
+    public function search($keyword = null){
+        $sql = "SELECT * FROM products WHERE name LIKE '%$keyword%'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

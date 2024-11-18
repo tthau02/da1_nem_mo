@@ -67,10 +67,10 @@
         
         <!-- Phần tìm kiếm và thông tin người dùng -->
         <div class="d-flex align-items-center">
-          <form class="d-flex me-3 position-relative w-100">
-            <input class="form-control pe-5 w-100" type="search" placeholder="Search" aria-label="Search">
+          <form class="d-flex me-3 position-relative w-100" role="search">
+            <input id="keyword" class="form-control pe-5 w-100" type="search" placeholder="Search" aria-label="Search">
             <span class="position-absolute top-50 end-0 translate-middle-y pe-3 search-icon">
-              <i class="fa-solid fa-search text-muted"></i>
+              <button  id="search"  type="button"><i  class="fa-solid fa-search text-muted"></i></button>
             </span>
           </form>
           
