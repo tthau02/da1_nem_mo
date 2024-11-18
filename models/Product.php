@@ -1,5 +1,9 @@
 <?php
+require_once __DIR__ . "/BaseModel.php";
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 class Product extends BaseModel
 {
     //lấy toàn bộ sản phẩm
@@ -26,6 +30,7 @@ class Product extends BaseModel
         $stmt = $this->conn->prepare($sql);
         //thêm id và mảng data
         $data['id'] = $id;
+        var_dump($data);
         $stmt->execute($data);
     }
     //lấy ra 1 bản ghi
