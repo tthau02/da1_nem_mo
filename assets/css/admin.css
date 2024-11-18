@@ -189,5 +189,11 @@ table tr td {
   max-height: 100px;
 }
 
+.image-product img {
+  max-height: 100px;
+  width: 100px;
+  object-fit: cover;
+}
+
 @media (min-width: 768px) {
 }

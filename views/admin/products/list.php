@@ -31,6 +31,7 @@
                             <th scope="col" class="text-center align-middle">Price</th>
                             <th scope="col" class="text-center align-middle">Quantity</th>
                             <th scope="col" class="text-center align-middle">Status</th>
+                            <th scope="col" class="text-center align-middle">Category</th>
                             <th scope="col" class="text-center align-middle">Description</th>
                         </tr>
                     </thead>
@@ -44,13 +45,14 @@
                                 </td>
                                 <td class="text-center align-middle"><?= $pro['id'] ?></td>
                                 <td class="text-center align-middle"><?= $pro['name'] ?></td>
-                                <td class="text-center align-middle">
-                                    <img src="<?= ROOT_URL . $pro['image'] ?>" width="60" alt="">
+                                <td class="text-center align-middle image-product">
+                                    <img src="<?= ROOT_URL . $pro['image'] ?>" class="img-thumbnail" alt="">
                                 </td>
                                 <td class="text-center align-middle"><?= $pro['price'] ?></td>
                                 <td class="text-center align-middle"><?= $pro['quantity'] ?></td>
                                 <td class="text-center align-middle"><?= $pro['status'] ? 'Đang kinh doanh' : 'Ngừng kinh doanh' ?></td>
                                 <td class="text-center align-middle"><?= $pro['cate_name'] ?></td>
+                                <td class="text-center align-middle"><?= $pro['description'] ?></td>
                                 <td class="text-center align-middle">
                                     <a href="<?= ADMIN_URL . '?ctl=editsp&id=' . $pro['id'] ?>">
                                         <button type="button" class="btn btn-outline-primary">

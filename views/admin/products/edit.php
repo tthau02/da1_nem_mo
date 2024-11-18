@@ -46,7 +46,7 @@
                 </div>
                 <div class="form-group mb-3">
                     <span class="form-label">Mã danh mục</span>
-                    <select name="categorie_id" id="">
+                    <select name="category_id" id="">
                         <?php foreach ($categories as $cate): ?>
                             <option value="<?= $cate['id'] ?>"
                                 <?= ($cate['id'] == $product['category_id']) ? 'selected' : '' ?>>
@@ -63,7 +63,7 @@
                     <input type="radio" name="status" value="0" <?= $product['status'] == 0 ? 'checked' : '' ?> id=""> Ngừng kinh doanh
                 </div>
 
-                <button type="submit" class="btn btn-info text-light" >Cập nhật</button>
+                <button type="submit" class="btn btn-info text-light">Cập nhật</button>
 
                 <button type="reset" class="btn btn-secondary text-light">Nhập lại</button>
                 <a href="?ctl=listsp" class="btn btn-info text-light">Danh sách</a>
