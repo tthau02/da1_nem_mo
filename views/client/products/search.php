@@ -10,12 +10,12 @@
                 <div class="col-md-3 mb-4">
                     <div class="card shadow-sm">
                         <img
-                            src="<?= ROOT_URL . '/' . htmlspecialchars($product['image']); ?>"
+                            src="<?= ROOT_URL . $product['image']; ?>"
                             class="card-img-top"
                             alt="<?= htmlspecialchars($product['name']); ?>"
                             style="height: 200px; object-fit: cover;">
                         <div class="card-body">
-                            <h5 class="card-title text-truncate"><?= htmlspecialchars($product['name']); ?></h5>
+                            <h5 class="card-title text-truncate"><?= $product['name']; ?></h5>
                             <p class="card-text text-muted">
                                 Giá: <strong><?= number_format($product['price'], 0, ',', '.'); ?> VND</strong>
                             </p>
@@ -29,7 +29,7 @@
         </div>
     <?php else: ?>
         <div class="alert alert-warning text-center">
-            Không tìm thấy sản phẩm nào phù hợp với từ khóa "<strong><?= htmlspecialchars($keyword); ?></strong>".
+            Không tìm thấy sản phẩm nào phù hợp với từ khóa "<strong><?= $keyword; ?></strong>".
         </div>
     <?php endif; ?>
 </div>
