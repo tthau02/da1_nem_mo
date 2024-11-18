@@ -45,10 +45,13 @@
                 <i class="fas fa-chevron-down ms-2"></i>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="">Sản phẩm 1</a></li>
-                    <li><a class="dropdown-item" href="#">Sản phẩm 2</a></li>
-                    <li>
-                    <li><a class="dropdown-item" href="#">Sản phẩm 3</a></li>
+                  <?php
+                      foreach($categories as $cate){
+                        ?>
+                          <li><a class="dropdown-item" href=""><?= $cate["cate_name"] ?></a></li>
+                        <?php
+                      }
+                  ?>
                 </ul>
                 </li>
                 <li class="nav-item">
