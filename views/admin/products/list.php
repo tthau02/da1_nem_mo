@@ -51,7 +51,10 @@
                                 </td>
                                 <td class="text-center align-middle"><?= $pro['price'] ?></td>
                                 <td class="text-center align-middle"><?= $pro['quantity'] ?></td>
-                                <td class="text-center align-middle"><?= $pro['status'] ? 'Đang kinh doanh' : 'Ngừng kinh doanh' ?></td>
+                                <td class="text-center align-middle" style="color: green; font-size:14px; font-weight: bold;">
+                                    <?= $pro['status'] ? 'Đang kinh doanh' : '<span style="color: red;">Ngừng kinh doanh</span>' ?>
+                                </td>
+
                                 <td class="text-center align-middle"><?= $pro['cate_name'] ?></td>
                                 <td class="text-center align-middle">
                                     <div style="max-height: 150px; overflow-y: auto; display: block;">
