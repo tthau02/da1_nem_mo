@@ -47,16 +47,16 @@
                                     <img src="<?= ROOT_URL . $categorie['image'] ?>" width="60" alt="">
                                 </td>
                                 <td class="text-center align-middle">
-                                        <a href="?ctl=editdm&id=<?= $categorie['id']; ?>">
-                                            <button type="button" class="btn btn-outline-primary">
-                                                <i class="lni lni-pencil"></i>
-                                            </button>
-                                        </a>
-                                        <a onclick="return confirm ('Bạn có chắc chắn muốn xóa danh mục này không!')" href="?ctl=deletedm&id=<?= $categorie['id'] ?>">
-                                            <button type="button" class="btn btn-outline-danger">
-                                                <i class="lni lni-close"></i>
-                                            </button>
-                                        </a>
+                                    <a href="?ctl=editdm&id=<?= $categorie['id']; ?>">
+                                        <button type="button" class="btn btn-outline-primary">
+                                            <i class="lni lni-pencil"></i>
+                                        </button>
+                                    </a>
+                                    <a onclick="return confirm ('Bạn có chắc chắn muốn xóa danh mục này không!')" href="?ctl=deletedm&id=<?= $categorie['id'] ?>">
+                                        <button type="button" class="btn btn-outline-danger">
+                                            <i class="lni lni-close"></i>
+                                        </button>
+                                    </a>
                                 </td>
                             </tr>
                         <?php
