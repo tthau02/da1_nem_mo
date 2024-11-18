@@ -33,6 +33,7 @@
                             <th scope="col" class="text-center align-middle">Status</th>
                             <th scope="col" class="text-center align-middle">Category</th>
                             <th scope="col" class="text-center align-middle">Description</th>
+                            <th scope="col" class="text-center align-middle">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,7 +53,11 @@
                                 <td class="text-center align-middle"><?= $pro['quantity'] ?></td>
                                 <td class="text-center align-middle"><?= $pro['status'] ? 'Đang kinh doanh' : 'Ngừng kinh doanh' ?></td>
                                 <td class="text-center align-middle"><?= $pro['cate_name'] ?></td>
-                                <td class="text-center align-middle"><?= $pro['description'] ?></td>
+                                <td class="text-center align-middle">
+                                    <div style="max-height: 150px; overflow-y: auto; display: block;">
+                                        <?= $pro['description'] ?>
+                                    </div>
+                                </td>
                                 <td class="text-center align-middle">
                                     <a href="<?= ADMIN_URL . '?ctl=editsp&id=' . $pro['id'] ?>">
                                         <button type="button" class="btn btn-outline-primary">
