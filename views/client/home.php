@@ -106,85 +106,37 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-3 mt-3">
-                                <div class="card-product shadow-sm">
-                                    <img class="card-img-top" src="https://dummyimage.com/600x400/55595c/fff" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h4 class="card-title text-center">
-                                            <a href="product.html" title="View Product" class="text-decoration-none text-dark">Product title</a>
-                                        </h4>
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="text font-weight-bold">99.00 $</p>
-                                            </div>
-                                            <div class="col">
-                                                <a href="cart.html" class="btn btn-outline-success">+ Add</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 mt-3">
-                                <div class="card-product shadow-sm">
-                                    <img class="card-img-top" src="https://dummyimage.com/600x400/55595c/fff" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h4 class="card-title text-center">
-                                            <a href="product.html" title="View Product" class="text-decoration-none text-dark">Product title</a>
-                                        </h4>
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="text font-weight-bold">99.00 $</p>
-                                            </div>
-                                            <div class="col">
-                                                <a href="cart.html" class="btn btn-outline-success">+ Add</a>
+                            <?php
+                            foreach ($newProduct as $product) {
+                                ?>
+                                <div class="col-md-3 mt-3">
+                                    <div class="card-product shadow-sm">
+                                        <img class="card-img-top" src="<?= ROOT_URL . $product['image'] ?>" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h4 class="card-title text-center">
+                                                <a href="product.html" title="View Product" class=""><?= $product['name'] ?></a>
+                                            </h4>
+                                            <div class="d-flex align-items-center justify-content-center">
+                                                <div class="col">
+                                                    <p class="fw-bold text-danger fs-6 mt-3"><?= number_format($product['price'], 0, ',', '.') ?> VND</p>
+                                                </div>
+                                                <div class="">
+                                                    <a href="cart.html" class="btn btn-outline-success">+ Add</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-3 mt-3">
-                                <div class="card-product shadow-sm">
-                                    <img class="card-img-top" src="https://dummyimage.com/600x400/55595c/fff" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h4 class="card-title text-center">
-                                            <a href="product.html" title="View Product" class="text-decoration-none text-dark">Product title</a>
-                                        </h4>
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="text font-weight-bold">99.00 $</p>
-                                            </div>
-                                            <div class="col">
-                                                <a href="cart.html" class="btn btn-outline-success">+ Add</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 mt-3">
-                                <div class="card-product shadow-sm">
-                                    <img class="card-img-top" src="https://dummyimage.com/600x400/55595c/fff" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h4 class="card-title text-center">
-                                            <a href="product.html" title="View Product" class="text-decoration-none text-dark">Product title</a>
-                                        </h4>
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="text font-weight-bold">99.00 $</p>
-                                            </div>
-                                            <div class="col">
-                                                <a href="cart.html" class="btn btn-outline-success">+ Add</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-        
+                                <?php
+                            }
+                            ?>
+                        </div>
+                        <div class="text-center mt-4">
+                            <a href="?ctl=product" class="btn btn-outline-danger ">Xem tất cả  >></a>
                         </div>
                     </div>
+
                 </div>
-            </div>
-        </div>
-    </div>
-</section>  
+            </section>  
 
 <?php include_once ROOT_DIR . "views/client/footer.php" ?>

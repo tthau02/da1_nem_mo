@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nệm Mơ</title>
+    <title><?= isset($title) ? $title : 'Nệm Mơ' ?></title>
     <link rel="icon" href="./assets/images/logo_nem_mo.png" sizes="16x16">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -18,7 +18,7 @@
         
         <!-- Phần logo -->
         <div class="d-flex">
-          <a class="navbar-brand fs-4" href="#">
+          <a class="navbar-brand fs-4" href="<?= ROOT_URL ?>">
             <img class="logo" src="./assets/images/logo_nem_mo.png" alt="logo">
             <span class="text-warning fs-3">Nệm</span>Mơ
           </a>
@@ -48,7 +48,7 @@
                   <?php
                       foreach($categories as $cate){
                         ?>
-                          <li><a class="dropdown-item" href=""><?= $cate["cate_name"] ?></a></li>
+                          <li><a class="dropdown-item" href="<?= ROOT_URL . '?ctl=category&id=' . $cate['id'] ?>"><?= $cate["cate_name"] ?></a></li>
                         <?php
                       }
                   ?>

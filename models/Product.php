@@ -10,6 +10,27 @@ class Product extends BaseModel
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getProductNew($limit = 6){
+    $sql = "SELECT p.*, c.cate_name 
+            FROM products p 
+            JOIN categories c ON p.category_id = c.id 
+            ORDER BY p.id DESC 
+            LIMIT :limit"; 
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function listProductInCategory($id)
+    {
+        $sql = "SELECT p.*, c.cate_name FROM products p JOIN categories c ON p.category_id=c.id WHERE c.id=:id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     //Thêm dữ liệu
     public function create($data)
     {
