@@ -314,8 +314,6 @@ a {
 
 .card-product {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-radius: 10px;
-  margin-bottom: 10px;
 }
 
 .card-product:hover {
