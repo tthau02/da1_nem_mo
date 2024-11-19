@@ -29,19 +29,15 @@ class ProductController{
     }
 
     public function detail(){
-        $title = '';
         $id = $_GET['id'];
 
-        $products = (new Product)->listProductInCategory($id);
-        $title = '';
-        if ($products) {
-            $title = $products[0]['cate_name'];
-        }
+        $product = (new Product)->find($id);
+        $title = $product['name'] ?? '';
         $categories = (new Category)->all();
 
         return view(
             'client.products.detail',
-            compact('products', 'categories', 'title')
+            compact('product', 'categories', 'title')
         );
     }
 }

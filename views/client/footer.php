@@ -63,7 +63,7 @@
             searchProduct();
         })
 
-        search.addEventListener('keydown', function(e){
+        keyword.addEventListener('keydown', function(e){
             if(e.key === 'Enter'){
                 searchProduct()
                 e.preventDefault();

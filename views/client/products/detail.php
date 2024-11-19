@@ -12,17 +12,14 @@
         </div>
     </div>
     <div class="row">
-        <!-- Hình ảnh sản phẩm -->
         <div class="col-md-6">
-            <img src="https://baothainguyen.vn/file/e7837c027f6ecd14017ffa4e5f2a0e34/e7837c0280098a3201801c03d1e521f3/112022/word_image_1667981994169.png" alt="Sản phẩm" class="product-image img-fluid">
+            <img src="<?= ROOT_URL . $product['image'] ?>" alt="Sản phẩm" class="product-image img-fluid">
         </div>
         
-        <!-- Chi tiết sản phẩm -->
         <div class="col-md-6 product-details">
-            <h3 class="mb-3">Tên Sản Phẩm Cao Cấp</h3>
-            <p class="text-muted">Mã sản phẩm: SP001</p>
+            <h3 class="mb-3"><?= $product["name"] ?></h3>
+            <p class="text-muted"><?= $product["id"] ?></p>
             
-            <!-- Đánh giá sao -->
             <div class="rating mb-3">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
@@ -32,10 +29,10 @@
                 <span class="text-muted">(4.5 trên 5 sao)</span>
             </div>
 
-            <h4 class="product-price mb-3">200,000 VND</h4>
+            <h4 class="product-price mb-3"><?=  number_format($product['price'], 0, ',', '.') ?> VND</h4>
             
             <!-- Mô tả sản phẩm -->
-            <p class="text-secondary mb-4">Sản phẩm cao cấp được thiết kế đặc biệt với chất liệu vải bền bỉ, mang đến sự thoải mái và phong cách. Đảm bảo hài lòng cho khách hàng với sự tinh tế và chất lượng tuyệt hảo.</p>
+            <p class="text-secondary mb-4"><?= $product["description"] ?></p>
             
             <!-- Tùy chọn số lượng và nút giỏ hàng -->
             <div class="mb-3">

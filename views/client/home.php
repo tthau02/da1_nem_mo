@@ -114,7 +114,7 @@
                                         <img class="card-img-top" src="<?= ROOT_URL . $product['image'] ?>" alt="Card image cap">
                                         <div class="card-body">
                                             <h4 class="card-title text-center">
-                                                <a href="product.html" title="View Product" class=""><?= $product['name'] ?></a>
+                                                <a href="<?= ROOT_URL . '?ctl=detail&id=' . $product['id']?>" title="View Product" class=""><?= $product['name'] ?></a>
                                             </h4>
                                             <div class="d-flex align-items-center justify-content-center">
                                                 <div class="col">

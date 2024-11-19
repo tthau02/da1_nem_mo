@@ -57,10 +57,10 @@
                             ?>
                             <div class="col-md-4 mt-3">
                                 <div class="card-product shadow-sm">
-                                    <img class="card-img-top" src="<?= ROOT_URL . $product['image'] ?>" alt="Card image cap">
+                                    <img class="card-img-top" src="<?= ROOT_URL . $product['image'] ?>" alt="Ảnh sản phẩm">                               
                                     <div class="card-body">
                                         <h4 class="card-title text-center">
-                                            <a href="?ctl=detail" title="View Product" class=""><?= $product['name'] ?></a>
+                                            <a href="?ctl=detail&id=<?= $product['id'] ?>" title="View Product" class=""><?= $product['name'] ?></a>
                                         </h4>
                                         <div class="d-flex align-items-center justify-content-center">
                                             <div class="col">
