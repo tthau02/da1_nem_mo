@@ -115,7 +115,7 @@
                                             alt="<?= htmlspecialchars($product['name']); ?>"
                                             style="height: 200px; object-fit: cover;">
                                         <div class="card-body">
-                                            <h5 class="card-title text-truncate"><?= $product['name']; ?></h5>
+                                            <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>"><h5 class="card-title text-truncate"><?= $product['name']; ?></h5></a>
                                             <p class="card-text text-muted">
                                                 Giá: <strong><?= number_format($product['price'], 0, ',', '.'); ?> VND</strong>
                                             </p>

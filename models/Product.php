@@ -11,7 +11,7 @@ class Product extends BaseModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getProductNew($limit = 6){
+    public function getProductNew($limit = 8){
     $sql = "SELECT p.*, c.cate_name 
             FROM products p 
             JOIN categories c ON p.category_id = c.id 
