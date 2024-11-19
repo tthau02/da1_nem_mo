@@ -3,11 +3,13 @@ class HomeController
 {
     public function index()
     {
-        $title = '';
+        $title = 'Mện Mơ';
+        $product = new Product;
+        $newProduct = $product->getProductNew(6);
         $categories = (new Category)->all();
         return view(
             'client.home',
-            compact('categories', 'title')
+            compact('categories', 'newProduct', 'title')
         );
     }
 }
