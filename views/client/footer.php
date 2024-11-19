@@ -42,10 +42,9 @@
                 </ul>
             </div>
             <div class="col-12 copyright mt-3">
-                <p class="float-left btn btn-danger">
+                <p class="float-left btn">
                     <a href="#">Về đầu trang</a>
                 </p>
-                <p class="text-right text-muted">@THSHOP. Design by nemmo</p>
             </div>
         </div>
     </div>
