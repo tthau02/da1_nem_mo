@@ -70,7 +70,7 @@
                     </a>
                     <ul id="user-management" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Danh Sách Người Dùng</a>
+                            <a href="?ctl=listuser" class="sidebar-link">Danh Sách Người Dùng</a>
                         </li>
                         <li class="sidebar-item">
                             <a href="#" class="sidebar-link">Cập Nhật Thông Tin</a>

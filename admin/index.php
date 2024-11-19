@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 session_start();
 
 require_once __DIR__ . "/../env.php";
@@ -8,10 +12,12 @@ require_once __DIR__ . "/../common/function.php";
 require_once __DIR__ . "/../models/BaseModel.php";
 require_once __DIR__ . "/../models/Category.php";
 require_once __DIR__ . "/../models/Product.php";
+require_once __DIR__ . "/../models/User.php";
 
 //include controllers
 require_once __DIR__ . "/../controllers/admin/AdminProductController.php";
 require_once __DIR__ . "/../controllers/admin/AdminCategoryController.php";
+require_once __DIR__ . "/../controllers/admin/AdminUserController.php";
 $ctl = $_GET['ctl'] ?? "";
 
 match ($ctl) {
@@ -29,5 +35,12 @@ match ($ctl) {
     'deletedm' => (new AdminCategoryController)->delete(),
     'editdm' => (new AdminCategoryController)->edit(),
     'updatedm' => (new AdminCategoryController)->update(),
+
+    'listuser' => (new AdminUserController)->index(),
+    'adduser' => (new AdminUserController)->create(),
+    'storedm' => (new AdminUserController)->store(),
+    'deleteuser' => (new AdminUserController)->delete(),
+    'edituser' => (new AdminUserController)->edit(),
+    'updateuser' => (new AdminUserController)->update(),
     default => view('errors.404'),
 };
