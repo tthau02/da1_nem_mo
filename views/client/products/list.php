@@ -51,9 +51,12 @@
         </div>
         <div class="col">
             <div class="card-body">
+
+
                     <div class="row">
                         <?php
                         foreach ($products as $product) {
+                            
                             ?>
                             <div class="col-md-4 mt-3">
                                 <div class="card-product shadow-sm">
@@ -67,14 +70,15 @@
                                                 <p class="fw-bold text-danger fs-6 mt-3"><?= number_format($product['price'], 0, ',', '.') ?> VND</p>
                                             </div>
                                             <div class="">
-                                                <a href="cart.html" class="btn btn-outline-success">+ Add</a>
+                                            <a href="<?= ROOT_URL . '?ctl=add-cart&id='. $product['id'] ?>" class="btn btn-outline-success">+ Add to Cart</a>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    <?php endforeach; ?>
+                    <?php }  ?>
                 </div>
                 </div>
                 <div class="col-12">
