@@ -5,7 +5,7 @@ class HomeController
     {
         $title = 'Mện Mơ';
         $product = new Product;
-        $newProduct = $product->getProductNew(6);
+        $newProduct = $product->getProductNew(8);
         $categories = (new Category)->all();
         return view(
             'client.home',

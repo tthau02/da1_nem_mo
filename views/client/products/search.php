@@ -19,9 +19,12 @@
                             <p class="card-text text-muted">
                                 Giá: <strong><?= number_format($product['price'], 0, ',', '.'); ?> VND</strong>
                             </p>
-                            <a href="<?= ROOT_URL . "?ctl=product&id=" . $product['id']; ?>" class="btn btn-primary btn-sm">
-                                Xem chi tiết
-                            </a>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="<?= ROOT_URL . "?ctl=product&id=" . $product['id']; ?>" class="btn btn-primary btn-sm">
+                                    Xem chi tiết
+                                </a>
+                                <a href="cart.html" class="btn btn-primary btn-sm">+ Add</a>
+                            </div>
                         </div>
                     </div>
                 </div>
