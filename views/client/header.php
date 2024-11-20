@@ -80,9 +80,11 @@
           
           <div class="widgets-wrap float-md-right ml-4">
             <div class="widget-header">
-                <a href="cart.html" class="icon icon-sm rounded-circle border"><i
-                        class="fa fa-shopping-cart"></i></a>
-                <span class="badge badge-pill badge-danger notify">0</span>
+                <a href="#" class="icon icon-sm rounded-circle border">
+                  <i class="fa fa-shopping-cart"></i>
+                 
+                </a>
+                <span class="badge badge-pill badge-danger notify"><?= $totalQuantity ?></span>
             </div>
             <div class="widget-header icontext">
                 <a href="#" class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
