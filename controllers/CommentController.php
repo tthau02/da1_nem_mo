@@ -5,6 +5,12 @@ class CommentController
   // Xử lý thêm comment mới
   public function addComment()
   {
+    //Chưa đăng nhập thì chuyển hướng về trang đăng nhập
+    if (empty($_SESSION['user_id'])) {
+      $_SESSION['error_message'] = "Bạn chưa đăng nhập!";
+      header("Location: " . ROOT_URL . "?ctl=login");
+      exit();
+    }
     // Kiểm tra nếu dữ liệu POST không đầy đủ
     if (empty($_POST['product_id']) || empty($_POST['comment']) || empty($_POST['rating'])) {
       $_SESSION['error_message'] = "Vui lòng nhập đầy đủ thông tin bình luận";
