@@ -127,25 +127,34 @@
 
     <div class="card mb-4 shadow-sm my-5 p-3">
         <h4 class="card-header bg-light">Đánh Giá Sản Phẩm</h4>
-        <?php foreach ($comments as $comment): ?>
-            <?php
-            // Lấy thông tin người dùng từ user_id
-            $user = (new User)->find($comment['user_id']);
-            $username = $user ? $user['fullname'] : 'Người dùng chưa có tên'; // Lấy tên người dùng nếu có, nếu không sẽ hiển thị 'Người dùng chưa có tên'
-            ?>
-            <div class="review-card mb-3 d-flex align-items-start p-3">
-                <img src="<?= ROOT_URL . $user['image'] ?>" alt="Avatar" class="rounded-circle me-3" style="width: 40px; height: 40px;">
-                <div>
-                    <p><strong><?= $username ?></strong> <span class="text-muted">- <?= date('d/m/Y', strtotime($comment['created_at'])) ?></span></p>
-                    <p><?= htmlspecialchars($comment['comment']) ?></p>
-                    <div class="rating">
-                        <?php for ($i = 1; $i <= $comment['rating']; $i++): ?>
-                            <span class="star <?= $i <= $comment['rating'] ? 'filled' : '' ?>">&#9733;</span>
-                        <?php endfor; ?>
+        <?php if (empty($comments)) : ?>
+            <p class="text-center text-muted">Chưa có đánh giá nào cho sản phẩm này</p>
+        <?php else: ?>
+            <?php foreach ($comments as $comment): ?>
+                <?php
+                // Lấy thông tin người dùng từ user_id trong mỗi bình luận
+                $user = (new User)->find($comment['user_id']);
+                $username = $user['fullname']; // Lấy tên người dùng nếu có, nếu không sẽ hiển thị 'Người dùng chưa có tên'
+                $userImage = ROOT_URL . $user['image']; // Lấy ảnh người dùng nếu có
+                ?>
+                <div class="review-card mb-3 d-flex align-items-start p-3">
+                    <!-- Hiển thị ảnh người dùng -->
+                    <img src="<?= htmlspecialchars($userImage) ?>" alt="Avatar" class="rounded-circle me-3" style="width: 40px; height: 40px;">
+                    <div>
+                        <!-- Hiển thị tên người dùng và thời gian bình luận -->
+                        <p><strong><?= htmlspecialchars($username) ?></strong> <span class="text-muted">- <?= date('d/m/Y', strtotime($comment['created_at'])) ?></span></p>
+                        <!-- Hiển thị nội dung bình luận -->
+                        <p><?= htmlspecialchars($comment['comment']) ?></p>
+                        <div class="rating">
+                            <!-- Hiển thị đánh giá sao -->
+                            <?php for ($i = 1; $i <= $comment['rating']; $i++): ?>
+                                <span class="star filled">&#9733;</span>
+                            <?php endfor; ?>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
 
         <div class="mt-4">
             <h5>Viết Đánh Giá Của Bạn</h5>
