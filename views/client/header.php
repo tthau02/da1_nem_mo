@@ -81,8 +81,102 @@
 
           <div class="widgets-wrap float-md-right ml-4">
             <div class="widget-header">
+
+                <a href="#" class="icon icon-sm rounded-circle border">
+                  <i class="fa fa-shopping-cart"></i>
+                 
+                </a>
+                <span class="badge badge-pill badge-danger notify"><?= $totalQuantity ?></span>
+            </div>
+            <?php
+            if (isset($_SESSION['user_id'])) {
+            ?>
+              <div class="widget-header dropdown">
+                <a href="#" class="icon icon-sm rounded-circle border" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-user"></i></a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <a class="dropdown-item" href="#">Profile</a>
+                  <a class="dropdown-item" href="#">Orders</a>
+                  <a class="dropdown-item" href="<?= ROOT_URL . '?ctl=logout' ?>">Logout</a>
+                </div>
+              </div>
+            <?php
+            } else {
+            ?>
+              <!-- Phần Icon fa-user -->
+              <div class="widget-header">
+                <a href="#" class="icon icon-sm rounded-circle border" data-bs-toggle="modal" data-bs-target="#authModal">
+                  <i class="fa fa-user"></i>
+                </a>
+              </div>
+
+              <!-- Modal -->
+              <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="authModalLabel">Authentication</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <!-- Pills navs -->
+                      <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+                        <li class="nav-item" role="presentation">
+                          <a class="nav-link active" id="tab-login" data-bs-toggle="pill" href="#pills-login" role="tab"
+                            aria-controls="pills-login" aria-selected="true">Login</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <a class="nav-link" id="tab-register" data-bs-toggle="pill" href="#pills-register" role="tab"
+                            aria-controls="pills-register" aria-selected="false">Register</a>
+                        </li>
+                      </ul>
+                      <!-- Pills navs -->
+
+                      <!-- Pills content -->
+                      <div class="tab-content">
+
+                        <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+                          <form action="<?= ROOT_URL . '?ctl=login' ?>" method="post">
+                            <!-- Hiển thị thông báo lỗi nếu có -->
+                            <?php if (!empty($_SESSION['error_message'])): ?>
+                              <div class="alert alert-danger">
+                                <?= $_SESSION['error_message']; ?>
+                              </div>
+                              <?php unset($_SESSION['error_message']); ?>
+                            <?php endif; ?>
+
+                            <!-- Email or Username input -->
+                            <div class="form-outline mb-4">
+                              <input type="text" id="loginIdentifier" name="loginIdentifier" class="form-control" required />
+                              <label class="form-label" for="loginIdentifier">Email or Username</label>
+                            </div>
+
+                            <!-- Password input -->
+                            <div class="form-outline mb-4">
+                              <input type="password" id="loginPassword" name="password" class="form-control" required />
+                              <label class="form-label" for="loginPassword">Password</label>
+                            </div>
+
+                            <!-- Remember me and Forgot password -->
+                            <div class="row mb-4">
+                              <div class="col-md-6 d-flex justify-content-center">
+                                <div class="form-check mb-3 mb-md-0">
+                                  <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked />
+                                  <label class="form-check-label" for="loginCheck"> Remember me </label>
+                                </div>
+                              </div>
+                              <div class="col-md-6 d-flex justify-content-center">
+                                <a href="#!">Forgot password?</a>
+                              </div>
+                            </div>
+
+                            <!-- Submit button -->
+                            <button type="submit" class="btn btn-primary btn-block mb-4">Login</button>
+                          </form>
+                        </div>
+
               <a href="#" class="icon icon-sm rounded-circle border">
                 <i class="fa fa-shopping-cart"></i>
+
 
               </a>
               <span class="badge badge-pill badge-danger notify"><?= $totalQuantity ?></span>
