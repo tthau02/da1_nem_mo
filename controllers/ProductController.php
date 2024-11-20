@@ -42,6 +42,11 @@ class ProductController
         $title = $product['name'] ?? '';
         $categories = (new Category)->all();
 
+
+        // Lưu URI vào session
+        $_SESSION['URI'] = $_SERVER['REQUEST_URI'];
+
+
         $totalQuantity = (new CartController)->totalQuantityCart();
 
         return view(
