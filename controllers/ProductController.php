@@ -37,8 +37,10 @@ class ProductController
     public function detail()
     {
         $id = $_GET['id'];
-
         $product = (new Product)->find($id);
+        $categoryId = $product['category_id'] ?? null;
+        $relatedProducts = (new Product)->productInCategory($categoryId, $id); 
+
         $title = $product['name'] ?? '';
         $categories = (new Category)->all();
 
@@ -51,7 +53,9 @@ class ProductController
 
         return view(
             'client.products.detail',
-            compact('product', 'categories', 'title', 'totalQuantity')
+            compact('product', 'categories', 'title', 'totalQuantity', 'relatedProducts')
+
         );
     }
+
 }

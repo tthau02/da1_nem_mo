@@ -109,13 +109,11 @@
                             <?php foreach ($newProduct as $product): ?>
                                 <div class="col-md-3 mb-4">
                                     <div class="card shadow-sm">
-                                        <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>">
                                             <img
                                                 src="<?= ROOT_URL . $product['image']; ?>"
                                                 class="card-img-top"
                                                 alt="<?= htmlspecialchars($product['name']); ?>"
                                                 style="height: 200px; object-fit: cover;">
-                                        </a>
                                         <div class="card-body">
                                             <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>">
                                                 <h5 class="card-title text-truncate"><?= $product['name']; ?></h5>

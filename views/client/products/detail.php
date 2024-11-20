@@ -1,12 +1,14 @@
 <?php include_once ROOT_DIR . "views/client/header.php" ?>
 
-<div class="container my-5">
-    <div class="row">
+<div class="container">
+    <div class="row h-100">
         <div class="col mt-3 m-2">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a href="">Sản phẩm</a></li>
+            <nav aria-label="breadcrumb" class="bg-light p-3 rounded">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="<?= ROOT_URL ?>" class="text-decoration-none text-primary">Trang chủ</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page"><?= $title?></li>
                 </ol>
             </nav>
         </div>
@@ -15,11 +17,11 @@
         <div class="col-md-6">
             <img src="<?= ROOT_URL . $product['image'] ?>" alt="Sản phẩm" class="product-image img-fluid">
         </div>
-
+        
         <div class="col-md-6 product-details">
             <h3 class="mb-3"><?= $product["name"] ?></h3>
             <p class="text-muted"><?= $product["id"] ?></p>
-
+            
             <div class="rating mb-3">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
@@ -42,9 +44,9 @@
                     <input type="number" id="quantity" class="form-control text-center" value="1" min="1" style="max-width: 70px;">
                     <button class="btn btn-outline-secondary" type="button" id="increaseQuantity">+</button>
                 </div>
-                <a href="" class="btn btn-danger btn-add-cart ms-3">Thêm vào giỏ hàng</a>
+                <button class="btn btn-danger btn-add-cart ms-3">Thêm vào giỏ hàng</button>
             </div>
-
+            
             <!-- Thông tin bổ sung -->
             <ul class="list-unstyled text-muted">
                 <li><strong>Thương hiệu:</strong> Thương hiệu A</li>
@@ -55,15 +57,59 @@
     </div>
 
     <!-- Mô tả chi tiết sản phẩm -->
-    <div class="my-5">
-        <h4>Mô Tả Chi Tiết</h4>
-        <p>Được sản xuất từ chất liệu vải tốt nhất, sản phẩm mang đến sự thoải mái và phù hợp với phong cách hiện đại. Tất cả các sản phẩm đều trải qua quy trình kiểm tra nghiêm ngặt để đảm bảo chất lượng cao.</p>
-        <p>Sản phẩm này sẽ là lựa chọn lý tưởng cho mọi dịp, từ đi làm, đi chơi đến các sự kiện quan trọng.</p>
+    <div class="container my-5">
+    <h4 class="mb-4 text-primary border-bottom pb-2">Mô Tả Chi Tiết</h4>
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-light">
+            <h5 class="card-title mb-0 text-success">1. Tổng Quan Sản Phẩm</h5>
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+                Nệm cao su đa tầng Goodnight Rena là sản phẩm cao cấp, được thiết kế nhằm mang lại giấc ngủ thoải mái và chất lượng nhất cho người dùng. 
+                Với độ dày 10cm, sản phẩm là sự kết hợp hoàn hảo giữa các vật liệu cao cấp như cao su thiên nhiên và foam đàn hồi, đáp ứng nhu cầu sử dụng đa dạng 
+                của người tiêu dùng hiện đại.
+            </p>
+        </div>
+    </div>
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-light">
+            <h5 class="card-title mb-0 text-success">2. Đặc Điểm Nổi Bật</h5>
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>Độ dày lý tưởng:</b> Độ dày 10cm giúp nâng đỡ cơ thể một cách hoàn hảo, giảm thiểu áp lực lên cột sống và các khớp.</li>
+                <li class="list-group-item"><b>Thiết kế đa tầng:</b> Kết hợp giữa cao su thiên nhiên và foam đàn hồi, đảm bảo sự cân bằng giữa độ êm ái và độ vững chắc.</li>
+                <li class="list-group-item"><b>Thông thoáng tối ưu:</b> Lớp cao su thiên nhiên có khả năng thoát khí tốt, hạn chế tích nhiệt, mang lại cảm giác mát mẻ khi nằm.</li>
+                <li class="list-group-item"><b>Vỏ ngoài tiện lợi:</b> Vỏ bọc dễ tháo rời, vệ sinh đơn giản, giúp giữ nệm luôn sạch sẽ và bền đẹp.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-light">
+            <h5 class="card-title mb-0 text-success">3. Lợi Ích Khi Sử Dụng</h5>
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+                Khi sử dụng nệm Goodnight Rena, bạn sẽ cảm nhận được sự khác biệt rõ rệt về chất lượng giấc ngủ:
+            </p>
+            <ol class="list-group list-group-numbered">
+                <li class="list-group-item"><b>Cải thiện sức khỏe:</b> Nệm hỗ trợ giữ cột sống thẳng tự nhiên, giúp giảm đau lưng và ngăn ngừa các vấn đề về xương khớp.</li>
+                <li class="list-group-item"><b>Ngủ ngon hơn:</b> Độ êm ái và khả năng cách ly chuyển động tốt giúp bạn có giấc ngủ sâu, không bị ảnh hưởng khi người khác di chuyển.</li>
+                <li class="list-group-item"><b>Phù hợp với nhiều điều kiện thời tiết:</b> Chất liệu thông thoáng giúp bạn thoải mái cả mùa đông lẫn mùa hè.</li>
+            </ol>
+        </div>
+    </div>
+    <div class="mb-4 text-center">
+        <img src="https://270349907.e.cdneverest.net/fast/544x0/filters:format(webp)/vuanem.com/storage/products/1866/RERZ79aLbP38qtiWvsMLBbAMRA54xvGM5t4NPK7d.jpg" class="card-img-top img-fluid" alt="Nệm cao su đa tầng Goodnight Rena" style="width: 700px; height: 500px;">
+            <div class="card-body">
+                <p class="card-text text-center text-muted">Nệm cao su đa tầng Goodnight Rena.</p>
+            </div>
+        </div>
     </div>
 
     <div class="my-5">
         <h4>Đánh Giá Sản Phẩm</h4>
-
+        
         <!-- Phần hiển thị các bình luận -->
         <div class="review-card mb-3 d-flex align-items-start">
             <img src="https://via.placeholder.com/50" alt="Avatar" class="rounded-circle me-3">
@@ -86,7 +132,7 @@
                 <p>Đây là lần thứ hai tôi mua sản phẩm này, lần nào cũng hài lòng.</p>
             </div>
         </div>
-
+    
         <!-- Phần nhập bình luận mới -->
         <div class="mt-4">
             <h5>Viết Đánh Giá Của Bạn</h5>
@@ -104,46 +150,29 @@
     <div class="related-products my-5">
         <h4>Sản Phẩm Liên Quan</h4>
         <div class="row">
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="https://demhong.vn/wp-content/uploads/2019/04/chan-ga-goi-don-sac-ghi.jpg" class="card-img-top" alt="Sản phẩm 1">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Sản Phẩm 1</h5>
-                        <p class="text-danger">100,000 VND</p>
-                        <a href="#" class="btn btn-outline-primary btn-sm">Xem chi tiết</a>
+            <?php foreach ($relatedProducts as $product): ?>
+                <div class="col-md-3 mb-4">
+                    <div class="card shadow-sm">
+                        <img
+                            src="<?= ROOT_URL . $product['image']; ?>"
+                            class="card-img-top"
+                            alt="<?= htmlspecialchars($product['name']); ?>"
+                            style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>"><h5 class="card-title text-truncate"><?= $product['name']; ?></h5></a>
+                            <p class="card-text text-muted">
+                                Giá: <strong><?= number_format($product['price'], 0, ',', '.'); ?> VND</strong>
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>" class="btn btn-primary btn-sm">
+                                    Xem chi tiết
+                                </a>
+                                <a href="cart.html" class="btn btn-primary btn-sm">+ Add</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="link_image_san_pham2.jpg" class="card-img-top" alt="Sản phẩm 2">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Sản Phẩm 2</h5>
-                        <p class="text-danger">150,000 VND</p>
-                        <a href="#" class="btn btn-outline-primary btn-sm">Xem chi tiết</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="link_image_san_pham3.jpg" class="card-img-top" alt="Sản phẩm 3">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Sản Phẩm 3</h5>
-                        <p class="text-danger">120,000 VND</p>
-                        <a href="#" class="btn btn-outline-primary btn-sm">Xem chi tiết</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="link_image_san_pham4.jpg" class="card-img-top" alt="Sản phẩm 4">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Sản Phẩm 4</h5>
-                        <p class="text-danger">180,000 VND</p>
-                        <a href="#" class="btn btn-outline-primary btn-sm">Xem chi tiết</a>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>

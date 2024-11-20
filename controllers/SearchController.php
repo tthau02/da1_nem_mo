@@ -1,6 +1,7 @@
 <?php 
     class SearchController {
         public function search(){
+            $categories = (new Category)->all();
             $keyword = isset($_GET['keyword']) ? trim($_GET['keyword']) : '';
     
             // Kiểm tra nếu từ khóa rỗng
@@ -14,7 +15,7 @@
                 $message = null;
             }
     
-            return view("client.products.search", compact('keyword', 'products', 'message'));
+            return view("client.products.search", compact('keyword', 'products', 'categories', 'message'));
         }
     }
 
