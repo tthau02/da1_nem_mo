@@ -49,54 +49,54 @@
 </section>
 
 <section class="container mt-6">
-  <div class="card border-0">
-    <div class="card-header bg-success text-white text-uppercase text-center">
-        Danh Mục Nổi Bật
-    </div>
-    <div class="product-slider">
-      <?php
-            foreach ($categories as $category){
-                ?>
-                    <div class="card">
-                        <img src="<?= ROOT_URL . $category["image"] ?>" class="card-img-top" alt="Product 1">
-                        <div class="card-body">
+    <div class="card border-0">
+        <div class="card-header bg-success text-white text-uppercase text-center">
+            Danh Mục Nổi Bật
+        </div>
+        <div class="product-slider">
+            <?php
+            foreach ($categories as $category) {
+            ?>
+                <div class="card">
+                    <img src="<?= ROOT_URL . $category["image"] ?>" class="card-img-top" alt="Product 1">
+                    <div class="card-body">
                         <h5 class="card-title"><?= $category["cate_name"] ?></h5>
-                        </div>
                     </div>
-                <?php
+                </div>
+            <?php
             }
-      ?>
-    <!-- Thêm các sản phẩm khác ở đây -->
-  </div>
-</div>
+            ?>
+            <!-- Thêm các sản phẩm khác ở đây -->
+        </div>
+    </div>
 </section>
 
 <section class="banner-sale container">
-  <div class="sale-item">
-    <div class="ad-box position-relative">
-      <img src="https://everon.com/upload/upload-images/esc22018-everon-solid-2021.jpg" alt="Quảng cáo" class="ad-image">
-      <div class="ad-content text-center text-white">
-        <h3 class="ad-title">Khuyến mãi đặc biệt</h3>
-        <p class="ad-text">Nhận ưu đãi ngay hôm nay!</p>
-        <a href="#" class="btn btn-outline-success">Mua ngay</a>
-      </div>
+    <div class="sale-item">
+        <div class="ad-box position-relative">
+            <img src="https://everon.com/upload/upload-images/esc22018-everon-solid-2021.jpg" alt="Quảng cáo" class="ad-image">
+            <div class="ad-content text-center text-white">
+                <h3 class="ad-title">Khuyến mãi đặc biệt</h3>
+                <p class="ad-text">Nhận ưu đãi ngay hôm nay!</p>
+                <a href="#" class="btn btn-outline-success">Mua ngay</a>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="">
-    <div class="ad-box position-relative">
-      <img src="https://everon.com/upload/upload-images/esc22018-everon-solid-2021.jpg" alt="Quảng cáo" class="ad-image">
-      <div class="ad-content text-center text-white">
-        <h3 class="ad-title">Khuyến mãi đặc biệt</h3>
-        <p class="ad-text">Nhận ưu đãi ngay hôm nay!</p>
-        <a href="#" class="btn btn-outline-success">Mua ngay</a>
-      </div>
+    <div class="">
+        <div class="ad-box position-relative">
+            <img src="https://everon.com/upload/upload-images/esc22018-everon-solid-2021.jpg" alt="Quảng cáo" class="ad-image">
+            <div class="ad-content text-center text-white">
+                <h3 class="ad-title">Khuyến mãi đặc biệt</h3>
+                <p class="ad-text">Nhận ưu đãi ngay hôm nay!</p>
+                <a href="#" class="btn btn-outline-success">Mua ngay</a>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
-      
-  <!-- Sản phẩm mởi nhất -->
-  <section class="last-product">
+
+<!-- Sản phẩm mởi nhất -->
+<section class="last-product">
     <div class="container mt-6">
         <div class="row">
             <div class="col-sm">
@@ -105,17 +105,21 @@
                         Sản phẩm mới nhất
                     </div>
                     <div class="card-body">
-                    <div class="row">
+                        <div class="row">
                             <?php foreach ($newProduct as $product): ?>
                                 <div class="col-md-3 mb-4">
                                     <div class="card shadow-sm">
-                                        <img
-                                            src="<?= ROOT_URL . $product['image']; ?>"
-                                            class="card-img-top"
-                                            alt="<?= htmlspecialchars($product['name']); ?>"
-                                            style="height: 200px; object-fit: cover;">
+                                        <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>">
+                                            <img
+                                                src="<?= ROOT_URL . $product['image']; ?>"
+                                                class="card-img-top"
+                                                alt="<?= htmlspecialchars($product['name']); ?>"
+                                                style="height: 200px; object-fit: cover;">
+                                        </a>
                                         <div class="card-body">
-                                            <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>"><h5 class="card-title text-truncate"><?= $product['name']; ?></h5></a>
+                                            <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>">
+                                                <h5 class="card-title text-truncate"><?= $product['name']; ?></h5>
+                                            </a>
                                             <p class="card-text text-muted">
                                                 Giá: <strong><?= number_format($product['price'], 0, ',', '.'); ?> VND</strong>
                                             </p>
@@ -131,11 +135,11 @@
                             <?php endforeach; ?>
                         </div>
                         <div class="text-center mt-4">
-                            <a href="?ctl=product" class="btn btn-outline-danger ">Xem tất cả  >></a>
+                            <a href="?ctl=product" class="btn btn-outline-danger ">Xem tất cả >></a>
                         </div>
                     </div>
 
                 </div>
-            </section>  
+</section>
 
 <?php include_once ROOT_DIR . "views/client/footer.php" ?>
