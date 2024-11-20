@@ -43,6 +43,7 @@ class ProductController
 
         $title = $product['name'] ?? '';
         $categories = (new Category)->all();
+        $users = (new User)->all();
 
         $comments = (new Comment)->getCommentByProductId($id);
 
@@ -55,7 +56,7 @@ class ProductController
 
         return view(
             'client.products.detail',
-            compact('product', 'categories', 'title', 'totalQuantity', 'relatedProducts')
+            compact('product', 'users', 'categories', 'title', 'comments', 'totalQuantity', 'relatedProducts')
 
         );
     }

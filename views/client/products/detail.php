@@ -127,13 +127,26 @@
 
     <div class="card mb-4 shadow-sm my-5 p-3">
         <h4 class="card-header bg-light">Đánh Giá Sản Phẩm</h4>
-        <div class="review-card mb-3 d-flex align-items-start p-3">
-            <img src="https://via.placeholder.com/50" alt="Avatar" class="rounded-circle me-3">
-            <div>
-                <p><strong>Nguyễn Văn A</strong> <span class="text-muted">- 01/01/2024</span></p>
-                <p>Sản phẩm rất tốt, chất liệu mềm mại và phù hợp với giá tiền. Chắc chắn sẽ quay lại mua hàng.</p>
+        <?php foreach ($comments as $comment): ?>
+            <?php
+            // Lấy thông tin người dùng từ user_id
+            $user = (new User)->find($comment['user_id']);
+            $username = $user ? $user['fullname'] : 'Người dùng chưa có tên'; // Lấy tên người dùng nếu có, nếu không sẽ hiển thị 'Người dùng chưa có tên'
+            ?>
+            <div class="review-card mb-3 d-flex align-items-start p-3">
+                <img src="<?= ROOT_URL . $user['image'] ?>" alt="Avatar" class="rounded-circle me-3" style="width: 40px; height: 40px;">
+                <div>
+                    <p><strong><?= $username ?></strong> <span class="text-muted">- <?= date('d/m/Y', strtotime($comment['created_at'])) ?></span></p>
+                    <p><?= htmlspecialchars($comment['comment']) ?></p>
+                    <div class="rating">
+                        <?php for ($i = 1; $i <= $comment['rating']; $i++): ?>
+                            <span class="star <?= $i <= $comment['rating'] ? 'filled' : '' ?>">&#9733;</span>
+                        <?php endfor; ?>
+                    </div>
+                </div>
             </div>
-        </div>
+        <?php endforeach; ?>
+
         <div class="mt-4">
             <h5>Viết Đánh Giá Của Bạn</h5>
             <form id="commentForm" action="?ctl=add-comment" method="POST">
