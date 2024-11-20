@@ -39,10 +39,12 @@ class ProductController
         $id = $_GET['id'];
         $product = (new Product)->find($id);
         $categoryId = $product['category_id'] ?? null;
-        $relatedProducts = (new Product)->productInCategory($categoryId, $id); 
+        $relatedProducts = (new Product)->productInCategory($categoryId, $id);
 
         $title = $product['name'] ?? '';
         $categories = (new Category)->all();
+
+        $comments = (new Comment)->getCommentByProductId($id);
 
 
         // Lưu URI vào session
@@ -57,5 +59,4 @@ class ProductController
 
         );
     }
-
 }
