@@ -9,9 +9,11 @@ class ProductController
         $products = $product->all();
 
         $categories = (new Category)->all();
+        $totalQuantity = (new CartController)->totalQuantityCart();
+
         return view(
             'client.products.list',
-            compact('categories', 'products', 'title')
+            compact('categories', 'products', 'title', 'totalQuantity')
         );
     }
 
@@ -25,6 +27,7 @@ class ProductController
             $title = $products[0]['cate_name'];
         }
         $categories = (new Category)->all();
+        $totalQuantity = (new CartController)->totalQuantityCart();
         return view(
             'client.products.list',
             compact('categories', 'products', 'title', 'totalQuantity')
@@ -39,13 +42,16 @@ class ProductController
         $title = $product['name'] ?? '';
         $categories = (new Category)->all();
 
+
         // Lưu URI vào session
         $_SESSION['URI'] = $_SERVER['REQUEST_URI'];
+
+
         $totalQuantity = (new CartController)->totalQuantityCart();
 
         return view(
             'client.products.detail',
-            compact('product', 'categories', 'title')
+            compact('product', 'categories', 'title', 'totalQuantity')
         );
     }
 }
