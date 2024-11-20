@@ -39,10 +39,13 @@ class ProductController
         $id = $_GET['id'];
         $product = (new Product)->find($id);
         $categoryId = $product['category_id'] ?? null;
-        $relatedProducts = (new Product)->productInCategory($categoryId, $id); 
+        $relatedProducts = (new Product)->productInCategory($categoryId, $id);
 
         $title = $product['name'] ?? '';
         $categories = (new Category)->all();
+        $users = (new User)->all();
+
+        $comments = (new Comment)->getCommentByProductId($id);
 
 
         // Lưu URI vào session
@@ -53,9 +56,8 @@ class ProductController
 
         return view(
             'client.products.detail',
-            compact('product', 'categories', 'title', 'totalQuantity', 'relatedProducts')
+            compact('product', 'users', 'categories', 'title', 'comments', 'totalQuantity', 'relatedProducts')
 
         );
     }
-
 }

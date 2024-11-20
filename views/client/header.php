@@ -14,7 +14,7 @@
 </head>
 
 <body>
-  <header class="header bg-light py-2">
+  <header class="header bg-light py-2 ">
     <div class="container">
       <div class="header-navbar d-flex align-items-center justify-content-between">
 
@@ -86,8 +86,7 @@
                 <i class="fa fa-shopping-cart"></i>
 
               </a>
-              <span class="badge badge-pill badge-danger notify"><?=
-                                                                  isset($totalQuantity) ? $totalQuantity : 0 ?></span>
+              <span class="badge badge-pill badge-danger notify"><?= isset($totalQuantity) ? $totalQuantity : 0 ?></span>
             </div>
             <?php
             if (isset($_SESSION['user_id'])) {
@@ -95,7 +94,7 @@
               <div class="widget-header dropdown">
                 <a href="#" class="icon icon-sm rounded-circle border" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-user"></i></a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <a class="dropdown-item" href="#">Profile</a>
+                  <a class="dropdown-item" href="?ctl=edit-profile">Profile</a>
                   <a class="dropdown-item" href="#">Orders</a>
                   <a class="dropdown-item" href="<?= ROOT_URL . '?ctl=logout' ?>">Logout</a>
                 </div>
@@ -147,13 +146,13 @@
 
                             <!-- Email or Username input -->
                             <div class="form-outline mb-4">
-                              <input type="text" id="loginIdentifier" name="loginIdentifier" class="form-control" required />
+                              <input type="text" id="loginIdentifier" name="loginIdentifier" class="form-control" placeholder="Email or username" />
                               <label class="form-label" for="loginIdentifier">Email or Username</label>
                             </div>
 
                             <!-- Password input -->
                             <div class="form-outline mb-4">
-                              <input type="password" id="loginPassword" name="password" class="form-control" required />
+                              <input type="password" id="loginPassword" name="password" class="form-control" placeholder="Password" />
                               <label class="form-label" for="loginPassword">Password</label>
                             </div>
 
@@ -174,10 +173,52 @@
                             <button type="submit" class="btn btn-primary btn-block mb-4">Login</button>
                           </form>
                         </div>
-                      <?php } ?>
+                        <!-- Register -->
+                        <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
+                          <form action="<?= ROOT_URL . '?ctl=signup' ?> " method="post">
+                            <!-- Name input -->
+                            <div class="form-outline mb-4">
+                              <input name="fullname" type="text" id="registerName" placeholder="Full name" class="form-control" />
+                              <label class="form-label" for="fullname">Full name</label>
+                            </div>
+                            <!-- Username input -->
+                            <div class="form-outline mb-4">
+                              <input name="username" type="text" id="registerUsername" placeholder="Username" class="form-control" />
+                              <label class="form-label" for="username">Username</label>
+                            </div>
+                            <!-- Email input -->
+                            <div class="form-outline mb-4">
+                              <input name="email" type="email" id="registerEmail" placeholder="Email" class="form-control" />
+                              <label class="form-label" for="email">Email</label>
+                            </div>
+                            <!-- Password input -->
+                            <div class="form-outline mb-4">
+                              <input type="password" name="password" id="registerPassword" placeholder="Password" class="form-control" />
+                              <label class="form-label" for="registerPassword">Password</label>
+                            </div>
+                            <!-- Repeat Password input -->
+                            <div class="form-outline mb-4">
+                              <input type="password" name="confirmPassword" id="registerRepeatPassword" placeholder="Comfirm password" class="form-control" />
+                              <label class="form-label" for="registerRepeatPassword">Comfirm password</label>
+                            </div>
+                            <!-- Checkbox -->
+                            <div class="form-check d-flex justify-content-center mb-4">
+                              <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
+                                aria-describedby="registerCheckHelpText" />
+                              <label class="form-check-label" for="registerCheck">
+                                I have read and agree to the terms
+                              </label>
+                            </div>
+                            <!-- Submit button -->
+                            <button type="submit" class="btn mx-auto btn-primary btn-block mb-3">Sign Up</button>
+                          </form>
+                        </div>
+
                       </div>
+                    <?php } ?>
                     </div>
                   </div>
                 </div>
               </div>
+          </div>
   </header>
