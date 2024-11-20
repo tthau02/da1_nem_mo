@@ -20,10 +20,10 @@ $ctl = $_GET['ctl'] ?? '';
 
 match ($ctl) {
     '', 'home' => (new HomeController)->index(),
-    'search' => (new SearchController) ->search(),
+    'search' => (new SearchController)->search(),
     'product' => (new ProductController)->all(),
     'category' => (new ProductController)->getProductByCategory(),
     'detail' => (new ProductController)->detail(),
-    'add-cart' => (new CartController) ->addCart(),
+    'add-cart' => (new CartController)->addCart(),
     default => view("errors.404"),
 };
