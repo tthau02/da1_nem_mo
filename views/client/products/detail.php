@@ -14,14 +14,15 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
-            <img src="<?= ROOT_URL . $product['image'] ?>" alt="Sản phẩm" class="product-image img-fluid">
-        </div>
+        <div class="col-md-6 mt-2">
+            <img src="<?= ROOT_URL . $product['image'] ?>" alt="Sản phẩm" class="card-img-top border border-primary rounded" style="height: 550px;">
+            <div class="card-body">
+                <p class="card-text text-center text-muted"><?= $product["name"] ?></p>
+            </div>
+         </div>
         
-        <div class="col-md-6 product-details">
-            <h3 class="mb-3"><?= $product["name"] ?></h3>
-            <p class="text-muted"><?= $product["id"] ?></p>
-            
+        <div class="col-md-6 card mb-4 shadow-sm p-7">
+            <h3 class="mb-3 text-primary font-weight-bold"><?= $product["name"] ?></h3>         
             <div class="rating mb-3">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
@@ -31,11 +32,11 @@
                 <span class="text-muted">(4.5 trên 5 sao)</span>
             </div>
 
-            <h4 class="product-price mb-3"><?= number_format($product['price'], 0, ',', '.') ?> VND</h4>
-
+            <h4 class="product-price mb-3"><?=  number_format($product['price'], 0, ',', '.') ?> VND</h4>
+            
             <!-- Mô tả sản phẩm -->
             <p class="text-secondary mb-4"><?= $product["description"] ?></p>
-
+            
             <!-- Tùy chọn số lượng và nút giỏ hàng -->
             <div class="mb-3">
                 <label for="quantity" class="form-label">Số lượng</label>
@@ -44,15 +45,32 @@
                     <input type="number" id="quantity" class="form-control text-center" value="1" min="1" style="max-width: 70px;">
                     <button class="btn btn-outline-secondary" type="button" id="increaseQuantity">+</button>
                 </div>
-                <button class="btn btn-danger btn-add-cart ms-3">Thêm vào giỏ hàng</button>
+                <div class="d-flex gap-5">
+                    <button class="btn btn-outline-danger btn-add-cart mt-3">Thêm vào giỏ</button>
+                    <button class="btn btn-danger mt-3">Mua Ngay</button>
+                    <button class="btn btn-danger mt-3">Liên Hệ Ngay</button>
+                </div>
             </div>
             
-            <!-- Thông tin bổ sung -->
-            <ul class="list-unstyled text-muted">
-                <li><strong>Thương hiệu:</strong> Thương hiệu A</li>
-                <li><strong>Chất liệu:</strong> Vải cao cấp</li>
-                <li><strong>Xuất xứ:</strong> Việt Nam</li>
-            </ul>
+            <div class="card shadow-sm mt-4">
+                <div class="card-header bg-light">
+                    <h5 class="card-title mb-0 text-success">Thông Tin Bổ Sung</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>Thương hiệu:</strong> Thương hiệu A
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>Chất liệu:</strong> Vải cao cấp
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>Xuất xứ:</strong> Việt Nam
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -107,36 +125,18 @@
         </div>
     </div>
 
-    <div class="my-5">
-        <h4>Đánh Giá Sản Phẩm</h4>
-        
-        <!-- Phần hiển thị các bình luận -->
-        <div class="review-card mb-3 d-flex align-items-start">
+    <div class="card mb-4 shadow-sm my-5 p-3">
+        <h4 class="card-header bg-light">Đánh Giá Sản Phẩm</h4>
+        <div class="review-card mb-3 d-flex align-items-start p-3">
             <img src="https://via.placeholder.com/50" alt="Avatar" class="rounded-circle me-3">
             <div>
                 <p><strong>Nguyễn Văn A</strong> <span class="text-muted">- 01/01/2024</span></p>
                 <p>Sản phẩm rất tốt, chất liệu mềm mại và phù hợp với giá tiền. Chắc chắn sẽ quay lại mua hàng.</p>
             </div>
         </div>
-        <div class="review-card mb-3 d-flex align-items-start">
-            <img src="https://via.placeholder.com/50" alt="Avatar" class="rounded-circle me-3">
-            <div>
-                <p><strong>Trần Thị B</strong> <span class="text-muted">- 02/01/2024</span></p>
-                <p>Sản phẩm đẹp, màu sắc hài hòa và thoải mái khi mặc. Giao hàng nhanh chóng.</p>
-            </div>
-        </div>
-        <div class="review-card mb-3 d-flex align-items-start">
-            <img src="https://via.placeholder.com/50" alt="Avatar" class="rounded-circle me-3">
-            <div>
-                <p><strong>Lê Minh C</strong> <span class="text-muted">- 03/01/2024</span></p>
-                <p>Đây là lần thứ hai tôi mua sản phẩm này, lần nào cũng hài lòng.</p>
-            </div>
-        </div>
-    
-        <!-- Phần nhập bình luận mới -->
         <div class="mt-4">
             <h5>Viết Đánh Giá Của Bạn</h5>
-            <form id="commentForm">
+            <form id="commentForm"> 
                 <div class="mb-3">
                     <label for="comment" class="form-label">Bình luận</label>
                     <textarea id="comment" class="form-control" rows="3" placeholder="Viết đánh giá của bạn ở đây" required></textarea>
@@ -176,6 +176,6 @@
         </div>
     </div>
 </div>
-
+  
 
 <?php include_once ROOT_DIR . "views/client/footer.php" ?>
