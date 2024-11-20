@@ -46,7 +46,7 @@
                     <button class="btn btn-outline-secondary" type="button" id="increaseQuantity">+</button>
                 </div>
                 <div class="d-flex gap-5">
-                    <button class="btn btn-outline-danger btn-add-cart mt-3">Thêm vào giỏ</button>
+                    <a href="<?= ROOT_URL . '?ctl=add-cart&id=' . $product['id'] ?>" class="btn btn-outline-danger btn-add-cart mt-3">Add to cart</a>
                     <button class="btn btn-danger mt-3">Mua Ngay</button>
                     <button class="btn btn-danger mt-3">Liên Hệ Ngay</button>
                 </div>
