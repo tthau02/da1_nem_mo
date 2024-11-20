@@ -31,6 +31,18 @@ class Product extends BaseModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function productInCategory($id)
+    {
+        $sql = "SELECT * FROM products 
+                WHERE category_id = :id 
+                LIMIT 8";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT); 
+        $stmt->execute(); 
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); 
+    }
+
+
     //Thêm dữ liệu
     public function create($data)
     {

@@ -53,7 +53,7 @@
             <div class="card-body">
             <div class="row">
                     <?php foreach ($products as $product): ?>
-                        <div class="col-md-3 mb-4">
+                        <div class="col-md-4 mb-4">
                             <div class="card shadow-sm">
                                 <img
                                     src="<?= ROOT_URL . $product['image']; ?>"

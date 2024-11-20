@@ -28,18 +28,22 @@ class ProductController{
         );
     }
 
-    public function detail(){
+    public function detail()
+    {
         $id = $_GET['id'];
-
         $product = (new Product)->find($id);
+        $categoryId = $product['category_id'] ?? null;
+        $relatedProducts = (new Product)->productInCategory($categoryId, $id); 
+
         $title = $product['name'] ?? '';
         $categories = (new Category)->all();
 
         return view(
             'client.products.detail',
-            compact('product', 'categories', 'title')
+            compact('product', 'categories', 'relatedProducts', 'title')
         );
     }
+
 }
 
 
