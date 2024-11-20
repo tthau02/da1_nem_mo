@@ -42,7 +42,7 @@
                     <input type="number" id="quantity" class="form-control text-center" value="1" min="1" style="max-width: 70px;">
                     <button class="btn btn-outline-secondary" type="button" id="increaseQuantity">+</button>
                 </div>
-                <a href="" class="btn btn-danger btn-add-cart ms-3">Thêm vào giỏ hàng</a>
+                <button class="btn btn-danger btn-add-cart ms-3">Thêm vào giỏ hàng</button>
             </div>
 
             <!-- Thông tin bổ sung -->
