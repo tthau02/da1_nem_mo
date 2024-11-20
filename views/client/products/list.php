@@ -53,7 +53,7 @@
             <div class="card-body">
                     <div class="row">
                         <?php
-                        foreach ($products as $product) {
+                        foreach ($products as $product):
                             ?>
                             <div class="col-md-4 mt-3">
                                 <div class="card-product shadow-sm">
@@ -74,7 +74,9 @@
                                 </div>
                             </div>
                         </div>
+                        
                     <?php endforeach; ?>
+                        
                 </div>
                 </div>
                 <div class="col-12">

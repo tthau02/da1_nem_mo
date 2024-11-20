@@ -22,5 +22,6 @@ match ($ctl) {
     'product' => (new ProductController)->all(),
     'category' => (new ProductController)->getProductByCategory(),
     'detail' => (new ProductController)->detail(),
+    
     default => view("errors.404"),
 };
