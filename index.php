@@ -29,13 +29,15 @@ $ctl = $_GET['ctl'] ?? '';
 match ($ctl) {
     '', 'home' => (new HomeController)->index(),
     'search' => (new SearchController)->search(),
+    'search' => (new SearchController)->search(),
     'product' => (new ProductController)->all(),
-    'category' => (new ProductController)->getProductId(),
+    'category' => (new ProductController)->getProductByCategory(),
     'detail' => (new ProductController)->detail(),
 
     'login' => (new AuthController)->login(),
     'signup' => (new AuthController)->register(),
     'logout' => (new AuthController)->logout(),
 
+    'add-cart' => (new CartController)->addCart(),
     default => view("errors.404"),
 };

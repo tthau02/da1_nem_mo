@@ -1,7 +1,9 @@
 <?php
 
-class ProductController{
-    public function all(){
+class ProductController
+{
+    public function all()
+    {
         $title = 'Sản Phẩm';
         $product = new Product;
         $products = $product->all();
@@ -13,7 +15,8 @@ class ProductController{
         );
     }
 
-    public function getProductId(){
+    public function getProductByCategory()
+    {
         $id = $_GET['id'];
         $products = (new Product)->listProductInCategory($id);
 
@@ -24,16 +27,21 @@ class ProductController{
         $categories = (new Category)->all();
         return view(
             'client.products.list',
-            compact('categories', 'products', 'title')
+            compact('categories', 'products', 'title', 'totalQuantity')
         );
     }
 
-    public function detail(){
+    public function detail()
+    {
         $id = $_GET['id'];
 
         $product = (new Product)->find($id);
         $title = $product['name'] ?? '';
         $categories = (new Category)->all();
+
+        // Lưu URI vào session
+        $_SESSION['URI'] = $_SERVER['REQUEST_URI'];
+        $totalQuantity = (new CartController)->totalQuantityCart();
 
         return view(
             'client.products.detail',
@@ -41,6 +49,3 @@ class ProductController{
         );
     }
 }
-
-
-?>
