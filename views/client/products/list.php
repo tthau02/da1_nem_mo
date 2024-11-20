@@ -8,7 +8,7 @@
                     <li class="breadcrumb-item">
                         <a href="<?= ROOT_URL ?>" class="text-decoration-none text-primary">Trang chủ</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page"><?= $title?></li>
+                    <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
                 </ol>
             </nav>
         </div>
@@ -30,11 +30,11 @@
                 </div>
                 <ul class="list-group category_block">
                     <?php
-                        foreach ($categories as $cate){
-                            ?>
-                                <li class="list-group-item"><a href="<?= ROOT_URL . '?ctl=category&id=' . $cate['id'] ?>"><?= $cate["cate_name"] ?></a></li>
-                            <?php
-                        }
+                    foreach ($categories as $cate) {
+                    ?>
+                        <li class="list-group-item"><a href="<?= ROOT_URL . '?ctl=category&id=' . $cate['id'] ?>"><?= $cate["cate_name"] ?></a></li>
+                    <?php
+                    }
                     ?>
                 </ul>
             </div>
@@ -51,17 +51,22 @@
         </div>
         <div class="col">
             <div class="card-body">
-            <div class="row">
+                <div class="row">
                     <?php foreach ($products as $product): ?>
                         <div class="col-md-3 mb-4">
                             <div class="card shadow-sm">
-                                <img
-                                    src="<?= ROOT_URL . $product['image']; ?>"
-                                    class="card-img-top"
-                                    alt="<?= htmlspecialchars($product['name']); ?>"
-                                    style="height: 200px; object-fit: cover;">
+                                <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>">
+                                    <img
+                                        src="<?= ROOT_URL . $product['image']; ?>"
+                                        class="card-img-top"
+                                        alt="<?= htmlspecialchars($product['name']); ?>"
+                                        style="height: 200px; object-fit: cover;">
+                                </a>
+
                                 <div class="card-body">
-                                    <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>"><h5 class="card-title text-truncate"><?= $product['name']; ?></h5></a>
+                                    <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>">
+                                        <h5 class="card-title text-truncate"><?= $product['name']; ?></h5>
+                                    </a>
                                     <p class="card-text text-muted">
                                         Giá: <strong><?= number_format($product['price'], 0, ',', '.'); ?> VND</strong>
                                     </p>
@@ -76,28 +81,28 @@
                         </div>
                     <?php endforeach; ?>
                 </div>
-                </div>
-                <div class="col-12">
-                    <nav aria-label="...">
-                        <ul class="pagination justify-content-center mt-5">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">Previous</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+            </div>
+            <div class="col-12">
+                <nav aria-label="...">
+                    <ul class="pagination justify-content-center mt-5">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active">
+                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
-
     </div>
+
+</div>
 </div>
 
 <?php include_once ROOT_DIR . "views/client/footer.php" ?>
