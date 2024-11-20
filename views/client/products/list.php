@@ -51,6 +51,7 @@
         </div>
         <div class="col">
             <div class="card-body">
+
                 <div class="row">
                     <?php foreach ($products as $product): ?>
                         <div class="col-md-3 mb-4">
