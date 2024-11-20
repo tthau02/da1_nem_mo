@@ -51,53 +51,53 @@
         </div>
         <div class="col">
             <div class="card-body">
-                    <div class="row">
-                        <?php
-                        foreach ($products as $product) :
-                            ?>
-                            <div class="col-md-4 mt-3">
-                                <div class="card-product shadow-sm">
-                                    <img class="card-img-top" src="<?= ROOT_URL . $product['image'] ?>" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h4 class="card-title text-center">
-                                            <a href="?ctl=detail" title="View Product" class=""><?= $product['name'] ?></a>
-                                        </h4>
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            <div class="col">
-                                                <p class="fw-bold text-danger fs-6 mt-3"><?= number_format($product['price'], 0, ',', '.') ?> VND</p>
-                                            </div>
-                                            <div class="">
-                                                <a href="<?= ROOT_URL . '?ctl=add-cart&id='. $product['id'] ?>" class="btn btn-outline-success">+ Add to cart</a>
-                                            </div>
+                <div class="row">
+                    <?php
+                    foreach ($products as $product) :
+                    ?>
+                        <div class="col-md-4 mt-3">
+                            <div class="card-product shadow-sm">
+                                <img class="card-img-top" src="<?= ROOT_URL . $product['image'] ?>" alt="Card image cap">
+                                <div class="card-body">
+                                    <h4 class="card-title text-center">
+                                        <a href="?ctl=detail" title="View Product" class=""><?= $product['name'] ?></a>
+                                    </h4>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <div class="col">
+                                            <p class="fw-bold text-danger fs-6 mt-3"><?= number_format($product['price'], 0, ',', '.') ?> VND</p>
+                                        </div>
+                                        <div class="">
+                                            <a href="<?= ROOT_URL . '?ctl=add-cart&id=' . $product['id'] ?>" class="btn btn-outline-success">+ Add to cart</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
-                    <?php endforeach; ?>
-                        
                 </div>
-            </div>
-            <div class="col-12">
-                <nav aria-label="...">
-                    <ul class="pagination justify-content-center mt-5">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>
+
+            <?php endforeach; ?>
+
             </div>
         </div>
+        <div class="col-12">
+            <nav aria-label="...">
+                <ul class="pagination justify-content-center mt-5">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item active">
+                        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
+</div>
 
 </div>
 </div>

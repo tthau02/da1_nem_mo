@@ -1,4 +1,3 @@
-
 <footer class="text-light mt-10">
     <div class="container">
         <div class="row">
@@ -49,34 +48,35 @@
         </div>
     </div>
 </footer>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./assets/js/mani.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./assets/js/mani.js"></script>
 
-    <script>
-        // lấy button 
-        search = document.getElementById('search');
-        keyword = document.getElementById('keyword');
-        // viết sự kiện cho nút search
-        search.addEventListener('click', function(){
-            searchProduct();
-        })
+<script>
+    // lấy button 
+    search = document.getElementById('search');
+    keyword = document.getElementById('keyword');
+    // viết sự kiện cho nút search
+    search.addEventListener('click', function() {
+        searchProduct();
+    })
 
-        keyword.addEventListener('keydown', function(e){         
-            if(e.key == 'Enter'){
+    keyword.addEventListener('keydown', function(e) {
+        if (e.key == 'Enter') {
 
-                searchProduct()
-                e.preventDefault();
-            }
-        })
-
-        // Hàm search
-
-        function searchProduct(){
-            
-            window.location = "<?= ROOT_URL ?>" + "?ctl=search&keyword=" + keyword.value;
+            searchProduct()
+            e.preventDefault();
         }
-    </script>
+    })
+
+    // Hàm search
+
+    function searchProduct() {
+
+        window.location = "<?= ROOT_URL ?>" + "?ctl=search&keyword=" + keyword.value;
+    }
+</script>
 </body>
+
 </html>

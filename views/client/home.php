@@ -127,7 +127,7 @@
                                                 <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>" class="btn btn-primary btn-sm">
                                                     Xem chi tiết
                                                 </a>
-                                                <a href="cart.html" class="btn btn-primary btn-sm">+ Add</a>
+                                                <a href="<?= ROOT_URL . '?ctl=add-cart&id=' . $product['id'] ?>" class="btn btn-primary btn-sm">+ Add</a>
                                             </div>
                                         </div>
                                     </div>

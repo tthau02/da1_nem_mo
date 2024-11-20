@@ -82,11 +82,12 @@
           <div class="widgets-wrap float-md-right ml-4">
             <div class="widget-header">
 
-                <a href="#" class="icon icon-sm rounded-circle border">
-                  <i class="fa fa-shopping-cart"></i>
-                 
-                </a>
-                <span class="badge badge-pill badge-danger notify"><?= $totalQuantity ?></span>
+              <a href="#" class="icon icon-sm rounded-circle border">
+                <i class="fa fa-shopping-cart"></i>
+
+              </a>
+              <span class="badge badge-pill badge-danger notify"><?=
+                                                                  isset($totalQuantity) ? $totalQuantity : 0 ?></span>
             </div>
             <?php
             if (isset($_SESSION['user_id'])) {
@@ -173,13 +174,10 @@
                             <button type="submit" class="btn btn-primary btn-block mb-4">Login</button>
                           </form>
                         </div>
-                  <?php } ?>
-            </div>
-            <div class="widget-header icontext">
-              <a href="#" class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+                      <?php } ?>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
   </header>
