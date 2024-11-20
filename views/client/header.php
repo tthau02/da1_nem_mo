@@ -173,13 +173,7 @@
                             <button type="submit" class="btn btn-primary btn-block mb-4">Login</button>
                           </form>
                         </div>
-
-              <a href="#" class="icon icon-sm rounded-circle border">
-                <i class="fa fa-shopping-cart"></i>
-
-
-              </a>
-              <span class="badge badge-pill badge-danger notify"><?= $totalQuantity ?></span>
+                  <?php } ?>
             </div>
             <div class="widget-header icontext">
               <a href="#" class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>

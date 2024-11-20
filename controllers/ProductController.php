@@ -13,7 +13,7 @@ class ProductController{
         );
     }
 
-    public function getProductId(){
+    public function getProductByCategory(){
         $id = $_GET['id'];
         $products = (new Product)->listProductInCategory($id);
 
