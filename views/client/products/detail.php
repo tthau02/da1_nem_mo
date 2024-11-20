@@ -15,11 +15,11 @@
         <div class="col-md-6">
             <img src="<?= ROOT_URL . $product['image'] ?>" alt="Sản phẩm" class="product-image img-fluid">
         </div>
-        
+
         <div class="col-md-6 product-details">
             <h3 class="mb-3"><?= $product["name"] ?></h3>
             <p class="text-muted"><?= $product["id"] ?></p>
-            
+
             <div class="rating mb-3">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
@@ -29,11 +29,11 @@
                 <span class="text-muted">(4.5 trên 5 sao)</span>
             </div>
 
-            <h4 class="product-price mb-3"><?=  number_format($product['price'], 0, ',', '.') ?> VND</h4>
-            
+            <h4 class="product-price mb-3"><?= number_format($product['price'], 0, ',', '.') ?> VND</h4>
+
             <!-- Mô tả sản phẩm -->
             <p class="text-secondary mb-4"><?= $product["description"] ?></p>
-            
+
             <!-- Tùy chọn số lượng và nút giỏ hàng -->
             <div class="mb-3">
                 <label for="quantity" class="form-label">Số lượng</label>
@@ -42,9 +42,9 @@
                     <input type="number" id="quantity" class="form-control text-center" value="1" min="1" style="max-width: 70px;">
                     <button class="btn btn-outline-secondary" type="button" id="increaseQuantity">+</button>
                 </div>
-                <a href="" class="btn btn-danger btn-add-cart ms-3">Thêm vào giỏ hàng</a>
+                <button class="btn btn-danger btn-add-cart ms-3">Thêm vào giỏ hàng</button>
             </div>
-            
+
             <!-- Thông tin bổ sung -->
             <ul class="list-unstyled text-muted">
                 <li><strong>Thương hiệu:</strong> Thương hiệu A</li>
@@ -63,7 +63,7 @@
 
     <div class="my-5">
         <h4>Đánh Giá Sản Phẩm</h4>
-        
+
         <!-- Phần hiển thị các bình luận -->
         <div class="review-card mb-3 d-flex align-items-start">
             <img src="https://via.placeholder.com/50" alt="Avatar" class="rounded-circle me-3">
@@ -86,11 +86,11 @@
                 <p>Đây là lần thứ hai tôi mua sản phẩm này, lần nào cũng hài lòng.</p>
             </div>
         </div>
-    
+
         <!-- Phần nhập bình luận mới -->
         <div class="mt-4">
             <h5>Viết Đánh Giá Của Bạn</h5>
-            <form id="commentForm"> 
+            <form id="commentForm">
                 <div class="mb-3">
                     <label for="comment" class="form-label">Bình luận</label>
                     <textarea id="comment" class="form-control" rows="3" placeholder="Viết đánh giá của bạn ở đây" required></textarea>
@@ -147,6 +147,6 @@
         </div>
     </div>
 </div>
-  
+
 
 <?php include_once ROOT_DIR . "views/client/footer.php" ?>

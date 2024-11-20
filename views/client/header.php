@@ -81,6 +81,7 @@
 
           <div class="widgets-wrap float-md-right ml-4">
             <div class="widget-header">
+
                 <a href="#" class="icon icon-sm rounded-circle border">
                   <i class="fa fa-shopping-cart"></i>
                  
@@ -173,61 +174,16 @@
                           </form>
                         </div>
 
-                        <!-- Register -->
-                        <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-                          <form action="<?= ROOT_URL . '?ctl=signup' ?>" method="post">
-                            <!-- Name input -->
-                            <div class="form-outline mb-4">
-                              <input name="fullname" type="text" id="registerName" class="form-control" />
-                              <label class="form-label" for="fullname">Name</label>
-                            </div>
+              <a href="#" class="icon icon-sm rounded-circle border">
+                <i class="fa fa-shopping-cart"></i>
 
-                            <!-- Username input -->
-                            <div class="form-outline mb-4">
-                              <input name="username" type="text" id="registerUsername" class="form-control" />
-                              <label class="form-label" for="username">Username</label>
-                            </div>
 
-                            <!-- Email input -->
-                            <div class="form-outline mb-4">
-                              <input name="email" type="email" id="registerEmail" class="form-control" />
-                              <label class="form-label" for="email">Email</label>
-                            </div>
-
-                            <!-- Password input -->
-                            <div class="form-outline mb-4">
-                              <input type="password" name="password" id="registerPassword" class="form-control" />
-                              <label class="form-label" for="registerPassword">Password</label>
-                            </div>
-
-                            <!-- Repeat Password input -->
-                            <div class="form-outline mb-4">
-                              <input type="password" name="confirmPassword" id="registerRepeatPassword" class="form-control" />
-                              <label class="form-label" for="registerRepeatPassword">Repeat password</label>
-                            </div>
-
-                            <!-- Checkbox -->
-                            <div class="form-check d-flex justify-content-center mb-4">
-                              <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
-                                aria-describedby="registerCheckHelpText" />
-                              <label class="form-check-label" for="registerCheck">
-                                I have read and agree to the terms
-                              </label>
-                            </div>
-
-                            <!-- Submit button -->
-                            <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
-                          </form>
-                        </div>
-                      </div>
-                      <!-- Pills content -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <?php
-            }
-            ?>
+              </a>
+              <span class="badge badge-pill badge-danger notify"><?= $totalQuantity ?></span>
+            </div>
+            <div class="widget-header icontext">
+              <a href="#" class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
+            </div>
           </div>
         </div>
       </div>

@@ -13,7 +13,7 @@ class ProductController{
         );
     }
 
-    public function getProductByCategory(){
+    public function getProductId(){
         $id = $_GET['id'];
         $products = (new Product)->listProductInCategory($id);
 
@@ -22,11 +22,9 @@ class ProductController{
             $title = $products[0]['cate_name'];
         }
         $categories = (new Category)->all();
-
-        $totalQuantity = (new CartController)->totalQuantityCart();
         return view(
             'client.products.list',
-            compact('categories', 'products', 'title', 'totalQuantity')
+            compact('categories', 'products', 'title')
         );
     }
 
@@ -36,10 +34,6 @@ class ProductController{
         $product = (new Product)->find($id);
         $title = $product['name'] ?? '';
         $categories = (new Category)->all();
-
-        // Lưu URI vào session
-        $_SESSION['URI'] = $_SERVER['REQUEST_URI'];
-        $totalQuantity = (new CartController) -> totalQuantityCart();
 
         return view(
             'client.products.detail',
