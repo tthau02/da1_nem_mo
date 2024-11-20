@@ -31,5 +31,6 @@ match ($ctl) {
     'detail' => (new ProductController)->detail(),
     'login' => (new AuthController)->login(),
     'signup' => (new AuthController)->register(),
+    'logout' => (new AuthController)->logout(),
     default => view("errors.404"),
 };

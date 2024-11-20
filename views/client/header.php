@@ -86,14 +86,14 @@
               <span class="badge badge-pill badge-danger notify">0</span>
             </div>
             <?php
-            if (isset($_SESSION['user'])) {
+            if (isset($_SESSION['user_id'])) {
             ?>
               <div class="widget-header dropdown">
                 <a href="#" class="icon icon-sm rounded-circle border" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-user"></i></a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   <a class="dropdown-item" href="#">Profile</a>
                   <a class="dropdown-item" href="#">Orders</a>
-                  <a class="dropdown-item" href="#">Logout</a>
+                  <a class="dropdown-item" href="<?= ROOT_URL . '?ctl=logout' ?>">Logout</a>
                 </div>
               </div>
             <?php
@@ -132,7 +132,7 @@
                       <div class="tab-content">
 
                         <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-                          <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                          <form action="<?= ROOT_URL . '?ctl=login' ?>" method="post">
                             <!-- Hiển thị thông báo lỗi nếu có -->
                             <?php if (!empty($_SESSION['error_message'])): ?>
                               <div class="alert alert-danger">
@@ -173,7 +173,7 @@
 
                         <!-- Register -->
                         <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-                          <form action="<?= ROOT_URL . '?ctl=signup' ?> " method="post">
+                          <form action="<?= ROOT_URL . '?ctl=signup' ?>" method="post">
                             <!-- Name input -->
                             <div class="form-outline mb-4">
                               <input name="fullname" type="text" id="registerName" class="form-control" />

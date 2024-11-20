@@ -27,7 +27,13 @@ class AuthController
     if ($user && password_verify($password, $user['password'])) {
       $_SESSION['user_id'] = $user['id'];
       $_SESSION['message'] = "Đăng nhập thành công";
-      header("location: " . ROOT_URL); // Chuyển hướng nếu đăng nhập thành công
+
+      // Kiểm tra role của user
+      if ($user['role'] === 'admin') {
+        header("location: " . ROOT_URL . "/admin"); // Chuyển hướng đến trang admin nếu là admin
+      } else {
+        header("location: " . ROOT_URL); // Chuyển hướng đến trang chủ nếu không phải admin
+      }
       exit;
     } else {
       // Hiển thị thông báo lỗi
@@ -93,6 +99,6 @@ class AuthController
   public function logout()
   {
     session_destroy();
-    header("location: " . ROOT_URL . "?ctl=login");
+    header("location: " . ROOT_URL);
   }
 }
