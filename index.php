@@ -12,6 +12,7 @@ require_once __DIR__ . "/models/BaseModel.php";
 require_once __DIR__ . "/models/Category.php";
 require_once __DIR__ . "/models/Product.php";
 require_once __DIR__ . "/models/User.php";
+require_once __DIR__ . "/models/Comment.php";
 
 require_once __DIR__ . "/controllers/HomeController.php";
 require_once __DIR__ . "/controllers/admin/AdminProductController.php";
@@ -19,6 +20,8 @@ require_once __DIR__ . "/controllers/SearchController.php";
 require_once __DIR__ . "/controllers/ProductController.php";
 require_once __DIR__ . "/controllers/CartController.php";
 require_once __DIR__ . "/controllers/AuthController.php";
+require_once __DIR__ . "/controllers/CommentController.php";
+require_once __DIR__ . "/controllers/UserController.php";
 
 
 
@@ -39,5 +42,11 @@ match ($ctl) {
     'logout' => (new AuthController)->logout(),
 
     'add-cart' => (new CartController)->addCart(),
+
+    'add-comment' => (new CommentController)->addComment(),
+
+    'edit-profile' => (new UserController)->edit(),
+
+
     default => view("errors.404"),
 };

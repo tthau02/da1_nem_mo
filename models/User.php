@@ -49,6 +49,7 @@ class User extends BaseModel
                 username = :username, 
                 password = :password, 
                 email = :email, 
+                image = :image,
                 phone = :phone, 
                 address = :address, 
                 role = :role, 

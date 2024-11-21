@@ -14,7 +14,7 @@
 </head>
 
 <body>
-  <header class="header bg-light py-2">
+  <header class="header bg-light py-2 ">
     <div class="container">
       <div class="header-navbar d-flex align-items-center justify-content-between">
 
@@ -94,7 +94,7 @@
               <div class="widget-header dropdown">
                 <a href="#" class="icon icon-sm rounded-circle border" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-user"></i></a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <a class="dropdown-item" href="#">Profile</a>
+                  <a class="dropdown-item" href="?ctl=edit-profile">Profile</a>
                   <a class="dropdown-item" href="#">Orders</a>
                   <a class="dropdown-item" href="<?= ROOT_URL . '?ctl=logout' ?>">Logout</a>
                 </div>
