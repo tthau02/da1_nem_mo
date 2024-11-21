@@ -52,6 +52,8 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="./assets/js/mani.js"></script>
+<script src="./assets/js/login.js"></script>
+<script src="./assets/js/register.js"></script>
 
 <script>
     // lấy button 

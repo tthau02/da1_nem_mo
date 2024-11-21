@@ -1,104 +1,91 @@
 <?php
 
-
 class AuthController
 {
-  public function login()
-  {
-    // Kiểm tra nếu dữ liệu POST không đầy đủ
-    if (empty($_POST['loginIdentifier']) || empty($_POST['password'])) {
-      $_SESSION['error_message'] = "Vui lòng nhập đầy đủ thông tin đăng nhập";
-      return;
+    public function login()
+    {
+        if (empty($_POST['loginIdentifier']) || empty($_POST['password'])) {
+            $_SESSION['error_message'] = "Vui lòng nhập đầy đủ thông tin đăng nhập.";
+            header("location: " . $_SERVER['HTTP_REFERER']);
+            exit;
+        }
+
+        $loginIdentifier = trim($_POST['loginIdentifier']);
+        $password = trim($_POST['password']);
+
+        // Kiểm tra email hoặc username
+        $user = filter_var($loginIdentifier, FILTER_VALIDATE_EMAIL)
+            ? (new User)->findByEmail($loginIdentifier)
+            : (new User)->findByUsername($loginIdentifier);
+
+        if (!$user) {
+            $_SESSION['error_message'] = "Email/Username không tồn tại.";
+            header("location: " . $_SERVER['HTTP_REFERER']);
+            exit;
+        }
+
+        // Kiểm tra mật khẩu
+        if (!password_verify($password, $user['password'])) {
+            $_SESSION['error_message'] = "Mật khẩu không đúng.";
+            header("location: " . $_SERVER['HTTP_REFERER']);
+            exit;
+        }
+
+        // Thiết lập session
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['user_role'] = $user['role'];
+        $_SESSION['message'] = "Đăng nhập thành công.";
+
+        // Chuyển hướng
+        $redirect = ($user['role'] === 'admin') ? "/admin" : "/";
+        header("location: " . ROOT_URL . $redirect);
+        exit;
     }
 
-    $loginIdentifier = $_POST['loginIdentifier'];
-    $password = $_POST['password'];
+    public function register(){
+        header('Content-Type: application/json');
 
-    // Kiểm tra nếu loginIdentifier là email
-    if (filter_var($loginIdentifier, FILTER_VALIDATE_EMAIL)) {
-      // Tìm user bằng email
-      $user = (new User)->findByEmail($loginIdentifier);
-    } else {
-      // Tìm user bằng username
-      $user = (new User)->findByUsername($loginIdentifier);
+        try {
+            // Kết nối database từ model User
+            $user = new User();
+            if (empty($_POST['registerName']) || empty($_POST['registerEmail']) || empty($_POST['registerPassword']) || empty($_POST['registerConfirmPassword'])) {
+                throw new Exception('Vui lòng nhập đầy đủ thông tin');
+            }
+        
+            if ($_POST['registerPassword'] !== $_POST['registerConfirmPassword']) {
+                throw new Exception('Mật khẩu không khớp');
+            }
+        
+            if ($user->findByEmail($_POST['registerEmail'])) {
+                throw new Exception('Email đã được sử dụng');
+            }
+    
+            $hashedPassword = password_hash($_POST['registerPassword'], PASSWORD_BCRYPT);
+        
+            // Tạo mảng dữ liệu để lưu vào database
+            $userData = [
+                'username' => $_POST['registerName'],
+                'email' => $_POST['registerEmail'],
+                'password' => $hashedPassword,
+            ];
+            if (!$user->create($userData)) {
+                throw new Exception('Không thể lưu thông tin người dùng, vui lòng thử lại sau');
+            }
+        
+            // Phản hồi JSON khi thành công
+            echo json_encode(['success' => true, 'message' => 'Đăng ký thành công!']);
+        } catch (Exception $e) {
+            http_response_code(400); // Báo lỗi 400
+            echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+        }
+        exit;
     }
 
-    // Kiểm tra nếu tìm thấy user và mật khẩu đúng
-    if ($user && password_verify($password, $user['password'])) {
-      $_SESSION['user_id'] = $user['id'];
-      $_SESSION['message'] = "Đăng nhập thành công";
 
-      // Kiểm tra role của user
-      if ($user['role'] === 'admin') {
-        header("location: " . ROOT_URL . "/admin"); // Chuyển hướng đến trang admin nếu là admin
-      } else {
-        header("location: " . ROOT_URL); // Chuyển hướng đến trang chủ nếu không phải admin
-      }
-      exit;
-    } else {
-      // Hiển thị thông báo lỗi
-      $_SESSION['error_message'] = "Email/Username hoặc mật khẩu không đúng";
+    public function logout()
+    {
+        session_destroy();
+        header("location: " . ROOT_URL);
+        exit;
     }
-  }
-
-  // Xử lý đăng ký
-  public function register()
-  {
-    // Kiểm tra nếu dữ liệu POST không đầy đủ
-    if (empty($_POST['username']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['confirmPassword'])) {
-      $_SESSION['error_message'] = "Vui lòng nhập đầy đủ thông tin đăng ký";
-      return;
-    }
-
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $confirmPassword = $_POST['confirmPassword'];
-
-    // Kiểm tra định dạng email
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      $_SESSION['error_message'] = "Địa chỉ email không hợp lệ";
-      return;
-    }
-
-    // Kiểm tra độ dài mật khẩu
-    if (strlen($password) < 6) {
-      $_SESSION['error_message'] = "Mật khẩu phải có ít nhất 6 ký tự";
-      return;
-    }
-
-    // Kiểm tra mật khẩu và xác nhận mật khẩu có khớp nhau không
-    if ($password !== $confirmPassword) {
-      $_SESSION['error_message'] = "Mật khẩu và xác nhận mật khẩu không khớp";
-      return;
-    }
-
-    // Kiểm tra nếu username hoặc email đã tồn tại
-    $user = new User;
-    if ($user->findByUsername($username)) {
-      $_SESSION['error_message'] = "Username đã tồn tại";
-      return;
-    }
-    if ($user->findByEmail($email)) {
-      $_SESSION['error_message'] = "Email đã tồn tại";
-      return;
-    }
-
-    // Mã hóa mật khẩu và tạo user mới
-    $data = $_POST;
-    var_dump($data);
-    $data['password'] = password_hash($password, PASSWORD_BCRYPT);
-    unset($data['submitFormRegister']);
-    $user->create($data);
-
-    $_SESSION['message'] = "Đăng ký thành công";
-    header("location: " . ROOT_URL);
-  }
-
-  // Xử lý đăng xuất
-  public function logout()
-  {
-    session_destroy();
-    header("location: " . ROOT_URL);
-  }
 }

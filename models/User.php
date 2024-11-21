@@ -14,21 +14,33 @@ class User extends BaseModel
   // Thêm user mới
   public function create($data)
   {
-    $sql = "INSERT INTO users (fullname, username, password, email, phone, address, role, created_at, updated_at) VALUES (:fullname, :username, :password, :email, :phone, :address, :role, :created_at, :updated_at)";
-    $stmt = $this->conn->prepare($sql);
-    $stmt->bindParam(':fullname', $data['fullname']);
-    $stmt->bindParam(':username', $data['username']);
-    $stmt->bindParam(':password', $data['password']);
-    $stmt->bindParam(':email', $data['email']);
-    $stmt->bindParam(':phone', $data['phone']);
-    $stmt->bindParam(':address', $data['address']);
-    $stmt->bindParam(':role', $data['role']);
-    $created_at = date('Y-m-d H:i:s');
-    $updated_at = date('Y-m-d H:i:s');
-    $stmt->bindParam(':created_at', $created_at);
-    $stmt->bindParam(':updated_at', $updated_at);
-    $stmt->execute();
+      try {
+          $sql = "INSERT INTO users (fullname, username, password, email, phone, address, role, created_at, updated_at)
+                  VALUES (:fullname, :username, :password, :email, :phone, :address, :role, :created_at, :updated_at)";
+          $stmt = $this->conn->prepare($sql);
+  
+          // Gắn các giá trị
+          $stmt->bindParam(':fullname', $data['fullname']);
+          $stmt->bindParam(':username', $data['username']);
+          $stmt->bindParam(':password', $data['password']);
+          $stmt->bindParam(':email', $data['email']);
+          $stmt->bindParam(':phone', $data['phone']);
+          $stmt->bindParam(':address', $data['address']);
+          $stmt->bindParam(':role', $data['role']);
+  
+          // Gắn thời gian
+          $created_at = date('Y-m-d H:i:s');
+          $updated_at = date('Y-m-d H:i:s');
+          $stmt->bindParam(':created_at', $created_at);
+          $stmt->bindParam(':updated_at', $updated_at);
+  
+          $stmt->execute();
+          return true;
+      } catch (PDOException $e) {
+          throw new Exception("Lỗi SQL: " . $e->getMessage());
+      }
   }
+  
   // Cập nhật user theo id
   public function update($id, $data)
   {
