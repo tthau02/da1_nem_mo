@@ -79,8 +79,8 @@
           </form>
 
 
-          <div class="widgets-wrap float-md-right ml-4">
-            <div class="widget-header">
+          <div class="d-flex justify-content-center align-items-center widgets-wrap float-md-right ml-4">
+            <div class="widget-header d-flex justify-content-center align-items-center">
 
               <a href="#" class="icon icon-sm rounded-circle border">
                 <i class="fa fa-shopping-cart"></i>
@@ -90,9 +90,15 @@
             </div>
             <?php
             if (isset($_SESSION['user_id'])) {
+              // Lấy thông tin người dùng từ cơ sở dữ liệu
+              $user = (new User)->find($_SESSION['user_id']);
+              // Kiểm tra xem người dùng có ảnh đại diện không, nếu không thì sử dụng ảnh mặc định
+              $userImage = !empty($user['image']) ? ROOT_URL . $user['image'] : ROOT_URL . '/assets/images/default-avatar.png';
             ?>
               <div class="widget-header dropdown">
-                <a href="#" class="icon icon-sm rounded-circle border" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-user"></i></a>
+                <a href="#" class="icon d-flex align-items-center justify-items-center icon-sm rounded-circle border" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="<?= htmlspecialchars($userImage) ?>" alt="Avatar" class="rounded-circle" style="width: 35px; height: 35px;">
+                </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   <a class="dropdown-item" href="?ctl=edit-profile">Profile</a>
                   <a class="dropdown-item" href="#">Orders</a>
@@ -104,7 +110,7 @@
             ?>
               <!-- Phần Icon fa-user -->
               <div class="widget-header">
-                <a href="#" class="icon icon-sm rounded-circle border" data-bs-toggle="modal" data-bs-target="#authModal">
+                <a href="#" class=" d-flex justify-content-center align-items-center icon icon-sm rounded-circle border" data-bs-toggle="modal" data-bs-target="#authModal">
                   <i class="fa fa-user"></i>
                 </a>
               </div>
@@ -167,8 +173,12 @@
                         <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
                           <form id="registerForm" action="<?= ROOT_URL . '?ctl=signup' ?>" method="POST">
                             <div class="form-outline mb-3">
-                              <label class="form-label" for="registerName">Name</label>
-                              <input type="text" id="registerName" name="registerName" class="form-control" placeholder="Enter your name" />
+                              <label class="form-label" for="registerName">Fullname</label>
+                              <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Enter your name" />
+                            </div>
+                            <div class="form-outline mb-3">
+                              <label class="form-label" for="registerName">Username</label>
+                              <input type="text" id="registerName" name="registerName" class="form-control" placeholder="Enter your username" />
                             </div>
                             <div class="form-outline mb-3">
                               <label class="form-label" for="registerEmail">Email</label>
