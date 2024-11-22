@@ -370,3 +370,8 @@ footer .footer-contact {
 .star.filled {
   color: #f5b301;
 }
+
+.avatar-icon {
+  width: 1em;
+  height: 1em;
+}
