@@ -79,20 +79,30 @@
           </form>
 
 
-          <div class="widgets-wrap float-md-right ml-4">
-            <div class="widget-header">
+          <div class="d-flex justify-content-center align-items-center widgets-wrap float-md-right ml-4">
+            <div class="widget-header d-flex justify-content-center align-items-center">
 
               <a href="#" class="icon icon-sm rounded-circle border">
                 <i class="fa fa-shopping-cart"></i>
 
               </a>
+<<<<<<< HEAD
               <span class="badge badge-pill badge-danger notify"><?=isset($totalQuantity) ? $totalQuantity : 0 ?></span>
+=======
+              <span class="badge badge-pill badge-danger notify"><?= isset($totalQuantity) ? $totalQuantity : 0 ?></span>
+>>>>>>> c88015e0f4922c339646e957ead2d22105f969c9
             </div>
             <?php
             if (isset($_SESSION['user_id'])) {
+              // Lấy thông tin người dùng từ cơ sở dữ liệu
+              $user = (new User)->find($_SESSION['user_id']);
+              // Kiểm tra xem người dùng có ảnh đại diện không, nếu không thì sử dụng ảnh mặc định
+              $userImage = !empty($user['image']) ? ROOT_URL . $user['image'] : ROOT_URL . '/assets/images/default-avatar.png';
             ?>
               <div class="widget-header dropdown">
-                <a href="#" class="icon icon-sm rounded-circle border" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-user"></i></a>
+                <a href="#" class="icon d-flex align-items-center justify-items-center icon-sm rounded-circle border" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="<?= htmlspecialchars($userImage) ?>" alt="Avatar" class="rounded-circle" style="width: 35px; height: 35px;">
+                </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   <a class="dropdown-item" href="?ctl=edit-profile">Profile</a>
                   <a class="dropdown-item" href="#">Orders</a>
@@ -104,7 +114,7 @@
             ?>
               <!-- Phần Icon fa-user -->
               <div class="widget-header">
-                <a href="#" class="icon icon-sm rounded-circle border" data-bs-toggle="modal" data-bs-target="#authModal">
+                <a href="#" class=" d-flex justify-content-center align-items-center icon icon-sm rounded-circle border" data-bs-toggle="modal" data-bs-target="#authModal">
                   <i class="fa fa-user"></i>
                 </a>
               </div>
@@ -114,8 +124,8 @@
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header" style="background-color: #227952;">
-                        <h5 class="modal-title" id="authModalLabel" style="margin-left: 100px; color: #fff;">Đăng Nhập Hoặc Tạo Tài Khoản</h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                      <h5 class="modal-title" id="authModalLabel" style="margin-left: 100px; color: #fff;">Đăng Nhập Hoặc Tạo Tài Khoản</h5>
+                      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body p-4">
                       <ul class="nav nav-pills nav-justified mb-4" id="authTabs" role="tablist">
@@ -135,7 +145,7 @@
                           <form action="<?= ROOT_URL . '?ctl=login' ?>" method="post">
                             <div class="form-outline mb-3">
                               <label class="form-label" for="loginIdentifier">Email</label>
-                              <input type="text" id="loginIdentifier" name="loginIdentifier" class="form-control" placeholder="Email..."/>
+                              <input type="text" id="loginIdentifier" name="loginIdentifier" class="form-control" placeholder="Email..." />
                             </div>
                             <div class="form-outline mb-3">
                               <label class="form-label" for="loginPassword">Password</label>
@@ -148,12 +158,12 @@
                               </div>
                               <a href="#" class="text-decoration-none">Quên mật khẩu?</a>
                             </div>
-                              <?php if (!empty($_SESSION['error_message'])): ?>
-                                  <div id="error-message" class="alert alert-danger alert-dismissible fade show p-2 small ">
-                                      <?= $_SESSION['error_message']; ?>
-                                  </div>
-                                  <?php unset($_SESSION['error_message']); ?>
-                              <?php endif; ?>
+                            <?php if (!empty($_SESSION['error_message'])): ?>
+                              <div id="error-message" class="alert alert-danger alert-dismissible fade show p-2 small ">
+                                <?= $_SESSION['error_message']; ?>
+                              </div>
+                              <?php unset($_SESSION['error_message']); ?>
+                            <?php endif; ?>
                             <div class="mt-8 mb-4 text-center">
                               <p></p>
                               <a href="#" class="mx-2"><i class="fab fa-facebook-f"></i> Facebook</a>
@@ -163,6 +173,7 @@
                             <button type="submit" class="btn btn-outline-success w-100 mt-4">Đăng Nhập</button>
                           </form>
                         </div>
+<<<<<<< HEAD
                     <!-- register -->
                     <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
                           <form id="registerForm" action="<?= ROOT_URL . '?ctl=signup' ?>" method="POST">
@@ -201,4 +212,48 @@
             </div>
           </div>
           <?php } ?>
+=======
+                        <!-- register -->
+                        <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
+                          <form id="registerForm" action="<?= ROOT_URL . '?ctl=signup' ?>" method="POST">
+                            <div class="form-outline mb-3">
+                              <label class="form-label" for="registerName">Fullname</label>
+                              <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Enter your name" />
+                            </div>
+                            <div class="form-outline mb-3">
+                              <label class="form-label" for="registerName">Username</label>
+                              <input type="text" id="registerName" name="registerName" class="form-control" placeholder="Enter your username" />
+                            </div>
+                            <div class="form-outline mb-3">
+                              <label class="form-label" for="registerEmail">Email</label>
+                              <input type="email" id="registerEmail" name="registerEmail" class="form-control" placeholder="Enter your email" />
+                            </div>
+                            <div class="form-outline mb-3">
+                              <label class="form-label" for="registerPassword">Password</label>
+                              <input type="password" id="registerPassword" name="registerPassword" class="form-control" placeholder="Create a password" />
+                            </div>
+                            <div class="form-outline mb-4">
+                              <label class="form-label" for="registerConfirmPassword">Confirm Password</label>
+                              <input type="password" id="registerConfirmPassword" name="registerConfirmPassword" class="form-control" placeholder="Confirm your password" />
+                            </div>
+                            <div id="registerError" class="alert alert-danger d-none"></div>
+                            <div id="registerSuccess" class="alert alert-success d-none"></div>
+
+                            <?php if (!empty($_SESSION['error_message'])): ?>
+                              <div id="error-message" class="error-login alert alert-danger alert-dismissible fade show p-2 small ">
+                                <?= $_SESSION['error_message']; ?>
+                              </div>
+                              <?php unset($_SESSION['error_message']); ?>
+                            <?php endif; ?>
+
+                            <button type="submit" class="btn btn-outline-success w-100">Đăng Ký</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <?php } ?>
+>>>>>>> c88015e0f4922c339646e957ead2d22105f969c9
   </header>
