@@ -42,7 +42,7 @@
             <p class="fs-5"><strong>Tổng số lượng:</strong> <?= $totalQuantity ?></p>
             <p class="fs-5"><strong>Tổng tiền:</strong> <span class="text-danger"><?= number_format($totalPrice, 0, ',', '.') ?>đ</span></p>
             <div class="d-flex justify-content-end gap-2">
-                <a class="btn btn-success" href="#">Thanh Toán</a>
+                <a class="btn btn-success" href="<?= ROOT_URL . "?ctl=payCart" ?>">Thanh Toán</a>
                 <a class="btn btn-secondary" href="<?= ROOT_URL ?>">Tiếp tục mua sắm</a>
             </div>
         </div>

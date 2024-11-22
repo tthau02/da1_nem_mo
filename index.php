@@ -22,6 +22,7 @@ require_once __DIR__ . "/controllers/CartController.php";
 require_once __DIR__ . "/controllers/AuthController.php";
 require_once __DIR__ . "/controllers/CommentController.php";
 require_once __DIR__ . "/controllers/UserController.php";
+require_once __DIR__ . "/controllers/PaymentController.php";
 
 
 
@@ -48,6 +49,8 @@ match ($ctl) {
     'showCart' => (new CartController) -> showCart(),
     
     'removeCart' => (new CartController) ->removeCart(),
+
+    'payCart' => (new PaymentController) ->showPaymentForm(),
 
     'edit-profile' => (new UserController)->edit(),
 
