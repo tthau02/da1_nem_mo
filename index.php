@@ -45,6 +45,10 @@ match ($ctl) {
 
     'add-comment' => (new CommentController)->addComment(),
 
+    'showCart' => (new CartController) -> showCart(),
+    
+    'removeCart' => (new CartController) ->removeCart(),
+
     'edit-profile' => (new UserController)->edit(),
 
 
