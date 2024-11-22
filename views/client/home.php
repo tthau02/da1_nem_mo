@@ -57,12 +57,14 @@
             <?php
             foreach ($categories as $category) {
             ?>
-                <div class="card">
-                    <img src="<?= ROOT_URL . $category["image"] ?>" class="card-img-top" alt="Product 1">
-                    <div class="card-body">
-                        <h5 class="card-title"><?= $category["cate_name"] ?></h5>
+                <a href="<?= ROOT_URL . '?ctl=category&id=' . $category['id'] ?>">
+                    <div class="card">
+                        <img src="<?= ROOT_URL . $category["image"] ?>" class="card-img-top" alt="Product 1">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= $category["cate_name"] ?></h5>
+                        </div>
                     </div>
-                </div>
+                </a>
             <?php
             }
             ?>

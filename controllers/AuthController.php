@@ -44,12 +44,10 @@ class AuthController
 
   public function register()
   {
-    header('Content-Type: application/json');
-
     try {
       // Kết nối database từ model User
       $user = new User();
-      if (empty($_POST['registerName']) || empty($_POST['registerEmail']) || empty($_POST['registerPassword']) || empty($_POST['registerConfirmPassword'])) {
+      if (empty($_POST['fullname']) || empty($_POST['registerName']) || empty($_POST['registerEmail']) || empty($_POST['registerPassword']) || empty($_POST['registerConfirmPassword'])) {
         throw new Exception('Vui lòng nhập đầy đủ thông tin');
       }
 
@@ -65,6 +63,7 @@ class AuthController
 
       // Tạo mảng dữ liệu để lưu vào database
       $userData = [
+        'fullname' => $_POST['fullname'],
         'username' => $_POST['registerName'],
         'email' => $_POST['registerEmail'],
         'password' => $hashedPassword,
