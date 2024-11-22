@@ -13,11 +13,13 @@ require_once __DIR__ . "/../models/BaseModel.php";
 require_once __DIR__ . "/../models/Category.php";
 require_once __DIR__ . "/../models/Product.php";
 require_once __DIR__ . "/../models/User.php";
+require_once __DIR__ . "/../models/Comment.php";
 
 //include controllers
 require_once __DIR__ . "/../controllers/admin/AdminProductController.php";
 require_once __DIR__ . "/../controllers/admin/AdminCategoryController.php";
 require_once __DIR__ . "/../controllers/admin/AdminUserController.php";
+require_once __DIR__ . "/../controllers/admin/AdminCommentController.php";
 $ctl = $_GET['ctl'] ?? "";
 
 match ($ctl) {
@@ -42,5 +44,8 @@ match ($ctl) {
     'deleteuser' => (new AdminUserController)->delete(),
     'edituser' => (new AdminUserController)->edit(),
     'updateuser' => (new AdminUserController)->update(),
+
+    'listcomment' => (new AdminCommentController)->index(),
+    'deletecomment' => (new AdminCommentController)->delete(),
     default => view('errors.404'),
 };

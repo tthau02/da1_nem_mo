@@ -182,6 +182,14 @@
                                   <label class="form-label" for="registerConfirmPassword">Confirm Password</label>
                                   <input type="password" id="registerConfirmPassword" name="registerConfirmPassword" class="form-control" placeholder="Confirm your password"/>
                               </div>
+                              <!-- Checkbox -->
+                              <div class="form-check d-flex justify-content-center mb-4">
+                                <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
+                                  aria-describedby="registerCheckHelpText" />
+                                <label class="form-check-label" for="registerCheck">
+                                  Tôi đồng ý với các điều khoản
+                                </label>
+                              </div>
                               <div id="registerError" class="alert alert-danger d-none"></div>
                               <div id="registerSuccess" class="alert alert-success d-none"></div>
 

@@ -5,7 +5,7 @@
     <main class="container-fluid content px-3 py-4">
         <div class="shadow bg-white pb-5 mt-4 ms-4 mb-4 col-md-11" style="width: 96%;">
             <div>
-                <h4 class="p-3">Cập nhật danh mục</h4>
+                <h4 class="p-3">Cập nhật người dùng</h4>
             </div>
             <hr>
             <div class="d-flex justify-content-between align-items-center">
@@ -21,10 +21,30 @@
                 </form>
             </div>
             <form action="<?= ADMIN_URL . '?ctl=updatedm' ?>" class="pb-5 mt-4 ms-4 mb-4 col-md-11" method="POST" enctype="multipart/form-data">
-                <input type="hidden" name="id" value="<?= $category['id'] ?>">
+                <input type="hidden" name="id" value="<?= $user['id'] ?>">
                 <div class="form-group">
-                    <label for="cate_name">Tên danh mục</label>
-                    <input type="text" class="form-control mt-2 mb-3" name="cate_name" required value="<?= $category['cate_name'] ?>">
+                    <label for="cate_name">Full name</label>
+                    <input type="text" class="form-control mt-2 mb-3" name="fullname"  value="<?= $user['fullname'] ?>">
+                </div>
+                <div class="form-group">
+                    <label for="cate_name">Username</label>
+                    <input type="text" class="form-control mt-2 mb-3" name="username"  value="<?= $user['username'] ?>">
+                </div>
+                <div class="form-group">
+                    <label for="cate_name">Email</label>
+                    <input type="text" class="form-control mt-2 mb-3" name="email"  value="<?= $user['email'] ?>">
+                </div>
+                <div class="form-group">
+                    <label for="cate_name">SĐT</label>
+                    <input type="text" class="form-control mt-2 mb-3" name="phone"  value="<?= $user['phone'] ?>">
+                </div>
+                <div class="form-group">
+                    <label for="cate_name">Đại chỉ</label>
+                    <input type="text" class="form-control mt-2 mb-3" name="address"  value="<?= $user['address'] ?>">
+                </div>
+                <div class="form-group">
+                    <label for="cate_name">Vai trò</label>
+                    <input type="text" class="form-control mt-2 mb-3" name="role"  value="<?= $user['role'] ?>">
                 </div>
                 <div class="form-group">
                     <label for="image">Hình ảnh</label>
@@ -54,5 +74,4 @@
 </main>
 <!--end-->
 </div>
-
-<?php include "views/components/footer.php" ?>
+<?php include_once ROOT_DIR . "views/admin/footer.php" ?>

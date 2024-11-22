@@ -50,6 +50,6 @@ class AdminUserController
     $id = $_GET['id'];
     (new User)->delete($id);
     $_SESSION['message'] = "Xóa người dùng thành công";
-    header("location: " . ADMIN_URL . "?ctl=listusers");
+    header("location: " . ADMIN_URL . "?ctl=listuser");
   }
 }
