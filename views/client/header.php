@@ -82,7 +82,7 @@
           <div class="d-flex justify-content-center align-items-center widgets-wrap float-md-right ml-4">
             <div class="widget-header d-flex justify-content-center align-items-center">
 
-              <a href="#" class="icon icon-sm rounded-circle border">
+              <a href="<?= ROOT_URL . "?ctl=showCart" ?>" class="icon icon-sm rounded-circle border">
                 <i class="fa fa-shopping-cart"></i>
 
               </a>

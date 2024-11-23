@@ -48,4 +48,37 @@ class CartController
 
     return $totalQuantity;
   }
+
+    public function showCart(){
+        $carts = $_SESSION['cart'] ?? [];
+        $totalQuantity = $this->totalQuantityCart();
+        $totalPrice =0;
+
+      foreach($carts as $cart){
+           $totalPrice += $cart['price'] * $cart['quantity'];
+      }
+
+      $data = [
+        'carts' => $carts,
+        'totalQuantity' => $totalQuantity,
+        'totalPrice' => $totalPrice
+      ];
+
+        return view('client.cart', $data);
+    }
+
+    public function removeCart(){
+        $id = $_GET['id'] ?? null;
+        $carts = $_SESSION['cart'] ?? [];
+
+        if($id && isset($carts[$id])){
+          unset($carts[$id]);
+        }
+
+        $_SESSION['cart'] = $carts;
+        $uri = $_SERVER['HTTP_REFERER'] ?? ROOT_URL;
+        header("Location: " . $uri);
+        exit(); 
+
+    }
 }
