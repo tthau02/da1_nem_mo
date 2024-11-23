@@ -86,7 +86,7 @@
                 <i class="fa fa-shopping-cart"></i>
 
               </a>
-              <span class="badge badge-pill badge-danger notify"><?=isset($totalQuantity) ? $totalQuantity : 0 ?></span>
+              <span class="badge badge-pill badge-danger notify"><?= isset($totalQuantity) ? $totalQuantity : 0 ?></span>
             </div>
             <?php
             if (isset($_SESSION['user_id'])) {
