@@ -86,11 +86,7 @@
                 <i class="fa fa-shopping-cart"></i>
 
               </a>
-<<<<<<< HEAD
               <span class="badge badge-pill badge-danger notify"><?=isset($totalQuantity) ? $totalQuantity : 0 ?></span>
-=======
-              <span class="badge badge-pill badge-danger notify"><?= isset($totalQuantity) ? $totalQuantity : 0 ?></span>
->>>>>>> c88015e0f4922c339646e957ead2d22105f969c9
             </div>
             <?php
             if (isset($_SESSION['user_id'])) {
@@ -173,46 +169,6 @@
                             <button type="submit" class="btn btn-outline-success w-100 mt-4">Đăng Nhập</button>
                           </form>
                         </div>
-<<<<<<< HEAD
-                    <!-- register -->
-                    <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-                          <form id="registerForm" action="<?= ROOT_URL . '?ctl=signup' ?>" method="POST">
-                              <div class="form-outline mb-3">
-                                  <label class="form-label" for="registerName">Name</label>
-                                  <input type="text" id="registerName" name="registerName" class="form-control" placeholder="Enter your name"/>
-                              </div>
-                              <div class="form-outline mb-3">
-                                  <label class="form-label" for="registerEmail">Email</label>
-                                  <input type="email" id="registerEmail" name="registerEmail" class="form-control" placeholder="Enter your email"/>
-                              </div>
-                              <div class="form-outline mb-3">
-                                  <label class="form-label" for="registerPassword">Password</label>
-                                  <input type="password" id="registerPassword" name="registerPassword" class="form-control" placeholder="Create a password"/>
-                              </div>
-                              <div class="form-outline mb-4">
-                                  <label class="form-label" for="registerConfirmPassword">Confirm Password</label>
-                                  <input type="password" id="registerConfirmPassword" name="registerConfirmPassword" class="form-control" placeholder="Confirm your password"/>
-                              </div>
-                              <div id="registerError" class="alert alert-danger d-none"></div>
-                              <div id="registerSuccess" class="alert alert-success d-none"></div>
-
-                              <?php if (!empty($_SESSION['error_message'])): ?>
-                                  <div id="error-message" class="alert alert-danger alert-dismissible fade show p-2 small ">
-                                      <?= $_SESSION['error_message']; ?>
-                                  </div>
-                                  <?php unset($_SESSION['error_message']); ?>
-                              <?php endif; ?>
-
-                              <button type="submit" class="btn btn-outline-success w-100">Đăng Ký</button>
-                          </form>
-                      </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <?php } ?>
-=======
                         <!-- register -->
                         <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
                           <form id="registerForm" action="<?= ROOT_URL . '?ctl=signup' ?>" method="POST">
@@ -255,5 +211,4 @@
                 </div>
               </div>
             <?php } ?>
->>>>>>> c88015e0f4922c339646e957ead2d22105f969c9
   </header>
