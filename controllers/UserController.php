@@ -6,7 +6,7 @@ class UserController
   {
     if (empty($_SESSION['user_id'])) {
       $_SESSION['error_message'] = "Bạn chưa đăng nhập!";
-      header("Location: " . ROOT_URL . "?ctl=login"); 
+      header("Location: " . ROOT_URL . "?ctl=login");
       exit();
     }
 
@@ -14,7 +14,7 @@ class UserController
     $user = (new User)->find($id);
     if (!$user) {
       $_SESSION['error_message'] = "Không tìm thấy người dùng!";
-      header("Location: " . ROOT_URL . "?ctl=profile"); 
+      header("Location: " . ROOT_URL . "?ctl=profile");
       exit();
     }
 
@@ -27,55 +27,55 @@ class UserController
 
   public function update()
   {
-      if (empty($_SESSION['user_id'])) {
-          $_SESSION['error_message'] = "Bạn chưa đăng nhập!";
-          header("Location: " . ROOT_URL . "?ctl=login");
-          exit();
-      }
-  
-      $id = $_SESSION['user_id'];
-      $data = $_POST;
-      $userModel = new User();
-      $currentUser = $userModel->find($id);
-  
-      if (!$currentUser) {
-          $_SESSION['error_message'] = "Người dùng không tồn tại!";
-          header("Location: " . ROOT_URL . "?ctl=login");
-          exit();
-      }
-  
-      $file = $_FILES['image'] ?? null;
-      dd($file);
-      if ($file && $file['size'] > 0) {
-          $imagePath = "assets/images/account" . basename($file['name']);
-          if (move_uploaded_file($file['tmp_name'], ROOT_DIR . $imagePath)) {
-              $data['image'] = $imagePath; 
-          } else {
-              $_SESSION['error_message'] = "Không thể tải lên ảnh!";
-              header("Location: " . ROOT_URL . "?ctl=edit-profile");
-              exit();
-          }
-      } else {
-          $data['image'] = $currentUser['image']; 
-      }
-
-      if (!empty($data['password'])) {
-          $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-      } else {
-          unset($data['password']);
-      }
-     
-      unset($data['updateProfileUser']);
-      if ($userModel->update($id, $data)) {
-          $_SESSION['success_message'] = "Cập nhật thông tin thành công!";
-      } else {
-          $_SESSION['error_message'] = "Cập nhật thông tin thất bại!";
-      }
-  
-      header("Location: " . ROOT_URL . "?ctl=edit-profile");
+    if (empty($_SESSION['user_id'])) {
+      $_SESSION['error_message'] = "Bạn chưa đăng nhập!";
+      header("Location: " . ROOT_URL . "?ctl=login");
       exit();
+    }
+
+    $id = $_SESSION['user_id'];
+    $data = $_POST;
+    $userModel = new User();
+    $currentUser = $userModel->find($id);
+
+    if (!$currentUser) {
+      $_SESSION['error_message'] = "Người dùng không tồn tại!";
+      header("Location: " . ROOT_URL . "?ctl=login");
+      exit();
+    }
+
+    $file = $_FILES['image'] ?? null;
+    dd($file);
+    if ($file && $file['size'] > 0) {
+      $imagePath = "assets/images/account" . basename($file['name']);
+      if (move_uploaded_file($file['tmp_name'], ROOT_DIR . $imagePath)) {
+        $data['image'] = $imagePath;
+      } else {
+        $_SESSION['error_message'] = "Không thể tải lên ảnh!";
+        header("Location: " . ROOT_URL . "?ctl=edit-profile");
+        exit();
+      }
+    } else {
+      $data['image'] = $currentUser['image'];
+    }
+
+    if (!empty($data['password'])) {
+      $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+    } else {
+      unset($data['password']);
+    }
+
+    unset($data['updateProfileUser']);
+    if ($userModel->update($id, $data)) {
+      $_SESSION['success_message'] = "Cập nhật thông tin thành công!";
+    } else {
+      $_SESSION['error_message'] = "Cập nhật thông tin thất bại!";
+    }
+
+    header("Location: " . ROOT_URL . "?ctl=edit-profile");
+    exit();
   }
-  
+
   public function updateUser()
   {
     if (empty($_POST['id']) || empty($_POST['username']) || empty($_POST['email'])) {
