@@ -81,4 +81,31 @@ class CartController
         exit(); 
 
     }
+
+    public function inCreaseQuantity(){
+      $id = $_GET['id'] ?? null;
+      $carts = $_SESSION['cart'] ?? [];
+
+      if($id && isset($carts)){
+        $carts[$id]['quantity'] ++;
+      }
+
+      $_SESSION['cart'] = $carts;
+      header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
+
+    public function deCreaseQuantity(){
+      $id = $_GET['id'] ?? null;
+      $carts = $_SESSION['cart'] ?? [];
+
+      if($id && isset($carts)){
+        $carts[$id]['quantity'] --;
+        if($carts[$id]['quantity'] <=0){
+          unset($carts[$id]);
+        }
+      }
+
+      $_SESSION['cart'] = $carts;
+      header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
 }

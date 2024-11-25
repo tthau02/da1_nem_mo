@@ -47,6 +47,11 @@ match ($ctl) {
     'add-comment' => (new CommentController)->addComment(),
 
     'showCart' => (new CartController) -> showCart(),
+
+    'deCreaseQuantity' => (new CartController) ->deCreaseQuantity(),
+
+    'inCreaseQuantity' => (new CartController) ->inCreaseQuantity(),
+
     
     'removeCart' => (new CartController) ->removeCart(),
 
