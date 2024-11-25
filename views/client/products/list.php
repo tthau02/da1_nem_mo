@@ -16,39 +16,53 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-12 col-sm-3">
-            <div class="card bg-light mb-3">
-                <form class="pb-3">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm...">
-                        <div class="input-group-append">
-                            <button class="btn btn-success" type="button"><i class="fa fa-search"></i></button>
-                        </div>
+    <div class="col-12 col-sm-3">
+    <div class="card bg-light mb-3">
+        
+        <!-- Danh mục -->
+        <div class="card-header bg-secondary text-white text-uppercase"><i class="fa fa-list"></i> Danh mục</div>
+        <ul class="list-group category_block">
+            <?php foreach ($categories as $cate) : ?>
+                <li class="list-group-item">
+                    <a href="<?= ROOT_URL . '?ctl=category&id=' . $cate['id'] ?>"><?= $cate["cate_name"] ?></a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+
+    <!-- Bộ lọc -->
+    <div class="card bg-light mb-3">
+        <div class="card-header text-white text-uppercase bg-primary"><i class="fa fa-filter"></i> Bộ lọc</div>
+        <form method="GET" action="<?= ROOT_URL ?>">
+            <input type="hidden" name="ctl" value="filter">
+            <!-- Lọc theo giá -->
+            <div class="p-3">
+                <label for="price_range">Khoảng giá:</label>
+                <div class="input-group">
+                    <input type="number" name="min_price" class="form-control" placeholder="Từ" min="0">
+                    <input type="number" name="max_price" class="form-control" placeholder="Đến" min="0">
+                </div>
+            </div>
+            <!-- Lọc theo đánh giá -->
+            <div class="p-3">
+                <label>Đánh giá:</label>
+                <?php for ($i = 5; $i >= 1; $i--) : ?>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rating" value="<?= $i ?>" id="rating<?= $i ?>">
+                        <label class="form-check-label" for="rating<?= $i ?>">
+                            <?= str_repeat('★', $i) ?>
+                        </label>
                     </div>
-                </form>
-                <div class="card-header bg-secondary text-white text-uppercase"><i class="fa fa-list"></i> Danh mục
-                </div>
-                <ul class="list-group category_block">
-                    <?php
-                        foreach ($categories as $cate){
-                            ?>
-                                <li class="list-group-item"><a href="<?= ROOT_URL . '?ctl=category&id=' . $cate['id'] ?>"><?= $cate["cate_name"] ?></a></li>
-                            <?php
-                        }
-                    ?>
-                </ul>
+                <?php endfor; ?>
             </div>
-            <div class="card bg-light mb-3">
-                <div class="card-header bg-success text-white text-uppercase">Sản phẩm hot nhất</div>
-                <div class="card-body">
-                    <img class="img-fluid" src="https://dummyimage.com/600x400/55595c/fff" />
-                    <h5 class="card-title">Product title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                        the card's content.</p>
-                    <p class="red text-center font-weight-bold">99.00 $</p>
-                </div>
+            <!-- Nút áp dụng -->
+            <div class="p-3 text-center">
+                <button type="submit" class="btn btn-primary">Áp dụng bộ lọc</button>
             </div>
-        </div>
+        </form>
+    </div>
+</div>
+
         <div class="col">
             <div class="card-body">
             <div class="row">
@@ -77,22 +91,40 @@
                     <?php endforeach; ?>
                 </div>
                 </div>
-                <div class="col-12">
-                    <nav aria-label="...">
-                        <ul class="pagination justify-content-center mt-5">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">Previous</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
+                <div class="col-12 mt-6">
+                <?php if (isset($totalPages) && $totalPages > 1) : ?>
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item <?= $page <= 1 ? 'disabled' : '' ?>">
+                                    <a class="page-link" href="?ctl=product&page=<?= $page - 1 ?>"><</a>
+                                </li>
+                                <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
+                                    <li class="page-item <?= $i == $page ? 'active' : '' ?>">
+                                        <a class="page-link" href="?ctl=product&page=<?= $i ?>"><?= $i ?></a>
+                                    </li>
+                                <?php endfor; ?>
+                                <li class="page-item <?= $page >= $totalPages ? 'disabled' : '' ?>">
+                                    <a class="page-link" href="?ctl=product&page=<?= $page + 1 ?>">></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    <?php else : ?>
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item <?= $page <= 1 ? 'disabled' : '' ?>">
+                                    <a class="page-link" href="?ctl=product&page=<?= $page - 1 ?>"><</a>
+                                </li>
+                                <li class="page-item active">
+                                    <a class="page-link" href="?ctl=product&page=1">1</a>
+                                </li>
+                                <li class="page-item <?= $page >= $totalPages ? 'disabled' : '' ?>">
+                                    <a class="page-link" href="?ctl=product&page=<?= $page + 1 ?>">></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    <?php endif; ?>
+
+
                 </div>
             </div>
         </div>
