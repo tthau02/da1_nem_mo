@@ -6,14 +6,22 @@ class ProductController
     {
         $title = 'Sản Phẩm';
         $product = new Product;
-        $products = $product->all();
 
+        $limit = 15; 
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Mặc định là trang 1 nếu không có tham số
+        $offset = ($page - 1) * $limit;
+    
+        // Lấy danh sách sản phẩm và tổng số sản phẩm
+        $products = $product->all($limit, $offset); 
+        $totalProducts = $product->count(); 
+        $totalPages = max(ceil($totalProducts / $limit), 1);
+    
         $categories = (new Category)->all();
         $totalQuantity = (new CartController)->totalQuantityCart();
-
+    
         return view(
             'client.products.list',
-            compact('categories', 'products', 'title', 'totalQuantity')
+            compact('categories', 'products', 'title', 'totalQuantity', 'page', 'totalPages')
         );
     }
 

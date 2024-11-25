@@ -53,6 +53,7 @@ match ($ctl) {
     'payCart' => (new PaymentController) ->showPaymentForm(),
 
     'edit-profile' => (new UserController)->edit(),
+    'updateprofile' => (new UserController)->update(),
 
 
     default => view("errors.404"),

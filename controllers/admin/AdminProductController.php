@@ -32,7 +32,7 @@ class AdminProductController
         $file = $_FILES['image'];
         if ($file['size'] > 0) {
             //lấy ảnh
-            $image = "assets/images/product" . $file['name'];
+            $image = "assets/images/" . $file['name'];
             //Upload ảnh
             move_uploaded_file($file['tmp_name'], ROOT_DIR . $image);
         } else {
@@ -40,7 +40,6 @@ class AdminProductController
         }
         //đưa ảnh vào $data
         $data['image'] = $image;
-        var_dump($data);
 
         unset($data['submitFormAddProduct']);
         $product = new Product;
