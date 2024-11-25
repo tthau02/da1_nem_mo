@@ -27,7 +27,7 @@
                             <th scope="col" class="text-center align-middle"></th>
                             <th scope="col" class="text-center align-middle">#ID</th>
                             <th scope="col" class="text-center align-middle">ID sản phẩm</th>
-                            <th scope="col" class="text-center align-middle">ID người dùng</th>
+                            <th scope="col" class="text-center align-middle">Người dùng</th>
                             <th scope="col" class="text-center align-middle">Nội dung</th>
                             <th scope="col" class="text-center align-middle">Đánh giá</th>
                             <th scope="col" class="text-center align-middle">Ngày bình luận</th>
@@ -43,7 +43,7 @@
                                 </td>
                                 <td class="text-center align-middle"><?= $comment['id'] ?></td>
                                 <td class="text-center align-middle"><?= $comment['product_id'] ?></td>
-                                <td class="text-center align-middle"><?= $comment['user_id'] ?></td>
+                                <td class="text-center align-middle"><?= $comment['username'] ?></td>
                                 <td class="text-center align-middle"><?= $comment['comment'] ?></td>
                                 <td class="text-center align-middle" style="color: green; font-size:14px; font-weight: bold;">
                                         <?php for ($i = 1; $i <= $comment['rating']; $i++): ?>

@@ -43,25 +43,35 @@ class User extends BaseModel
   
   // Cập nhật user theo id
   public function update($id, $data)
-  {
-    $sql = "UPDATE users 
-            SET fullname = :fullname, 
-                username = :username, 
-                password = :password, 
-                email = :email, 
-                image = :image,
-                phone = :phone, 
-                address = :address, 
-                role = :role, 
-                updated_at = :updated_at 
-            WHERE id = :id";
+{
+    // Bỏ cột password nếu không nhập mật khẩu mới
+    $sql = "UPDATE users SET 
+            fullname = :fullname, 
+            username = :username, 
+            email = :email, 
+            image = :image,
+            phone = :phone, 
+            address = :address, 
+            updated_at = :updated_at";
+    
+    if (!empty($data['password'])) {
+        $sql .= ", password = :password"; // Cập nhật nếu có mật khẩu mới
+    }
+
+    $sql .= " WHERE id = :id";
 
     $data['id'] = $id;
-    $data['updated_at'] = date('Y-m-d H:i:s'); // Cập nhật thời gian hiện tại
+    $data['updated_at'] = date('Y-m-d H:i:s');
+
+    // Xóa key không cần thiết
+    if (empty($data['password'])) {
+        unset($data['password']);
+    }
 
     $stmt = $this->conn->prepare($sql);
-    $stmt->execute($data);
-  }
+    return $stmt->execute($data); // Chạy câu lệnh với dữ liệu phù hợp
+}
+
 
   // Xóa user theo id
   public function delete($id)
