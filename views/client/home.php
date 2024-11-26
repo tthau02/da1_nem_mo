@@ -80,7 +80,7 @@
             <div class="ad-content text-center text-white">
                 <h3 class="ad-title">Khuyến mãi đặc biệt</h3>
                 <p class="ad-text">Nhận ưu đãi ngay hôm nay!</p>
-                <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>" class="btn btn-outline-success">Mua ngay</a>
+                <a href="<?= ROOT_URL . "?ctl=detail&id=1"?>" class="btn btn-outline-success">Mua ngay</a>
             </div>
         </div>
     </div>
@@ -90,7 +90,7 @@
             <div class="ad-content text-center text-white">
                 <h3 class="ad-title">Khuyến mãi đặc biệt</h3>
                 <p class="ad-text">Nhận ưu đãi ngay hôm nay!</p>
-                <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>" class="btn btn-outline-success">Mua ngay</a>
+                <a href="<?= ROOT_URL . "?ctl=detail&id=2"?>" class="btn btn-outline-success">Mua ngay</a>
             </div>
         </div>
     </div>
