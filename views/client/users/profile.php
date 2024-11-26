@@ -12,13 +12,13 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <a href="#" class="text-decoration-none"><i class="fa fa-user"></i> Thông tin cá nhân</a>
+                            <a href="" class="text-decoration-none"><i class="fa fa-user"></i> Thông tin cá nhân</a>
                         </li>
                         <li class="list-group-item">
                             <a href="#" class="text-decoration-none"><i class="fa fa-shopping-cart"></i> Lịch sửa mua hàng</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="#" class="text-decoration-none"><i class="fa fa-sign-out-alt"></i> Đăng Xuất</a>
+                            <a href="<?= ROOT_URL . '?ctl=logout' ?>" class="text-decoration-none"><i class="fa fa-sign-out-alt"></i> Đăng Xuất</a>
                         </li>
                     </ul>
                 </div>

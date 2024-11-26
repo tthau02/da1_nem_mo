@@ -40,7 +40,7 @@
               <ul class="navbar-nav mx-auto">
                 <li class="nav-item dropdown">
                   <a
-                    class="nav-link dropdown-toggle"
+                    class="nav-link"
                     href="#"
                     id="navbarDropdown"
                     role="button"
