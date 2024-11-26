@@ -27,6 +27,7 @@
                             </td>
                             <td class="text-center"><?= $cart['name'] ?></td>
                             <td class="text-center text-primary"><?= number_format($cart['price'], 0, ',', '.') ?>đ</td>
+                            
                             <td class="text-center">
                                 <a href="<?= ROOT_URL . '?ctl=deCreaseQuantity&id=' . $id?>" class="btn btn-secondary btn-sm me-2">-</a>
                                 <?= $cart['quantity'] ?>

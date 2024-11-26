@@ -5,6 +5,12 @@ class CartController
   public function addCart()
   {
 
+    if (!isset($_SESSION['user_id'])) {
+      // Chuyển hướng người dùng đến trang đăng nhập nếu chưa đăng nhập
+      $_SESSION['error'] = "Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng.";
+      header("Location: " . ROOT_URL . "?ctl=login");
+      exit();
+  }
 
     $carts = $_SESSION['cart'] ?? []; // Tạo giỏ hàng nếu chưa có
     $id = $_GET['id'] ?? null; // Lấy ID sản phẩm từ GET
@@ -30,6 +36,8 @@ class CartController
 
     // Lưu giỏ hàng vào session
     $_SESSION['cart'] = $carts;
+
+    // $_SESSION['totalQuantity'] = $this->totalQuantityCart();
     // Lấy URI hoặc gán giá trị mặc định
     $uri = $_SESSION['URI'] ?? $_SERVER['HTTP_REFERER'] ?? ROOT_URL;
     header("Location: " . $uri);
@@ -39,6 +47,7 @@ class CartController
   // Tính tổng số lượng sản phẩm trong giỏ hàng
   public function totalQuantityCart()
   {
+    //Lấy giỏ hàng từ session:
     $carts = $_SESSION['cart'] ?? [];
     $totalQuantity = 0;
 
@@ -50,6 +59,7 @@ class CartController
   }
 
     public function showCart(){
+      //Lấy giỏ hàng từ session:
         $carts = $_SESSION['cart'] ?? [];
         $totalQuantity = $this->totalQuantityCart();
         $totalPrice =0;
