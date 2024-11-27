@@ -60,6 +60,10 @@ match ($ctl) {
     'edit-profile' => (new UserController)->edit(),
     'updateprofile' => (new UserController)->update(),
 
+    'introduce' => (new HomeController)->intro(),
+    'contact' => (new HomeController)->contact(),
+    'policy' => (new HomeController)->policy(),
+
 
     default => view("errors.404"),
 };
