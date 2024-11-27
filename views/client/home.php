@@ -130,7 +130,13 @@
                                                 <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>" class="btn btn-primary btn-sm">
                                                     Xem chi tiết
                                                 </a>
-                                                <a href="<?= ROOT_URL . '?ctl=add-cart&id=' . $product['id'] ?>" class="btn btn-primary btn-sm">+ Add</a>
+                                                <a
+                                                    href="<?= isset($_SESSION['user_id']) ? ROOT_URL . '?ctl=add-cart&id=' . $product['id'] : '#' ?>"
+                                                    class="btn btn-primary btn-sm"
+                                                    <?= !isset($_SESSION['user_id']) ? 'data-bs-toggle="modal" data-bs-target="#authModal"' : '' ?>>
+                                                    + Add
+                                                </a>
+
                                             </div>
                                         </div>
                                     </div>
@@ -174,7 +180,12 @@
                                                     <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>" class="btn btn-primary btn-sm">
                                                         Xem chi tiết
                                                     </a>
-                                                    <a href="<?= ROOT_URL . '?ctl=add-cart&id=' . $product['id'] ?>" class="btn btn-primary btn-sm">+ Add</a>
+                                                    <a
+                                                    href="<?= isset($_SESSION['user_id']) ? ROOT_URL . '?ctl=add-cart&id=' . $product['id'] : '#' ?>"
+                                                    class="btn btn-primary btn-sm"
+                                                    <?= !isset($_SESSION['user_id']) ? 'data-bs-toggle="modal" data-bs-target="#authModal"' : '' ?>>
+                                                    + Add
+                                                </a>
                                                 </div>
                                             </div>
                                         </div>
