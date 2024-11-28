@@ -100,8 +100,7 @@
                     <nav aria-label="Page navigation">
                         <ul class="pagination justify-content-center">
                             <li class="page-item <?= $page <= 1 ? 'disabled' : '' ?>">
-                                <a class="page-link" href="?ctl=product&page=<?= $page - 1 ?>">
-                                    << /a>
+                                <a class="page-link" href="?ctl=product&page=<?= $page - 1 ?>"><</a>
                             </li>
                             <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
                                 <li class="page-item <?= $i == $page ? 'active' : '' ?>">
@@ -117,8 +116,7 @@
                     <nav aria-label="Page navigation">
                         <ul class="pagination justify-content-center">
                             <li class="page-item <?= $page <= 1 ? 'disabled' : '' ?>">
-                                <a class="page-link" href="?ctl=product&page=<?= $page - 1 ?>">
-                                    << /a>
+                                <a class="page-link" href="?ctl=product&page=<?= $page - 1 ?>"><</a>
                             </li>
                             <li class="page-item active">
                                 <a class="page-link" href="?ctl=product&page=1">1</a>

@@ -60,13 +60,13 @@
                   </ul>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Giới thiệu</a>
+                  <a class="nav-link" href="?ctl=introduce">Giới thiệu</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Liên hệ</a>
+                  <a class="nav-link" href="?ctl=contact">Liên hệ</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Chính sách</a>
+                  <a class="nav-link" href="?ctl=policy">Chính sách</a>
                 </li>
               </ul>
             </div>
