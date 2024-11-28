@@ -14,19 +14,19 @@
                     <form>
                         <div class="mb-3">
                             <label for="name" class="form-label">Họ và Tên</label>
-                            <input type="text" class="form-control" id="name" required>
+                            <input type="text" class="form-control" id="name" value="<?= $user['fullname'] ?>" required>
                         </div>
                         <div class="mb-3">
                             <label for="address" class="form-label">Địa Chỉ</label>
-                            <input type="text" class="form-control" id="address" required>
+                            <input type="text" class="form-control" id="address" value="<?= $user['address'] ?>" required>
                         </div>
                         <div class="mb-3">
                             <label for="phone" class="form-label">Số Điện Thoại</label>
-                            <input type="tel" class="form-control" id="phone" required>
+                            <input type="tel" class="form-control" id="phone" value="<?= $user['phone'] ?>" required>
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email">
+                            <input type="email" class="form-control" id="email" value="<?= $user['email'] ?>">
                         </div>
                     </form>
                 </div>
@@ -39,21 +39,16 @@
                 </div>
                 <div class="card-body">
                     <div class="form-check mb-2">
-                        <input class="form-check-input" type="radio" name="paymentMethod" id="cod" checked>
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="cod" value="cod" checked>
                         <label class="form-check-label" for="cod">
                             Thanh toán khi nhận hàng (COD)
                         </label>
                     </div>
-                    <div class="form-check mb-2">
-                        <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard">
-                        <label class="form-check-label" for="creditCard">
-                            Thẻ tín dụng
-                        </label>
-                    </div>
+                    
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="paymentMethod" id="bankTransfer">
-                        <label class="form-check-label" for="bankTransfer">
-                            Chuyển khoản ngân hàng
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="vnpay" value="vnpay">
+                        <label class="form-check-label" for="vnpay">
+                            Thanh toán bằng VNPAY
                         </label>
                     </div>
                 </div>
@@ -64,35 +59,32 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header bg-primary text-white">
-                    Đơn Hàng Của Bạn
+                    Thông tin giỏ hàng
                 </div>
                 <div class="card-body">
                     <!-- Sản phẩm -->
-                    <div class="d-flex justify-content-between mb-3">
+                     <ul class="list-group"></ul>
+                     <?php foreach($carts as $cart) : ?>
+                    <li class="d-flex justify-content-between mb-3">
                         <div>
-                            <h6>Tên Sản Phẩm 1</h6>
-                            <small>Số lượng: 1</small>
+                            <h6>Tên Sản Phẩm : <?= $cart['name'] ?></h6>
+                            <small>Số lượng: <?= $cart['quantity'] ?></small>
                         </div>
-                        <span>200,000 VND</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <div>
-                            <h6>Tên Sản Phẩm 2</h6>
-                            <small>Số lượng: 2</small>
-                        </div>
-                        <span>400,000 VND</span>
-                    </div>
+                        <span><?= number_format($cart['price'] * $cart['quantity']) ?></span>
+                    </li>
+                    <?php endforeach ?>
+                    </ul>
 
                     <!-- Tổng tiền -->
                     <div class="d-flex justify-content-between mt-4 pt-3 border-top">
                         <strong>Tổng cộng</strong>
-                        <strong>600,000 VND</strong>
+                        <strong><?= number_format($totalPrice, 0, ',', '.') ?>VNĐ</strong>
                     </div>
                 </div>
             </div>
 
             <!-- Nút đặt hàng -->
-            <a href="./thanhtoanthanhcong.html"><button class="btn btn-success w-100 mt-4">Đặt Hàng</button></a>
+            <a href="./thanhtoanthanhcong.html"><button class="btn btn-success w-100 mt-4">Xác nhận thanh toán</button></a>
         </div>
     </div>
 </div>
