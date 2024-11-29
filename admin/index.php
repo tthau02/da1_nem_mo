@@ -14,12 +14,15 @@ require_once __DIR__ . "/../models/Category.php";
 require_once __DIR__ . "/../models/Product.php";
 require_once __DIR__ . "/../models/User.php";
 require_once __DIR__ . "/../models/Comment.php";
+require_once __DIR__ . "/../models/Order.php";
 
 //include controllers
 require_once __DIR__ . "/../controllers/admin/AdminProductController.php";
 require_once __DIR__ . "/../controllers/admin/AdminCategoryController.php";
 require_once __DIR__ . "/../controllers/admin/AdminUserController.php";
 require_once __DIR__ . "/../controllers/admin/AdminCommentController.php";
+require_once __DIR__ . "/../controllers/OrderController.php";
+
 $ctl = $_GET['ctl'] ?? "";
 
 if ($_SESSION['user_role'] !== 'admin') {
@@ -29,6 +32,8 @@ if ($_SESSION['user_role'] !== 'admin') {
 
 match ($ctl) {
     '' => view("admin.dashboard"),
+
+    // sản phẩm
     'profile' => (new AdminUserController)->profile(),
     'listsp' => (new AdminProductController)->index(),
     'addsp' => (new AdminProductController)->create(),
@@ -37,6 +42,7 @@ match ($ctl) {
     'editsp' => (new AdminProductController)->edit(),
     'updatesp' => (new AdminProductController)->update(),
 
+    // danh mục
     'listdm' => (new AdminCategoryController)->index(),
     'adddm' => (new AdminCategoryController)->create(),
     'storedm' => (new AdminCategoryController)->store(),
@@ -44,6 +50,7 @@ match ($ctl) {
     'editdm' => (new AdminCategoryController)->edit(),
     'updatedm' => (new AdminCategoryController)->update(),
 
+    // người dùng
     'listuser' => (new AdminUserController)->index(),
     'adduser' => (new AdminUserController)->create(),
     'storedm' => (new AdminUserController)->store(),
@@ -51,7 +58,12 @@ match ($ctl) {
     'edituser' => (new AdminUserController)->edit(),
     'updateuser' => (new AdminUserController)->update(),
 
+    // bình luận
     'listcomment' => (new AdminCommentController)->index(),
     'deletecomment' => (new AdminCommentController)->delete(),
+
+    // order
+    'list-order' => (new OrderController) ->index(),
+    'detail-order' =>(new OrderController) ->showOrder(),
     default => view('errors.404'),
 };
