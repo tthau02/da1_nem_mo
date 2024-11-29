@@ -52,4 +52,33 @@ class AdminUserController
     $_SESSION['message'] = "Xóa người dùng thành công";
     header("location: " . ADMIN_URL . "?ctl=listuser");
   }
+   public function profile()
+    {
+        // Kiểm tra xem người dùng đã đăng nhập chưa
+        if (empty($_SESSION['user_id'])) {
+            $_SESSION['error_message'] = "Bạn chưa đăng nhập!";
+            header("Location: " . ROOT_URL . "?ctl=login");
+            exit();
+        }
+
+        // Lấy thông tin người dùng từ session
+        $id = $_SESSION['user_id'];
+
+        // Lấy thông tin người dùng từ cơ sở dữ liệu
+        $userModel = new User(); // Khởi tạo model User
+        $user = $userModel->find($id); // Lấy thông tin người dùng theo id
+
+        // Nếu không tìm thấy người dùng
+        if (!$user) {
+            $_SESSION['error_message'] = "Không tìm thấy người dùng!";
+            header("Location: " . ROOT_URL . "?ctl=dashboard"); // Quay lại trang dashboard nếu không có người dùng
+            exit();
+        }
+
+        // Thiết lập tiêu đề cho trang profile
+        $title = "Trang Profile Người Dùng";
+
+        // Trả về view "profile" và truyền thông tin người dùng
+        return view("admin.profile", compact('user', 'title'));
+    }
 }
