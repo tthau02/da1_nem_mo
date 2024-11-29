@@ -48,6 +48,7 @@
                 'status' => 1,
                 'payment' => $_POST['payment'],
                 'total_price' => $totalPrice,
+                
             ];
             
 
