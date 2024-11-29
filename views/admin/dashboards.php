@@ -3,7 +3,7 @@
 $host = 'localhost'; // Hoặc tên host của bạn
 $username = 'root'; // Tên người dùng
 $password = ''; // Mật khẩu
-$database = 'du_an_1'; // Tên cơ sở dữ liệu của bạn
+$database = 'du-an-1'; // Tên cơ sở dữ liệu của bạn
 
 // Kết nối đến cơ sở dữ liệu
 $conn = new mysqli($host, $username, $password, $database);

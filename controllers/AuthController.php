@@ -37,13 +37,8 @@ class AuthController
     $_SESSION['message'] = "Đăng nhập thành công.";
 
     // Kiểm tra nếu có URL trước đó được lưu
-    $redirect = $_SESSION['redirect_url'] ?? (($user['role'] === 'admin') ? "/admin" : ROOT_URL);
-
-    // Xóa session redirect_url sau khi sử dụng để tránh lỗi ở lần đăng nhập tiếp theo
-    unset($_SESSION['redirect_url']);
-
-    // Chuyển hướng
-    header("location: " . $redirect);
+    $redirect = ($user['role'] === 'admin') ? "/admin" : "";
+    header("location: " . ROOT_URL . $redirect);
     exit;
   }
 
