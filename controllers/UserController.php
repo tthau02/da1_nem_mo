@@ -127,5 +127,6 @@ class UserController
 
     $_SESSION['message'] = "Cập nhật thông tin thành công";
     header("location: " . ROOT_URL . "?ctl=profile");
+    
   }
 }

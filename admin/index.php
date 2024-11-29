@@ -22,13 +22,14 @@ require_once __DIR__ . "/../controllers/admin/AdminUserController.php";
 require_once __DIR__ . "/../controllers/admin/AdminCommentController.php";
 $ctl = $_GET['ctl'] ?? "";
 
-if ($_SESSION['user_role'] !== 'admin') {
-    header("location: " . ROOT_URL);
-    exit;
-}
+// if ($_SESSION['user_role'] !== 'admin') {
+//     header("location: " . ROOT_URL);
+//     exit;
+// }
 
 match ($ctl) {
     '' => view("admin.dashboard"),
+    'profile' => (new AdminUserController)->profile(),
     'listsp' => (new AdminProductController)->index(),
     'addsp' => (new AdminProductController)->create(),
     'storesp' => (new AdminProductController)->store(),
