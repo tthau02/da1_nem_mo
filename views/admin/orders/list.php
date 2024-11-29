@@ -5,7 +5,9 @@
     <main class="container-fluid content px-3 py-4">
         <div class="shadow bg-white pb-5 mt-4 ms-4 mb-4 col-md-11" style="width: 96%;">
             <div>
-                <h4 class="p-3">Danh sách bình luận</h4>
+
+                <h4 class="p-3">Danh sách đơn hàng</h4>
+
             </div>
             <hr>
             <div class="d-flex justify-content-between align-items-center">
@@ -24,41 +26,35 @@
                 <table class="table table-hover ">
                     <thead class="thead-light">
                         <tr>
-                            <th scope="col" class="text-center align-middle"></th>
-                            <th scope="col" class="text-center align-middle">#ID</th>
-                            <th scope="col" class="text-center align-middle">User_id</th>
-                            <th scope="col" class="text-center align-middle">Status</th>
-                            <th scope="col" class="text-center align-middle">Payment_Method</th>
-                            <th scope="col" class="text-center align-middle">Total_Price</th>
-                            
+                        <th scope="col" class="text-center align-middle">ID người dùng</th>
+                        <th scope="col" class="text-center align-middle">Trạng thái</th>
+                        <th scope="col" class="text-center align-middle">Phương thức thanh toán</th>
+                        <th scope="col" class="text-center align-middle">Tổng số tiền</th>
+                        <th scope="col" class="text-center align-middle">Ngày mua</th>
+                        <th scope="col" class="text-center align-middle">Thao tác</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <?php foreach ($comments as $comment) : ?>
-                            <tr>
-                                <td scope="row" class="text-center align-middle">
-                                    <form action="" method="post">
-                                        <input type="checkbox">
-                                    </form>
-                                </td>
-                                <td class="text-center align-middle"><?= $comment['id'] ?></td>
-                                <td class="text-center align-middle"><?= $comment['product_id'] ?></td>
-                                <td class="text-center align-middle"><?= $comment['username'] ?></td>
-                                <td class="text-center align-middle"><?= $comment['comment'] ?></td>
-                                <td class="text-center align-middle" style="color: green; font-size:14px; font-weight: bold;">
-                                        <?php for ($i = 1; $i <= $comment['rating']; $i++): ?>
-                                        <span class="star filled">&#9733;</span>
-                                         <?php endfor; ?>
-                                </td>
 
-                                <td class="text-center align-middle"><?= $comment['created_at'] ?></td>
+                    <tbody>
+                        <?php foreach ($orders as $order) : ?>
+
+                            <tr>
+                               
+                                <td class="text-center align-middle"><?= $order['id'] ?></td>
+                                <td class="text-center align-middle"><?= $order['user_id'] ?></td>
+                                <td class="text-center align-middle"><?= getOrderStatus($order['status']) ?></td>
+                                <td class="text-center align-middle"><?= $order['payment'] ?></td>
+                                <td class="text-center align-middle"><?= number_format($order['total_price']) ?> VNĐ</td>
+                                <td class="text-center align-middle"><?= $order['created_at'] ?></td>
+                                
 
                                 <td class="text-center align-middle">
-                                    <a onclick="return confirm ('Bạn có chắc chắn muốn xóa bình luận này không!')" href="?ctl=deletecomment&id=<?= $comment['id'] ?>">
-                                        <button type="button" class="btn btn-outline-danger">
-                                            <i class="lni lni-close"></i>
+                                    <a  href="<?= ADMIN_URL . '?ctl=detail-order&id=' . $order['id']?>">
+                                    <button type="button" class="btn btn-outline-primary">
+                                            <i class="lni lni-pencil"></i>
                                         </button>
                                     </a>
+                                    
                                 </td>
                             </tr>
                         <?php endforeach ?>

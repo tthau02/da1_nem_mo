@@ -17,3 +17,15 @@ function dd($data)
     var_dump($data);
     echo "</pre>";
 }
+
+// chuyển đổi trạng thái đơn hàng
+ function getOrderStatus($status){
+    $status_detail = [
+        1 => 'Chờ xử lý',
+        2 => 'Đang xử lý',
+        3 => 'Đã hoàn thành',
+        4 => 'Đã huỷ'
+    ];
+
+    return $status_detail[$status];
+ }

@@ -32,7 +32,7 @@
                 'email' => $_POST['email'],
                 'updated_at' => date('Y-m-d H:i:s'),
                 'username' => $_POST['username'] ?? '', // Nếu không có, gán giá trị mặc định
-                'image' => $_POST['image'] ?? '',
+                'image' => $_POST['image'] ?? '', // Nếu không có, gán giá trị mặc định
             ];
 
             
@@ -50,6 +50,8 @@
                 'total_price' => $totalPrice,
                 
             ];
+
+            
             
 
             (new User) -> update($user['id'],$user);
@@ -61,7 +63,7 @@
                     'order_id' => $order_id,
                     'product_id' => $id,
                     'price' => $cart['price'],
-                    'quantity' => $cart['quantity']
+                    'quantity' => $cart['quantity'],
                     
                 ];
 
