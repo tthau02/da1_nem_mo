@@ -1,9 +1,5 @@
 <?php 
 
-    
-        
-
-
     class OrderController{
         public function index(){
             $orders = (new Order) ->all();
