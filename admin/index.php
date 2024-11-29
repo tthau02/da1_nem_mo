@@ -29,6 +29,7 @@ if ($_SESSION['user_role'] !== 'admin') {
 
 match ($ctl) {
     '' => view("admin.dashboard"),
+    'profile' => (new AdminUserController)->profile(),
     'listsp' => (new AdminProductController)->index(),
     'addsp' => (new AdminProductController)->create(),
     'storesp' => (new AdminProductController)->store(),

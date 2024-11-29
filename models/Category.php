@@ -50,4 +50,5 @@ class Category extends BaseModel
         $stmt->execute(['id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    
 }

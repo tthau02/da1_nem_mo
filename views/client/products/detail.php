@@ -1,5 +1,9 @@
 <?php include_once ROOT_DIR . "views/client/header.php" ?>
 
+<?php if (!isset($_SESSION['user_id'])) {
+    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
+} ?>
+
 <div class="container">
     <div class="row h-100">
         <div class="col mt-3 m-2">
@@ -46,13 +50,19 @@
                     <input type="number" id="quantity" class="form-control text-center" value="1" min="1" style="max-width: 70px;">
                     <button class="btn btn-outline-secondary" type="button" id="increaseQuantity">+</button>
                 </div>
+                
                 <div class="d-flex gap-5">
                     <a href="<?= isset($_SESSION['user_id']) ? ROOT_URL . '?ctl=add-cart&id=' . $product['id'] : '#' ?>"
                         class="btn btn-outline-danger btn-add-cart mt-3"
                         <?= !isset($_SESSION['user_id']) ? 'data-bs-toggle="modal" data-bs-target="#authModal"' : '' ?>>Add to cart</a>
 
-                    
-                    <button class="btn btn-danger mt-3">Mua Ngay</button>
+
+                    <a
+                        href="<?= isset($_SESSION['user_id']) ? ROOT_URL . '?ctl=payCart&id=' . $product['id'] : '#' ?>"
+                        class="btn btn-danger mt-3"
+                        <?= !isset($_SESSION['user_id']) ? 'data-bs-toggle="modal" data-bs-target="#authModal"' : '' ?>>
+                        Mua Ngay
+                    </a>
                     <button class="btn btn-danger mt-3">Liên Hệ Ngay</button>
                 </div>
             </div>
