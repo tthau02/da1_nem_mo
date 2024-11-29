@@ -27,7 +27,11 @@
                             </td>
                             <td class="text-center"><?= $cart['name'] ?></td>
                             <td class="text-center text-primary"><?= number_format($cart['price'], 0, ',', '.') ?>đ</td>
-                            <td class="text-center"><?= $cart['quantity'] ?></td>
+                            <td class="text-center">
+                                <a href="<?= ROOT_URL . '?ctl=deCreaseQuantity&id=' . $id?>" class="btn btn-secondary btn-sm me-2">-</a>
+                                <?= $cart['quantity'] ?>
+                                <a href="<?= ROOT_URL . '?ctl=inCreaseQuantity&id=' . $id?>" class="btn btn-secondary btn-sm ms-2">+</a>
+                            </td>
                             <td class="text-center text-danger"><?= number_format($cart['price'] * $cart['quantity'], 0, ',', '.') ?>đ</td>
                             <td class="text-center">
                                 <a class="btn btn-danger btn-sm" href="?ctl=removeCart&id=<?= $id ?>">Xóa</a>

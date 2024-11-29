@@ -11,16 +11,40 @@ class Product extends BaseModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getProductNew($limit = 8){
-    $sql = "SELECT p.*, c.cate_name 
+    public function getAllProduct($limit, $offset)
+    {
+        $sql = "
+            SELECT p.*, c.cate_name 
+            FROM products p 
+            JOIN categories c ON p.category_id = c.id
+            LIMIT :limit OFFSET :offset
+        ";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function count()
+    {
+        $sql = "SELECT COUNT(*) as total FROM products";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+    }
+
+    public function getProductNew($limit = 8)
+    {
+        $sql = "SELECT p.*, c.cate_name 
             FROM products p 
             JOIN categories c ON p.category_id = c.id 
             ORDER BY p.id DESC 
-            LIMIT :limit"; 
-    $stmt = $this->conn->prepare($sql);
-    $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            LIMIT :limit";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function listProductInCategory($id)
@@ -37,12 +61,29 @@ class Product extends BaseModel
                 WHERE category_id = :id 
                 LIMIT 8";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT); 
-        $stmt->execute(); 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC); 
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
+    //lấy ra sản phẩm có rating cao nhất
+    public function getTopRatedProducts($limit = 8)
+    {
+        $sql = "
+            SELECT 
+                products.*, 
+                COALESCE(AVG(comments.rating), 0) AS avg_rating
+            FROM products
+            LEFT JOIN comments ON products.id = comments.product_id
+            GROUP BY products.id
+            ORDER BY avg_rating DESC
+            LIMIT :limit
+        ";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     //Thêm dữ liệu
     public function create($data)
     {
@@ -73,9 +114,16 @@ class Product extends BaseModel
 
 
     // Tìm kiếm sản phẩm theo tên 
-    public function search($keyword = null){
-        $sql = "SELECT * FROM products WHERE name LIKE '%$keyword%'";
+    public function search($keyword = null)
+    {
+        $sql = "SELECT products.*, categories.cate_name AS category_name
+            FROM products
+            LEFT JOIN categories ON products.category_id = categories.id
+            WHERE products.name LIKE :keyword OR categories.cate_name LIKE :keyword";
+
         $stmt = $this->conn->prepare($sql);
+        $param = "%$keyword%";
+        $stmt->bindParam(':keyword', $param, PDO::PARAM_STR);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -85,6 +133,5 @@ class Product extends BaseModel
         $sql = "UPDATE products  SET status=0  WHERE id=:id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['id' => $id]);
-
     }
 }

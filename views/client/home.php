@@ -76,11 +76,11 @@
 <section class="banner-sale container">
     <div class="sale-item">
         <div class="ad-box position-relative">
-            <img src="https://everon.com/upload/upload-images/esc22018-everon-solid-2021.jpg" alt="Quảng cáo" class="ad-image">
+            <img src="https://270349907.e.cdneverest.net/fast/544x0/filters:format(webp)/vuanem.com/storage/products/1022/kQpXtW9jh9smOxVumpOWs6nAm2hGE9z4pzWxYFst.jpg" alt="Quảng cáo" class="ad-image">
             <div class="ad-content text-center text-white">
                 <h3 class="ad-title">Khuyến mãi đặc biệt</h3>
                 <p class="ad-text">Nhận ưu đãi ngay hôm nay!</p>
-                <a href="#" class="btn btn-outline-success">Mua ngay</a>
+                <a href="<?= ROOT_URL . "?ctl=detail&id=1"?>" class="btn btn-outline-success">Mua ngay</a>
             </div>
         </div>
     </div>
@@ -90,7 +90,7 @@
             <div class="ad-content text-center text-white">
                 <h3 class="ad-title">Khuyến mãi đặc biệt</h3>
                 <p class="ad-text">Nhận ưu đãi ngay hôm nay!</p>
-                <a href="#" class="btn btn-outline-success">Mua ngay</a>
+                <a href="<?= ROOT_URL . "?ctl=detail&id=2"?>" class="btn btn-outline-success">Mua ngay</a>
             </div>
         </div>
     </div>
@@ -111,11 +111,14 @@
                             <?php foreach ($newProduct as $product): ?>
                                 <div class="col-md-3 mb-4">
                                     <div class="card shadow-sm">
+                                        <a style="height: 200px" href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>">
                                             <img
                                                 src="<?= ROOT_URL . $product['image']; ?>"
                                                 class="card-img-top"
                                                 alt="<?= htmlspecialchars($product['name']); ?>"
-                                                style="height: 200px; object-fit: cover;">
+                                                style=" height: 200px;  object-fit: cover;">
+                                        </a>
+
                                         <div class="card-body">
                                             <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>">
                                                 <h5 class="card-title text-truncate"><?= $product['name']; ?></h5>
@@ -140,6 +143,50 @@
                     </div>
 
                 </div>
+
+
+                <div class="col-sm mt-2">
+                    <div class="card border-0">
+                        <div class="card-header bg-success text-white text-uppercase text-center">
+                            Sản phẩm đánh giá cao
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <?php foreach ($topProducts as $product): ?>
+
+                                    <div class="col-md-3 mb-4">
+                                        <div class="card shadow-sm">
+                                            <a style="height: 200px" href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>">
+                                                <img
+                                                    src="<?= ROOT_URL . $product['image']; ?>"
+                                                    class="card-img-top"
+                                                    alt="<?= htmlspecialchars($product['name']); ?>"
+                                                    style="height: 200px; object-fit: cover;">
+                                            </a>
+                                            <div class="card-body">
+                                                <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>">
+                                                    <h5 class="card-title text-truncate"><?= $product['name']; ?></h5>
+                                                </a>
+                                                <p class="card-text text-muted">
+                                                    Giá: <strong><?= number_format($product['price'], 0, ',', '.'); ?> VND</strong>
+                                                </p>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>" class="btn btn-primary btn-sm">
+                                                        Xem chi tiết
+                                                    </a>
+                                                    <a href="<?= ROOT_URL . '?ctl=add-cart&id=' . $product['id'] ?>" class="btn btn-primary btn-sm">+ Add</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                            <div class="text-center mt-4">
+                                <a href="?ctl=product" class="btn btn-outline-danger ">Xem tất cả >></a>
+                            </div>
+                        </div>
+
+                    </div>
 </section>
 
 <?php include_once ROOT_DIR . "views/client/footer.php" ?>
