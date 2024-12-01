@@ -49,7 +49,6 @@ class ProductController
         $categoryId = $product['category_id'] ?? null;
         $relatedProducts = (new Product)->productInCategory($categoryId, $id);
         $category = (new Category)->find($categoryId);
-
         $title = $product['name'] ?? '';
         $categories = (new Category)->all();
         $users = (new User)->all();
@@ -67,6 +66,39 @@ class ProductController
             'client.products.detail',
             compact('product', 'users', 'category', 'categories', 'title', 'comments', 'totalQuantity', 'relatedProducts')
 
+        );
+    }
+
+    public function filter()
+    {
+        $title = 'Sản Phẩm';
+        $product = new Product;
+
+        // Lấy tham số từ GET
+        $minPrice = isset($_GET['min_price']) ? (int)$_GET['min_price'] : 0;
+        $maxPrice = isset($_GET['max_price']) ? (int)$_GET['max_price'] : PHP_INT_MAX;
+        $rating = isset($_GET['rating']) ? (int)$_GET['rating'] : null;
+
+        // Số sản phẩm mỗi trang
+        $limit = 15;
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $offset = ($page - 1) * $limit;
+
+        // Lọc sản phẩm
+        $products = $product->filterProducts($minPrice, $maxPrice, $rating, $limit, $offset);
+        $totalProducts = $product->countFilteredProducts($minPrice, $maxPrice, $rating);
+        $totalPages = max(ceil($totalProducts / $limit), 1);
+
+        // Lấy danh mục sản phẩm
+        $categories = (new Category)->all();
+
+        // Lấy tổng số lượng sản phẩm trong giỏ hàng
+        $totalQuantity = (new CartController)->totalQuantityCart();
+
+        // Gửi dữ liệu tới view
+        return view(
+            'client.products.list',
+            compact('categories', 'products', 'title', 'totalQuantity', 'page', 'totalPages')
         );
     }
 }

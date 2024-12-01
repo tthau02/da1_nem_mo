@@ -2,6 +2,7 @@
     class PaymentController {
         public function showPaymentForm(){
             
+            $categories = (new Category)->all();
             $user = $_SESSION['user'] ?? [
                 'fullname' => '',
                 'address' => '',
@@ -15,11 +16,7 @@
             foreach ($carts as $cart) {
                 $totalPrice += $cart['price'] * $cart['quantity'];
             }
-
-
-
-
-            return view('client.payment',compact('user', 'carts', 'totalPrice'));
+            return view('client.payment',compact('user', 'carts', 'totalPrice', 'categories'));
         }
 
         public function checkout(){
@@ -72,7 +69,9 @@
         }
 
         public function success(){
-            return view('client.success');
+            $title = 'Thanh Toán';
+            $categories = (new Category)->all();
+            return view('client.success', compact('title', 'categories'));
         }
         
         // xoá giỏ hàng 
