@@ -54,16 +54,14 @@
                 <div class="d-flex gap-5">
                     <a href="<?= isset($_SESSION['user_id']) ? ROOT_URL . '?ctl=add-cart&id=' . $product['id'] : '#' ?>"
                         class="btn btn-outline-danger btn-add-cart mt-3"
-                        <?= !isset($_SESSION['user_id']) ? 'data-bs-toggle="modal" data-bs-target="#authModal"' : '' ?>>Add to cart</a>
-
-
+                        <?= !isset($_SESSION['user_id']) ? 'data-bs-toggle="modal" data-bs-target="#authModal"' : '' ?>>Thêm vào giỏ hàng</a>
                     <a
                         href="<?= isset($_SESSION['user_id']) ? ROOT_URL . '?ctl=payCart&id=' . $product['id'] : '#' ?>"
                         class="btn btn-danger mt-3"
                         <?= !isset($_SESSION['user_id']) ? 'data-bs-toggle="modal" data-bs-target="#authModal"' : '' ?>>
                         Mua Ngay
                     </a>
-                    <button class="btn btn-danger mt-3">Liên Hệ Ngay</button>
+                    <a href="?ctl=contact"><button class="btn btn-danger mt-3">Liên Hệ Ngay</button></a>
                 </div>
             </div>
 
@@ -147,21 +145,16 @@
         <?php else: ?>
             <?php foreach ($comments as $comment): ?>
                 <?php
-                // Lấy thông tin người dùng từ user_id trong mỗi bình luận
                 $user = (new User)->find($comment['user_id']);
-                $username = $user['fullname']; // Lấy tên người dùng nếu có, nếu không sẽ hiển thị 'Người dùng chưa có tên'
-                $userImage = ROOT_URL . $user['image']; // Lấy ảnh người dùng nếu có
+                $username = $user['fullname'];
+                $userImage = ROOT_URL . $user['image']; 
                 ?>
                 <div class="review-card mb-3 d-flex align-items-start p-3">
-                    <!-- Hiển thị ảnh người dùng -->
                     <img src="<?= htmlspecialchars($userImage) ?>" alt="Avatar" class="rounded-circle me-3" style="width: 40px; height: 40px;">
                     <div>
-                        <!-- Hiển thị tên người dùng và thời gian bình luận -->
                         <p><strong><?= htmlspecialchars($username) ?></strong> <span class="text-muted">- <?= date('d/m/Y', strtotime($comment['created_at'])) ?></span></p>
-                        <!-- Hiển thị nội dung bình luận -->
                         <p><?= htmlspecialchars($comment['comment']) ?></p>
                         <div class="rating">
-                            <!-- Hiển thị đánh giá sao -->
                             <?php for ($i = 1; $i <= $comment['rating']; $i++): ?>
                                 <span class="star filled">&#9733;</span>
                             <?php endfor; ?>
@@ -221,10 +214,10 @@
                                 Giá: <strong><?= number_format($product['price'], 0, ',', '.'); ?> VND</strong>
                             </p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>" class="btn btn-primary btn-sm">
+                                <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>" class="btn btn-outline-primary btn-sm">
                                     Xem chi tiết
                                 </a>
-                                <a href="cart.html" class="btn btn-primary btn-sm">+ Add</a>
+                                <a href="<?= ROOT_URL . '?ctl=add-cart&id=' . $product['id'] ?>" class="btn btn-outline-danger btn-sm">Thêm vào giỏ</a>
                             </div>
                         </div>
                     </div>
@@ -234,5 +227,32 @@
     </div>
 </div>
 
+<script>
+    // Lấy các phần tử
+    const decreaseButton = document.getElementById('decreaseQuantity');
+    const increaseButton = document.getElementById('increaseQuantity');
+    const quantityInput = document.getElementById('quantity');
+
+    // Xử lý giảm số lượng
+    decreaseButton.addEventListener('click', () => {
+        let currentValue = parseInt(quantityInput.value);
+        if (currentValue > 1) {
+            quantityInput.value = currentValue - 1;
+        }
+    });
+
+    // Xử lý tăng số lượng
+    increaseButton.addEventListener('click', () => {
+        let currentValue = parseInt(quantityInput.value);
+        quantityInput.value = currentValue + 1;
+    });
+
+    // Đảm bảo người dùng không nhập số không hợp lệ
+    quantityInput.addEventListener('input', () => {
+        if (quantityInput.value === '' || parseInt(quantityInput.value) < 1) {
+            quantityInput.value = 1;
+        }
+    });
+</script>
 
 <?php include_once ROOT_DIR . "views/client/footer.php" ?>
