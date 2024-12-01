@@ -98,12 +98,11 @@ class Product extends BaseModel
         $sql = "UPDATE products SET name=:name, image=:image, price=:price, quantity=:quantity, description=:description, status=:status, category_id=:category_id WHERE id=:id";
 
         $stmt = $this->conn->prepare($sql);
-        //thêm id và mảng data
         $data['id'] = $id;
         var_dump($data);
         $stmt->execute($data);
     }
-    //lấy ra 1 bản ghi
+
     public function find($id)
     {
         $sql = "SELECT * FROM products WHERE id=:id";
@@ -127,11 +126,72 @@ class Product extends BaseModel
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    //Xóa (xóa mềm), không xóa dữ liệu khỏi database mà thay đổi trang thái của thuộc tính soft_delete
+ 
     public function delete($id)
     {
         $sql = "UPDATE products  SET status=0  WHERE id=:id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['id' => $id]);
+    }
+
+
+    public function filterProducts($minPrice = 0, $maxPrice = PHP_INT_MAX, $rating = null, $limit = 15, $offset = 0)
+{
+    $sql = "
+        SELECT p.*, c.cate_name, COALESCE(AVG(cm.rating), 0) AS avg_rating
+        FROM products p
+        JOIN categories c ON p.category_id = c.id
+        LEFT JOIN comments cm ON p.id = cm.product_id
+        WHERE p.price BETWEEN :minPrice AND :maxPrice
+        GROUP BY p.id
+    ";
+
+    if (!is_null($rating)) {
+        $sql .= " HAVING avg_rating >= :rating";
+    }
+
+    $sql .= " LIMIT :limit OFFSET :offset";
+
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindValue(':minPrice', $minPrice, PDO::PARAM_INT);
+    $stmt->bindValue(':maxPrice', $maxPrice, PDO::PARAM_INT);
+    $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+    $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+
+    if (!is_null($rating)) {
+        $stmt->bindValue(':rating', $rating, PDO::PARAM_INT);
+    }
+
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+    public function countFilteredProducts($minPrice = 0, $maxPrice = PHP_INT_MAX, $rating = null)
+    {
+        $sql = "
+            SELECT COUNT(DISTINCT p.id) as total
+            FROM products p
+            JOIN categories c ON p.category_id = c.id
+            LEFT JOIN comments cm ON p.id = cm.product_id
+            WHERE p.price BETWEEN :minPrice AND :maxPrice
+        ";
+    
+        if (!is_null($rating)) {
+            $sql .= " GROUP BY p.id HAVING AVG(cm.rating) >= :rating";
+        }
+    
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(':minPrice', $minPrice, PDO::PARAM_INT);
+        $stmt->bindValue(':maxPrice', $maxPrice, PDO::PARAM_INT);
+    
+        if (!is_null($rating)) {
+            $stmt->bindValue(':rating', $rating, PDO::PARAM_INT);
+        }
+    
+        $stmt->execute();
+    
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? (int)$result['total'] : 0;
     }
 }

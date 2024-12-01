@@ -8,7 +8,8 @@
                     <li class="breadcrumb-item">
                         <a href="<?= ROOT_URL ?>" class="text-decoration-none text-primary">Trang chủ</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
+                    <span style='margin: 0 10px;'> / </span>
+                    <li class="" aria-current="page"><?= $title ?></li>
                 </ol>
             </nav>
         </div>
@@ -33,7 +34,7 @@
             <!-- Bộ lọc -->
             <div class="card bg-light mb-3">
                 <div class="card-header text-white text-uppercase bg-primary"><i class="fa fa-filter"></i> Bộ lọc</div>
-                <form method="GET" action="<?= ROOT_URL ?>">
+                <form method="GET" action="<?= ROOT_URL . '?ctl=filter' ?>">
                     <input type="hidden" name="ctl" value="filter">
                     <!-- Lọc theo giá -->
                     <div class="p-3">
@@ -84,10 +85,10 @@
                                         Giá: <strong><?= number_format($product['price'], 0, ',', '.'); ?> VND</strong>
                                     </p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>" class="btn btn-primary btn-sm">
+                                        <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>" class="btn btn-outline-primary btn-sm">
                                             Xem chi tiết
                                         </a>
-                                        <a href="<?= ROOT_URL . '?ctl=add-cart&id=' . $product['id'] ?>" class="btn btn-primary btn-sm">Add to cart</a>
+                                        <a href="<?= ROOT_URL . '?ctl=add-cart&id=' . $product['id'] ?>" class="btn btn-outline-danger btn-sm">Thêm vào giỏ</a>
                                     </div>
                                 </div>
                             </div>
