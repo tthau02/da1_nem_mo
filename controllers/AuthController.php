@@ -43,7 +43,8 @@ class AuthController
     unset($_SESSION['redirect_url']);
 
     // Chuyển hướng
-    header("location: " . $redirect);
+   $redirect = ($user['role'] === 'admin') ? "/admin" : "";
+    header("location: " . ROOT_URL . $redirect);
     exit;
   }
 
