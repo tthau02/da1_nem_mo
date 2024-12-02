@@ -11,15 +11,11 @@ class Category extends BaseModel
     public function all()
     {
         $sql = "SELECT * FROM categories WHERE soft_delete=0";
-        //Chuẩn bị
         $stmt = $this->conn->prepare($sql);
-        //Thực thi
         $stmt->execute();
-        //trả lại dữ liệu
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     //Thêm danh mục
-    //$data: mảng dữ liệu chứa bản ghi 1 danh mục
     public function create($data)
     {
         $sql = "INSERT INTO categories(cate_name, image) VALUES(:cate_name, :image)";

@@ -127,14 +127,14 @@
                                                 Giá: <strong><?= number_format($product['price'], 0, ',', '.'); ?> VND</strong>
                                             </p>
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>" class="btn btn-primary btn-sm">
+                                                <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>" class="btn btn-outline-primary btn-sm">
                                                     Xem chi tiết
                                                 </a>
                                                 <a
                                                     href="<?= isset($_SESSION['user_id']) ? ROOT_URL . '?ctl=add-cart&id=' . $product['id'] : '#' ?>"
-                                                    class="btn btn-primary btn-sm"
+                                                    class="btn btn-outline-danger btn-sm"
                                                     <?= !isset($_SESSION['user_id']) ? 'data-bs-toggle="modal" data-bs-target="#authModal"' : '' ?>>
-                                                    + Add
+                                                    Thêm vào giỏ
                                                 </a>
 
                                             </div>
@@ -144,7 +144,7 @@
                             <?php endforeach; ?>
                         </div>
                         <div class="text-center mt-4">
-                            <a href="?ctl=product" class="btn btn-outline-danger ">Xem tất cả >></a>
+                            <a href="?ctl=product" class="btn btn-danger ">Xem tất cả >></a>
                         </div>
                     </div>
 
@@ -177,14 +177,14 @@
                                                     Giá: <strong><?= number_format($product['price'], 0, ',', '.'); ?> VND</strong>
                                                 </p>
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>" class="btn btn-primary btn-sm">
+                                                    <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>" class="btn btn-outline-primary btn-sm">
                                                         Xem chi tiết
                                                     </a>
                                                     <a
                                                     href="<?= isset($_SESSION['user_id']) ? ROOT_URL . '?ctl=add-cart&id=' . $product['id'] : '#' ?>"
-                                                    class="btn btn-primary btn-sm"
+                                                    class="btn btn-outline-danger btn-sm"
                                                     <?= !isset($_SESSION['user_id']) ? 'data-bs-toggle="modal" data-bs-target="#authModal"' : '' ?>>
-                                                    + Add
+                                                    Thêm vào giỏ
                                                 </a>
                                                 </div>
                                             </div>
@@ -193,7 +193,7 @@
                                 <?php endforeach; ?>
                             </div>
                             <div class="text-center mt-4">
-                                <a href="?ctl=product" class="btn btn-outline-danger ">Xem tất cả >></a>
+                                <a href="?ctl=product" class="btn btn-danger ">Xem tất cả >></a>
                             </div>
                         </div>
 

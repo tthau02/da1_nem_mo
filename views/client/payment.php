@@ -28,14 +28,14 @@
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="email" name="email" value="<?= $user['email'] ?>">
                         </div>
-                        <div class="mb-3" hidden>
+                        <!-- <div class="mb-3" hidden>
                             <label for="email" class="form-label">Username</label>
                             <input type="email" class="form-control" id="username" name="username" value="<?= $user['username'] ?>">
                         </div>
                         <div class="mb-3" hidden>
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="image" name="image" value="<?= $user['image'] ?>">
-                        </div>
+                        </div> -->
 
                         <input type="hidden" value="<?= $user['id'] ?>" name="id">
 

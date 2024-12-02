@@ -1,7 +1,22 @@
 <?php include_once ROOT_DIR . "views/client/header.php"; ?>
-    <h2>Đặt hàng thành công !!</h2>
 
-    <p>
-        <a href="<?= ROOT_URL ?>">Quay lại trang chủ</a>
-    </p>
+    <div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <div class="card border-success">
+                <div class="card-body">
+                    <i class="fas fa-check-circle text-success display-1 mb-4"></i>
+                    <h2 class="card-title text-success mb-3">Đặt Hàng Thành Công!</h2>
+                    <p class="card-text text-muted mb-4">
+                        Cảm ơn bạn đã mua hàng tại cửa hàng của chúng tôi! Đơn hàng của bạn đã được xác nhận và đang trong quá trình xử lý.
+                    </p>
+                    <p class="card-text text-muted">
+                        Mã đơn hàng: <strong>#DH123456</strong>
+                    </p>
+                    <a href="<?= ROOT_URL ?>" class="btn btn-primary mt-4">Về Trang Chủ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <?php include_once ROOT_DIR . "views/client/footer.php"; ?>

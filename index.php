@@ -39,6 +39,7 @@ match ($ctl) {
     'product' => (new ProductController)->all(),
     'category' => (new ProductController)->getProductByCategory(),
     'detail' => (new ProductController)->detail(),
+    'filter' => (new ProductController)->filter(),
 
     'login' => (new AuthController)->login(),
     'signup' => (new AuthController)->register(),

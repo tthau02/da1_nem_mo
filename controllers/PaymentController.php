@@ -2,6 +2,7 @@
     class PaymentController {
         public function showPaymentForm(){
             
+            $categories = (new Category)->all();
             $user = $_SESSION['user'] ?? [
                 'fullname' => '',
                 'address' => '',
@@ -15,11 +16,7 @@
             foreach ($carts as $cart) {
                 $totalPrice += $cart['price'] * $cart['quantity'];
             }
-
-
-
-
-            return view('client.payment',compact('user', 'carts', 'totalPrice'));
+            return view('client.payment',compact('user', 'carts', 'totalPrice', 'categories'));
         }
 
         public function checkout(){
@@ -32,7 +29,7 @@
                 'email' => $_POST['email'],
                 'updated_at' => date('Y-m-d H:i:s'),
                 'username' => $_POST['username'] ?? '', // Nếu không có, gán giá trị mặc định
-                'image' => $_POST['image'] ?? '',
+                'image' => $_POST['image'] ?? '', // Nếu không có, gán giá trị mặc định
             ];
 
             
@@ -48,7 +45,10 @@
                 'status' => 1,
                 'payment' => $_POST['payment'],
                 'total_price' => $totalPrice,
+                
             ];
+
+            
             
 
             (new User) -> update($user['id'],$user);
@@ -60,7 +60,7 @@
                     'order_id' => $order_id,
                     'product_id' => $id,
                     'price' => $cart['price'],
-                    'quantity' => $cart['quantity']
+                    'quantity' => $cart['quantity'],
                     
                 ];
 
@@ -72,7 +72,9 @@
         }
 
         public function success(){
-            return view('client.success');
+            $title = 'Thanh Toán';
+            $categories = (new Category)->all();
+            return view('client.success', compact('title', 'categories'));
         }
         
         // xoá giỏ hàng 

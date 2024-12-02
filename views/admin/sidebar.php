@@ -54,7 +54,7 @@
                     </a>
                     <ul id="order-management" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Danh Sách Đơn Hàng</a>
+                            <a href="?ctl=list-order" class="sidebar-link">Danh Sách Đơn Hàng</a>
                         </li>
                         <li class="sidebar-item">
                             <a href="#" class="sidebar-link">Cập Nhật Trạng Thái</a>
