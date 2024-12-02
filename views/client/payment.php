@@ -58,6 +58,12 @@
                                         Thanh toán bằng VNPAY
                                     </label>
                                 </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="payment" id="momo" value="momo">
+                                    <label class="form-check-label" for="momo">
+                                        Thanh toán bằng Momo
+                                    </label>
+                                </div>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-success w-100 mt-4">Xác nhận thanh toán</button>
