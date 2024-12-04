@@ -30,6 +30,7 @@
 
                         <th scope="col" class="text-center align-middle">Tên người đặt hàng</th>
                         <th scope="col" class="text-center align-middle">Số điện thoại</th>
+                        <th scope="col" class="text-center align-middle">Địa chỉ</th>
                         <th scope="col" class="text-center align-middle">Trạng thái</th>
                         <th scope="col" class="text-center align-middle">Phương thức thanh toán</th>
                         <th scope="col" class="text-center align-middle">Tổng số tiền</th>
@@ -46,7 +47,8 @@
                                 <td class="text-center align-middle"><?= $order['id'] ?></td>
                                 <td class="text-center align-middle"><?= $order['fullname'] ?></td>
                                 <td class="text-center align-middle"><?= $order['phone'] ?></td>
-                                <!-- <?php dd($order['phone']) ?> -->
+                                <td class="text-center align-middle"><?= $order['address'] ?></td>
+                               
                                 <td class="text-center align-middle"><?= getOrderStatus($order['status']) ?></td>
                                 <td class="text-center align-middle"><?= $order['payment'] ?></td>
                                 <td class="text-center align-middle"><?= number_format($order['total_price']) ?> VNĐ</td>
