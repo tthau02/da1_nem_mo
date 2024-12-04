@@ -94,10 +94,7 @@
             </div>
             <?php
             if (isset($_SESSION['user_id'])) {
-              // Lấy thông tin người dùng từ cơ sở dữ liệu
               $user = (new User)->find($_SESSION['user_id']);
-              // Kiểm tra xem người dùng có ảnh đại diện không, nếu không thì sử dụng ảnh mặc định
-              // $userImage = !empty($user['image']) ? ROOT_URL . $user['image'] : ROOT_URL . '/assets/images/default-avatar.png';
               $userImage = ROOT_URL . $user['image'];
             ?>
               <div class="widget-header dropdown">
@@ -106,7 +103,7 @@
                 </a>               
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   <a class="dropdown-item" href="?ctl=edit-profile">Thông tin cá nhân</a>
-                  <a class="dropdown-item" href="#">Lịch sử mua hàng</a>
+                  <a class="dropdown-item" href="?ctl=list-order">Lịch sử mua hàng</a>
                   <a class="dropdown-item" href="<?= ROOT_URL . '?ctl=logout' ?>">Đăng xuất</a>
                 </div>
               </div>

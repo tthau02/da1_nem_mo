@@ -63,5 +63,40 @@ class Order extends BaseModel
         $stmt = $this->conn->prepare($sql);
         $stmt->execute($data);
     }
+
+    //Chi tiết hóa đơn theo user
+
+    public function findUserOrderDetails($user_id) {
+        $sql = "
+            SELECT 
+                o.id AS order_id,
+                o.created_at AS order_date,
+                o.total_price AS order_total_price,
+                o.status,
+                p.id AS product_id,
+                p.name AS product_name,
+                p.image AS product_image, 
+                od.price AS product_price,
+                od.quantity,
+                (od.price * od.quantity) AS total_price
+            FROM orders o
+            JOIN order_details od ON o.id = od.order_id
+            JOIN products p ON od.product_id = p.id
+            WHERE o.user_id = :user_id
+            ORDER BY o.created_at DESC
+        ";
+    
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(['user_id' => $user_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function findByIdAndUser($order_id, $user_id) {
+        $sql = "SELECT * FROM orders WHERE id = :order_id AND user_id = :user_id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(['order_id' => $order_id, 'user_id' => $user_id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    
 }
 ?>

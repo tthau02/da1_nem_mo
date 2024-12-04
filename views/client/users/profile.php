@@ -3,19 +3,18 @@
 <div class="container mt-5">
         <div class="row">
             <!-- Sidebar -->
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div class="card">
                     <div class="card-body text-center">
-                        <img src="<?= ROOT_URL . $user['image'] ?>" alt="User Avatar" class="rounded-circle img-fluid mb-3" style="width: 210px; height: 210px;">
-                        <h5 class="card-title"><?= $user["username"] ?></h5>
-                        <p class="text-muted"><?= $user["email"] ?></p>
+                        <img src="<?= ROOT_URL . $user['image'] ?>" alt="User Avatar" class="rounded-circle img-fluid mb-3" style="width: 160px; height: 160px;">
+                        <h6 class="card-title"><?= $user["fullname"] ?></h6>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <a href="" class="text-decoration-none"><i class="fa fa-user"></i> Thông tin cá nhân</a>
+                            <a href="?ctl=edit-profile" class="text-decoration-none"><i class="fa fa-user"></i> Thông tin cá nhân</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="#" class="text-decoration-none"><i class="fa fa-shopping-cart"></i> Lịch sửa mua hàng</a>
+                            <a href="?ctl=list-order" class="text-decoration-none"><i class="fa fa-shopping-cart"></i> Lịch sửa mua hàng</a>
                         </li>
                         <li class="list-group-item">
                             <a href="<?= ROOT_URL . '?ctl=logout' ?>" class="text-decoration-none"><i class="fa fa-sign-out-alt"></i> Đăng Xuất</a>
@@ -25,7 +24,7 @@
             </div>
 
             <!-- Profile Content -->
-            <div class="col-md-9">
+            <div class="col-md-10">
                 <div class="card">
                     <div class="card-header bg-primary text-white">
                         <h5>Cập nhật thông tin</h5>
