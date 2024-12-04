@@ -15,7 +15,6 @@
                 (new Order) -> updateStatus($id,$status); 
             }
 
-
             $order = (new Order) ->find($id);
 
             $order_details = (new Order) ->listOrderDetail($id);
@@ -25,6 +24,37 @@
             return view('admin.orders.detail',compact('order', 'order_details', 'status'));
         }
 
+        // Lịch sử đơn hàng
+        public function showOrderUser(){
+            $title = "Lịch sử mua hàng";
+            $categories = (new Category)->all();
+      
+            $user_id = $_SESSION['user_id'];
+            $orderDetails  = (new Order)->findUserOrderDetails($user_id);
+            
+            return view("client.users.orderList", 
+            compact('categories', 'categories', 'title', 'orderDetails'));
+        }
+      
+        public function OrderUserDetail(){
+            $title = "Chi tiết đơn hàng";
+            $categories = (new Category)->all();
+
+            $id = $_GET['order_id'];
+            $order = (new Order) ->find($id);
+            $order_details = (new Order) ->listOrderDetail($id);
+            return view("client.users.orderDetail", 
+                compact('categories', 'title', 'order', 'order_details'));
+      }
+      
+        public function cancelOrder() {
+            $id = $_GET['id'];
+
+            $status = 4; 
+            (new Order)->updateStatus($id, $status);
+            header("Location: ?ctl=list-order");
+            exit();
+        }
     }
 
 ?>

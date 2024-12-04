@@ -78,7 +78,7 @@
         <div class="ad-box position-relative">
             <img src="https://270349907.e.cdneverest.net/fast/544x0/filters:format(webp)/vuanem.com/storage/products/1022/kQpXtW9jh9smOxVumpOWs6nAm2hGE9z4pzWxYFst.jpg" alt="Quảng cáo" class="ad-image">
             <div class="ad-content text-center text-white">
-                <h3 class="ad-title">Khuyến mãi đặc biệt</h3>
+                <h3 class="ad-title fs-4">Nệm cao su đa tầng Goodnight Rena vững chắc</h3>
                 <p class="ad-text">Nhận ưu đãi ngay hôm nay!</p>
                 <a href="<?= ROOT_URL . "?ctl=detail&id=1"?>" class="btn btn-outline-success">Mua ngay</a>
             </div>
@@ -86,11 +86,11 @@
     </div>
     <div class="">
         <div class="ad-box position-relative">
-            <img src="https://everon.com/upload/upload-images/esc22018-everon-solid-2021.jpg" alt="Quảng cáo" class="ad-image">
+            <img src="https://270349907.e.cdneverest.net/fast/544x0/filters:format(webp)/vuanem.com/storage/products/1890/hj3F7GZsZjqa9uDKMChx8qtrSQksjWkJseczJOc2.jpg" alt="Quảng cáo" class="ad-image">
             <div class="ad-content text-center text-white">
-                <h3 class="ad-title">Khuyến mãi đặc biệt</h3>
+                <h3 class="ad-title fs-4">Bộ ga chun tencel cao cấp Goodnight Airsilk</h3>
                 <p class="ad-text">Nhận ưu đãi ngay hôm nay!</p>
-                <a href="<?= ROOT_URL . "?ctl=detail&id=2"?>" class="btn btn-outline-success">Mua ngay</a>
+                <a href="<?= ROOT_URL . "?ctl=detail&id=15"?>" class="btn btn-outline-success">Mua ngay</a>
             </div>
         </div>
     </div>

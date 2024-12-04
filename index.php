@@ -26,6 +26,7 @@ require_once __DIR__ . "/controllers/AuthController.php";
 require_once __DIR__ . "/controllers/CommentController.php";
 require_once __DIR__ . "/controllers/UserController.php";
 require_once __DIR__ . "/controllers/PaymentController.php";
+require_once __DIR__ . "/controllers/OrderController.php";
 
 
 
@@ -68,11 +69,13 @@ match ($ctl) {
 
     'edit-profile' => (new UserController)->edit(),
     'updateprofile' => (new UserController)->update(),
+    'list-order' => (new OrderController)->showOrderUser(),
+    'detail-order' => (new OrderController)->OrderUserDetail(),
+    'cancel-order' => (new OrderController)->cancelOrder(),
 
     'introduce' => (new HomeController)->intro(),
     'contact' => (new HomeController)->contact(),
     'policy' => (new HomeController)->policy(),
-
 
     default => view("errors.404"),
 };
