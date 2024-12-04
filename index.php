@@ -66,6 +66,8 @@ match ($ctl) {
     'checkout' => (new PaymentController)->checkout(),
 
     'success' => (new PaymentController)->success(),
+    'vnpay-callback' => (new PaymentController)->callback(),
+
 
     'edit-profile' => (new UserController)->edit(),
     'updateprofile' => (new UserController)->update(),

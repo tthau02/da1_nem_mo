@@ -76,33 +76,46 @@ class PaymentController
         }
         $this->clearCart();
 
+        $_SESSION['success_data'] = [
+            'order_id' => $order_id,
+            'total_price' => $totalPrice,
+            'categories' => (new Category)->all(),
+        ];
         return header("Location:" . ROOT_URL . "?ctl=success");
     }
     public function callback()
     {
+        $categories = (new Category)->all();
+        $order_id = $_GET['vnp_TxnRef'];
+        $total_price = $_GET['vnp_Amount'] / 100;
         $vnpay = new VNPay();
         $transactionData = $vnpay->handleCallback($_GET);
 
+
         if ($transactionData['status'] === 'success') {
-            // Cập nhật trạng thái đơn hàng
-            (new Order())->updateStatus($transactionData['data']['vnp_TxnRef'], 3);
+            $title = 'Thành công';
 
-            return view('client.payment_success', ['data' => $transactionData['data']]);
+            $this->clearCart();
+            return view('client.payment.success', compact('title', 'order_id', 'total_price', 'categories'));
         } elseif ($transactionData['status'] === 'fail') {
-            // Cập nhật trạng thái đơn hàng
-            (new Order())->updateStatus($transactionData['data']['vnp_TxnRef'], 4);
+            $title = 'Giao dịch thất bại';
 
-            return view('client.payment_fail', ['data' => $transactionData['data']]);
+            return view('client.payment.fail', compact('title', 'categories'));
         } else {
-            return view('client.payment_invalid', ['message' => $transactionData['message']]);
+            $title = 'Giao dịch không hợp lệ';
+            return view('client.payment.invalid', compact('title', 'categories'));
         }
     }
 
     public function success()
     {
+        $successData = $_SESSION['success_data'];
         $title = 'Thanh Toán';
-        $categories = (new Category)->all();
-        return view('client.success', compact('title', 'categories'));
+        $categories = $successData['categories'];
+        $order_id = $successData['order_id'];
+        $total_price = $successData['total_price'];
+        unset($_SESSION['success_data']);
+        return view('client.success', compact('order_id', 'total_price', 'title', 'categories'));
     }
 
     // xoá giỏ hàng 
