@@ -4,6 +4,7 @@ session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 
 require_once __DIR__ . "/env.php";
@@ -14,6 +15,7 @@ require_once __DIR__ . "/models/Product.php";
 require_once __DIR__ . "/models/User.php";
 require_once __DIR__ . "/models/Comment.php";
 require_once __DIR__ . "/models/Order.php";
+require_once __DIR__ . "/models/VNPay.php";
 
 require_once __DIR__ . "/controllers/HomeController.php";
 require_once __DIR__ . "/controllers/admin/AdminProductController.php";
@@ -49,20 +51,20 @@ match ($ctl) {
 
     'add-comment' => (new CommentController)->addComment(),
 
-    'showCart' => (new CartController) -> showCart(),
+    'showCart' => (new CartController)->showCart(),
 
-    'deCreaseQuantity' => (new CartController) ->deCreaseQuantity(),
+    'deCreaseQuantity' => (new CartController)->deCreaseQuantity(),
 
-    'inCreaseQuantity' => (new CartController) ->inCreaseQuantity(),
+    'inCreaseQuantity' => (new CartController)->inCreaseQuantity(),
 
-    
-    'removeCart' => (new CartController) ->removeCart(),
 
-    'payCart' => (new PaymentController) ->showPaymentForm(),
+    'removeCart' => (new CartController)->removeCart(),
 
-    'checkout' => (new PaymentController) ->checkout(),
+    'payCart' => (new PaymentController)->showPaymentForm(),
 
-    'success' => (new PaymentController) ->success(),
+    'checkout' => (new PaymentController)->checkout(),
+
+    'success' => (new PaymentController)->success(),
 
     'edit-profile' => (new UserController)->edit(),
     'updateprofile' => (new UserController)->update(),
