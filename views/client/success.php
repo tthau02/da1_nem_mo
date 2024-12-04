@@ -1,6 +1,6 @@
 <?php include_once ROOT_DIR . "views/client/header.php"; ?>
 
-    <div class="container my-5">
+<div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-6 text-center">
             <div class="card border-success">
@@ -11,10 +11,14 @@
                         Cảm ơn bạn đã mua hàng tại cửa hàng của chúng tôi! Đơn hàng của bạn đã được xác nhận và đang trong quá trình xử lý.
                     </p>
                     <p class="card-text text-muted">
-                        Mã đơn hàng: <strong>#DH123456</strong>
+                        Mã đơn hàng: <strong><?php echo $order_id ?></strong>
+                    </p>
+                    <p class="card-text text-muted">
+                        Tổng tiền: <strong><?php echo number_format($total_price, 0, ',', '.') ?> VND</strong>
                     </p>
                     <a href="<?= ROOT_URL ?>" class="btn btn-primary mt-4">Về Trang Chủ</a>
                 </div>
+
             </div>
         </div>
     </div>
