@@ -1,5 +1,22 @@
 <?php include_once ROOT_DIR . "views/client/header.php"; ?>
+<?php 
+    
+    // Nếu giỏ hàng trống và có thông tin sản phẩm từ GET
+    if (empty($carts) && isset($_GET['id'])) {
+        // Lấy thông tin sản phẩm từ ID
+        $product = (new Product())->find($_GET['id']);
+        
+        // Lưu thông tin sản phẩm vào session
+    if ($product) {
+            $_SESSION['product'] = [
+                'id' => $product['id'],
+                'name' => $product['name'],
+                'price' => $product['price']
+            ];
+        }
+}
 
+?>
 
 <div class="container my-5">
     <h2 class="text-center mb-4">Thanh Toán</h2>
@@ -18,14 +35,14 @@
                         </div>
                         <div class="mb-3">
                             <label for="address" class="form-label">Địa Chỉ</label>
-                            <input type="text" class="form-control" id="address" name="address" value="<?= $user['address'] ?>" >
+                            <input type="text" class="form-control" id="address" name="address" value="<?= $user['address'] ?>">
                             <?php if (!empty($error)): ?>
                                 <span class="text-danger"><?= $error ?></span>
                             <?php endif; ?>
                         </div>
                         <div class="mb-3">
                             <label for="phone" class="form-label">Số Điện Thoại</label>
-                            <input type="tel" class="form-control" id="phone" name="phone" value="<?= $user['phone'] ?>" >
+                            <input type="tel" class="form-control" id="phone" name="phone" value="<?= $user['phone'] ?>">
                             <?php if (!empty($error)): ?>
                                 <span class="text-danger"><?= $error ?></span>
                             <?php endif; ?>
@@ -34,7 +51,7 @@
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="email" name="email" value="<?= $user['email'] ?>">
                         </div>
-                        
+
 
                         <input type="hidden" value="<?= $user['id'] ?>" name="id">
 
@@ -81,23 +98,45 @@
                 </div>
                 <div class="card-body">
                     <!-- Sản phẩm -->
-                    <ul class="list-group"></ul>
-                    <?php foreach ($carts as $cart) : ?>
-                        <li class="d-flex justify-content-between mb-3">
-                            <div>
-                                <h6>Tên Sản Phẩm : <?= $cart['name'] ?></h6>
-                                <small>Số lượng: <?= $cart['quantity'] ?></small>
-                                <h6>Giá:<?= dd(number_format($cart['price'] * $cart['quantity'])) ?></h6>
-                            </div>
-                            
-                        </li>
-                    <?php endforeach ?>
+                    <ul class="list-group">
+                        <?php
+                        if (!empty($carts)) {
+                            foreach ($carts as $cart) : ?>
+                                <li class="d-flex justify-content-between mb-3">
+                                    <div>
+                                        <h6>Tên Sản Phẩm : <?= $cart['name'] ?></h6>
+                                        <small>Số lượng: <?= $cart['quantity'] ?></small>
+                                        <h6>Giá: <?= number_format($cart['price'] * $cart['quantity']) ?> VNĐ</h6>
+                                    </div>
+                                </li>
+                        <?php endforeach;
+                        } else {
+                            // Nếu giỏ hàng trống, lấy giá sản phẩm từ session
+                            if (isset($_SESSION['product'])) {
+                                $product = $_SESSION['product'];
+                                echo "<li class='d-flex justify-content-between mb-3'>
+                                    <div>
+                                        <h6>Tên Sản Phẩm: {$product['name']}</h6>
+                                        <h6>Giá: " . number_format($product['price']) . " VNĐ</h6>
+                                    </div>
+                                  </li>";
+                            }
+                        }
+                        ?>
                     </ul>
+
 
                     <!-- Tổng tiền -->
                     <div class="d-flex justify-content-between mt-4 pt-3 border-top">
                         <strong>Tổng cộng</strong>
-                        <strong><?= dd(number_format($totalPrice, 0, ',', '.')) ?>VNĐ</strong>
+                        <strong><?php if (empty($carts)) {
+                            // Nếu giỏ hàng trống, hiển thị giá gốc của sản phẩm
+                            echo number_format($product['price'], 0, ',', '.') . ' VNĐ';
+                        } else {
+                            // Nếu giỏ hàng không trống, hiển thị tổng giá trị giỏ hàng
+                            echo number_format($totalPrice, 0, ',', '.') . ' VNĐ';
+                        }
+                        ?></strong>
                     </div>
                 </div>
             </div>

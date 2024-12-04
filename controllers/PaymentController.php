@@ -15,8 +15,9 @@ class PaymentController
 
         $carts = $_SESSION['cart'] ?? [];
 
-        $totalPrice = 0;
+        $totalPrice =  0;
         foreach ($carts as $cart) {
+            
             $totalPrice += $cart['price'] * $cart['quantity'];
         }
         return view('client.payment', compact('user', 'carts', 'totalPrice', 'categories'));
