@@ -65,5 +65,6 @@ match ($ctl) {
     // order
     'list-order' => (new OrderController) ->index(),
     'detail-order' =>(new OrderController) ->showOrder(),
+    // 'deleteOrder' => (new OrderController) ->removeOrder(),
     default => view('errors.404'),
 };

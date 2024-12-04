@@ -2,6 +2,11 @@
 <div class="main">
     <?php include_once ROOT_DIR . "views/admin/header.php" ?>
     <div class="container mt-5">
+        <?php if($message) : ?>
+            <div class="alert alert-success">
+                <?= $message ?>
+            </div>
+        <?php  endif ?>
         <div class="card">
             <div class="card-header bg-dark text-white">
                 <h4>Chi tiết đơn hàng</h4>
@@ -67,7 +72,17 @@
                             <label for="orderStatus" class="form-label">Trạng thái đơn hàng</label>
                             <select id="orderStatus" name="status" class="form-select">
                                 <?php foreach($status as $key =>$value) : ?>
-                                <option value="<?= $key ?>" <?= $order['status'] == $key ? 'selected' : '' ?>>
+                                <option value="<?= $key ?>" <?= $order['status'] == $key ? 'selected' : '' ?>
+                                    <?php 
+                                        if($order['status']== 2 && in_array($key, [1,4]) ){
+                                            echo "disabled";
+                                        }elseif($order['status']== 3 && in_array($key, [1,2,4])){
+                                            echo "disabled";
+                                        }elseif($order['status']== 4 && in_array($key, [1,2,3])){
+                                            echo "disabled";
+                                        }
+                                    ?>  >
+                                
                                     <?= $value ?>
                                 </option>
                                 <?php endforeach ?>

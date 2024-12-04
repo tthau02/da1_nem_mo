@@ -9,10 +9,12 @@
         public function showOrder(){
             $id = $_GET['id'];
 
+            $message = "";
             // Thay đổi trạng thái 
             if($_SERVER['REQUEST_METHOD'] === "POST"){
                 $status = $_POST['status'];
                 (new Order) -> updateStatus($id,$status); 
+                $message = "Cập nhật trạng thái thành công";
             }
 
 
@@ -22,9 +24,9 @@
 
             $status = (new Order) ->status_detail;
 
-            return view('admin.orders.detail',compact('order', 'order_details', 'status'));
+            return view('admin.orders.detail',compact('order', 'order_details', 'status', 'message'));
         }
 
+    
     }
-
 ?>
