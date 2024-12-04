@@ -18,11 +18,17 @@
                         </div>
                         <div class="mb-3">
                             <label for="address" class="form-label">Địa Chỉ</label>
-                            <input type="text" class="form-control" id="address" name="address" value="<?= $user['address'] ?>">
+                            <input type="text" class="form-control" id="address" name="address" value="<?= $user['address'] ?>" >
+                            <?php if (!empty($error)): ?>
+                                <span class="text-danger"><?= $error ?></span>
+                            <?php endif; ?>
                         </div>
                         <div class="mb-3">
                             <label for="phone" class="form-label">Số Điện Thoại</label>
-                            <input type="tel" class="form-control" id="phone" name="phone" value="<?= $user['phone'] ?>">
+                            <input type="tel" class="form-control" id="phone" name="phone" value="<?= $user['phone'] ?>" >
+                            <?php if (!empty($error)): ?>
+                                <span class="text-danger"><?= $error ?></span>
+                            <?php endif; ?>
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
@@ -81,8 +87,9 @@
                             <div>
                                 <h6>Tên Sản Phẩm : <?= $cart['name'] ?></h6>
                                 <small>Số lượng: <?= $cart['quantity'] ?></small>
+                                <h6>Giá:<?= dd(number_format($cart['price'] * $cart['quantity'])) ?></h6>
                             </div>
-                            <span><?= number_format($cart['price'] * $cart['quantity']) ?></span>
+                            
                         </li>
                     <?php endforeach ?>
                     </ul>
@@ -90,7 +97,7 @@
                     <!-- Tổng tiền -->
                     <div class="d-flex justify-content-between mt-4 pt-3 border-top">
                         <strong>Tổng cộng</strong>
-                        <strong><?= number_format($totalPrice, 0, ',', '.') ?>VNĐ</strong>
+                        <strong><?= dd(number_format($totalPrice, 0, ',', '.')) ?>VNĐ</strong>
                     </div>
                 </div>
             </div>

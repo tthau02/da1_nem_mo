@@ -3,6 +3,7 @@ class PaymentController
 {
     public function showPaymentForm()
     {
+        
 
         $categories = (new Category)->all();
         $user = $_SESSION['user'] ?? [
@@ -23,6 +24,17 @@ class PaymentController
 
     public function checkout()
     {
+
+         // Kiểm tra nếu không nhập địa chỉ hoặc số điện thoại
+        if (empty($_POST['address']) || empty($_POST['phone'])) {
+            return view('client.payment', [
+                'error' => 'Vui lòng nhập đầy đủ địa chỉ và số điện thoại.',
+                'user' => $_POST, // Trả lại dữ liệu form đã nhập
+                'carts' => $_SESSION['cart'] ?? [],
+                'totalPrice' => array_sum(array_map(fn($cart) => $cart['price'] * $cart['quantity'], $_SESSION['cart'] ?? [])),
+                'categories' => (new Category)->all(),
+            ]);
+        }
         // Lấy thông tin người dùng 
         $user = [
             'id' => $_POST['id'],
