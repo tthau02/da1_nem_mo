@@ -67,6 +67,14 @@ class PaymentController
             ];
 
             (new Order)->createOrderDetail($order_detail);
+            // Cập nhật số lượng sản phẩm trong kho
+            $product = (new Product())->find($id); // Lấy thông tin sản phẩm
+            $newQuantity = $product['quantity'] - $cart['quantity']; 
+            if ($newQuantity < 0) {
+                // Xử lý lỗi khi số lượng không đủ
+                return view('client.payment_fail', ['message' => 'Sản phẩm trong kho không đủ số lượng!']);
+            }
+            (new Product())->updateQuantity($id, ['quantity' => $newQuantity]); // Cập nhật số lượng
         }
         if ($_POST['payment'] === 'vnpay') {
             $vnpay = new VNPay();
@@ -101,8 +109,9 @@ class PaymentController
     public function success()
     {
         $title = 'Thanh Toán';
-        $categories = (new Category)->all();
-        return view('client.success', compact('title', 'categories'));
+        // $categories = (new Category)->all();
+        return view('client.success', compact('title'));
+        // , 'categories'
     }
 
     // xoá giỏ hàng 

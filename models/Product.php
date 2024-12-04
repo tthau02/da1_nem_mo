@@ -84,7 +84,7 @@ class Product extends BaseModel
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    //Thêm dữ liệu
+    //Thêm dữ liệu  
     public function create($data)
     {
         $sql = "INSERT INTO products(name, image, price, quantity, description, status, category_id) VALUES(:name, :image, :price, :quantity, :description, :status, :category_id)";
@@ -102,6 +102,17 @@ class Product extends BaseModel
         var_dump($data);
         $stmt->execute($data);
     }
+
+    public function updateQuantity($id, $data)
+    {
+        $sql = "UPDATE products SET quantity=:quantity WHERE id=:id";
+
+        $stmt = $this->conn->prepare($sql);
+        $data['id'] = $id;
+        var_dump($data);
+        $stmt->execute($data);
+    }
+
 
     public function find($id)
     {

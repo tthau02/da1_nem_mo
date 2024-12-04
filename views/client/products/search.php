@@ -25,7 +25,9 @@
                                 <a href="<?= ROOT_URL . "?ctl=product&id=" . $product['id']; ?>" class="btn btn-outline-primary btn-sm">
                                     Xem chi tiết
                                 </a>
-                                <a href="<?= ROOT_URL . '?ctl=add-cart&id=' . $product['id'] ?>" class="btn btn-outline-danger btn-sm">Thêm vào giỏ</a>
+                                <a href="<?= isset($_SESSION['user_id']) ? ROOT_URL . '?ctl=add-cart&id=' . $product['id'] : '#' ?>"
+                                    class="btn btn-outline-danger btn-sm"
+                                    <?= !isset($_SESSION['user_id']) ? 'data-bs-toggle="modal" data-bs-target="#authModal"' : '' ?>>Thêm vào giỏ</a>
                             </div>
                         </div>
                     </div>
