@@ -45,7 +45,7 @@
                 <li class="sidebar-item">
                     <a href="?ctl=list-order" class="sidebar-link">
                         <i class="lni lni-cart"></i>
-                        <span>Quản lý đơn hàng</span>
+                        <span>Danh Sách Đơn Hàng</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -54,19 +54,13 @@
                         <span>Quản lý người dùng</span>
                     </a>
                 </li>
-
                 <li class="sidebar-item">
                     <a href="?ctl=listcomment" class="sidebar-link">
                         <i class="lni lni-popup"></i>
                         <span>Bình Luận & Đánh Giá</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="lni lni-cog"></i>
-                        <span>Setting</span>
-                    </a>
-                </li>
+
             </ul>
             <div class="sidebar-footer">
                 <a href="#" class="sidebar-link">

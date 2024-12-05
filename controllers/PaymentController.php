@@ -76,8 +76,6 @@ class PaymentController
             'phone' => $_POST['phone'],
             'email' => $_POST['email'],
             'updated_at' => date('Y-m-d H:i:s'),
-            'username' => $_POST['username'] ?? '', // Nếu không có, gán giá trị mặc định
-            'image' => $_POST['image'] ?? '', // Nếu không có, gán giá trị mặc định
         ];
 
         // Lấy thông tin thanh toán
