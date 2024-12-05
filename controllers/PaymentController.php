@@ -51,6 +51,7 @@ class PaymentController
 
     public function checkout()
     {
+
         // Lấy giỏ hàng từ session
         $carts = $_SESSION['cart'] ?? [];
 
@@ -67,7 +68,6 @@ class PaymentController
 
         // Tính tổng giá trị giỏ hàng
         $totalPrice = array_sum(array_map(fn($cart) => $cart['price'] * $cart['quantity'], $carts));
-
         // Lấy thông tin người dùng 
         $user = [
             'id' => $_POST['id'],
@@ -81,6 +81,7 @@ class PaymentController
         ];
 
         // Lấy thông tin thanh toán
+
         $order = [
             'user_id' => $_POST['id'],
             'status' => 1,
@@ -124,6 +125,7 @@ class PaymentController
         }
 
         // Lưu thông tin thành công vào session
+
         $_SESSION['success_data'] = [
             'order_id' => $order_id,
             'total_price' => $totalPrice,
@@ -132,7 +134,6 @@ class PaymentController
 
         // Xóa giỏ hàng
         $this->clearCart();
-
         return header("Location:" . ROOT_URL . "?ctl=success");
     }
     public function callback()
