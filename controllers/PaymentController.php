@@ -95,6 +95,7 @@ class PaymentController
         $order_id = (new Order)->create($order);
 
         // Xử lý chi tiết đơn hàng
+        dd($carts);
         foreach ($carts as $cart) {
             $order_detail = [
                 'order_id' => $order_id,
@@ -134,7 +135,6 @@ class PaymentController
 
         return header("Location:" . ROOT_URL . "?ctl=success");
     }
-
     public function callback()
     {
         $categories = (new Category)->all();
