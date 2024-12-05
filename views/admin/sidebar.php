@@ -42,34 +42,17 @@
                         </li>
                     </ul>
                 </li>
-
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#order-management" aria-expanded="false" aria-controls="order-management">
+                    <a href="?ctl=list-order" class="sidebar-link">
                         <i class="lni lni-cart"></i>
-                        <span>Quản Lý Đơn Hàng</span>
+                        <span>Quản lý đơn hàng</span>
                     </a>
-                    <ul id="order-management" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="?ctl=list-order" class="sidebar-link">Danh Sách Đơn Hàng</a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Cập Nhật Trạng Thái</a>
-                        </li>
-                    </ul>
                 </li>
-
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#user-management" aria-expanded="false" aria-controls="user-management">
+                    <a href="?ctl=listuser" class="sidebar-link">
                         <i class="lni lni-users"></i>
-                        <span>Quản Lý Tài Khoản</span>
+                        <span>Quản lý người dùng</span>
                     </a>
-                    <ul id="user-management" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="?ctl=listuser" class="sidebar-link">Danh Sách Người Dùng</a>
-                        </li>
-                    </ul>
                 </li>
 
                 <li class="sidebar-item">
