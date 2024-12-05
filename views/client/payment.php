@@ -129,7 +129,7 @@
                     <!-- Tổng tiền -->
                     <div class="d-flex justify-content-between mt-4 pt-3 border-top">
                         <strong>Tổng cộng</strong>
-                        <strong><?php if (empty($carts)) {
+                        <stron><?php if (empty($carts)) {
 
                                     // Nếu giỏ hàng trống, hiển thị giá gốc của sản phẩm
                                     echo number_format($product['price'], 0, ',', '.') . ' VNĐ';
@@ -137,8 +137,7 @@
                                     // Nếu giỏ hàng không trống, hiển thị tổng giá trị giỏ hàng
                                     echo number_format($totalPrice, 0, ',', '.') . ' VNĐ';
                                 }
-                                ?></strong>
-
+                                ?></stron>
                     </div>
                 </div>
             </div>

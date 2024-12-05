@@ -7,13 +7,11 @@ class PaymentController
         $categories = (new Category())->all();
 
         // Lấy thông tin người dùng từ session hoặc giá trị mặc định
-
         $user = $_SESSION['user'] ?? [
             'fullname' => '',
             'address' => '',
             'phone' => '',
             'email' => ''
-
         ];
 
         // Lấy giỏ hàng từ session
@@ -82,7 +80,6 @@ class PaymentController
             'image' => $_POST['image'] ?? '', // Nếu không có, gán giá trị mặc định
         ];
 
-
         // Lấy thông tin thanh toán
 
         $order = [
@@ -92,7 +89,6 @@ class PaymentController
             'total_price' => $totalPrice,
         ];
 
-
         // Cập nhật thông tin người dùng
         (new User)->update($user['id'], $user);
 
@@ -100,6 +96,7 @@ class PaymentController
         $order_id = (new Order)->create($order);
 
         // Xử lý chi tiết đơn hàng
+        dd($carts);
         foreach ($carts as $cart) {
             $order_detail = [
                 'order_id' => $order_id,
@@ -127,7 +124,8 @@ class PaymentController
             exit;
         }
 
-        // Lưu thông tin thành công vào sessi
+        // Lưu thông tin thành công vào session
+
         $_SESSION['success_data'] = [
             'order_id' => $order_id,
             'total_price' => $totalPrice,
