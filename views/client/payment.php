@@ -130,6 +130,7 @@
                     <div class="d-flex justify-content-between mt-4 pt-3 border-top">
                         <strong>Tổng cộng</strong>
                         <strong><?php if (empty($carts)) {
+
                                     // Nếu giỏ hàng trống, hiển thị giá gốc của sản phẩm
                                     echo number_format($product['price'], 0, ',', '.') . ' VNĐ';
                                 } else {
@@ -137,6 +138,7 @@
                                     echo number_format($totalPrice, 0, ',', '.') . ' VNĐ';
                                 }
                                 ?></strong>
+
                     </div>
                 </div>
             </div>

@@ -7,11 +7,13 @@ class PaymentController
         $categories = (new Category())->all();
 
         // Lấy thông tin người dùng từ session hoặc giá trị mặc định
+
         $user = $_SESSION['user'] ?? [
             'fullname' => '',
             'address' => '',
             'phone' => '',
             'email' => ''
+
         ];
 
         // Lấy giỏ hàng từ session
@@ -51,6 +53,7 @@ class PaymentController
 
     public function checkout()
     {
+
         // Lấy giỏ hàng từ session
         $carts = $_SESSION['cart'] ?? [];
 
@@ -67,7 +70,6 @@ class PaymentController
 
         // Tính tổng giá trị giỏ hàng
         $totalPrice = array_sum(array_map(fn($cart) => $cart['price'] * $cart['quantity'], $carts));
-
         // Lấy thông tin người dùng 
         $user = [
             'id' => $_POST['id'],
@@ -80,13 +82,16 @@ class PaymentController
             'image' => $_POST['image'] ?? '', // Nếu không có, gán giá trị mặc định
         ];
 
+
         // Lấy thông tin thanh toán
+
         $order = [
             'user_id' => $_POST['id'],
             'status' => 1,
             'payment' => $_POST['payment'],
             'total_price' => $totalPrice,
         ];
+
 
         // Cập nhật thông tin người dùng
         (new User)->update($user['id'], $user);
@@ -122,7 +127,7 @@ class PaymentController
             exit;
         }
 
-        // Lưu thông tin thành công vào session
+        // Lưu thông tin thành công vào sessi
         $_SESSION['success_data'] = [
             'order_id' => $order_id,
             'total_price' => $totalPrice,
@@ -131,7 +136,6 @@ class PaymentController
 
         // Xóa giỏ hàng
         $this->clearCart();
-
         return header("Location:" . ROOT_URL . "?ctl=success");
     }
     public function callback()
@@ -166,7 +170,6 @@ class PaymentController
         $order_id = $successData['order_id'];
         $total_price = $successData['total_price'];
         unset($_SESSION['success_data']);
-
         return view('client.success', compact('order_id', 'total_price', 'title', 'categories'));
     }
 
