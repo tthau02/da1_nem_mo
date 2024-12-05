@@ -25,12 +25,6 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="lni lni-user"></i>
-                        <span>Profile</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
                     <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
                         data-bs-target="#product-management" aria-expanded="false" aria-controls="product-management">
                         <i class="lni lni-package"></i>
@@ -47,49 +41,24 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#order-management" aria-expanded="false" aria-controls="order-management">
+                    <a href="?ctl=list-order" class="sidebar-link">
                         <i class="lni lni-cart"></i>
-                        <span>Quản Lý Đơn Hàng</span>
+                        <span>Danh Sách Đơn Hàng</span>
                     </a>
-                    <ul id="order-management" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="?ctl=list-order" class="sidebar-link">Danh Sách Đơn Hàng</a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Cập Nhật Trạng Thái</a>
-                        </li>
-                    </ul>
                 </li>
-
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#user-management" aria-expanded="false" aria-controls="user-management">
+                    <a href="?ctl=listuser" class="sidebar-link">
                         <i class="lni lni-users"></i>
-                        <span>Quản Lý Tài Khoản</span>
+                        <span>Danh Sách Người Dùng</span>
                     </a>
-                    <ul id="user-management" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="?ctl=listuser" class="sidebar-link">Danh Sách Người Dùng</a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Cập Nhật Thông Tin</a>
-                        </li>
-                    </ul>
                 </li>
-
                 <li class="sidebar-item">
                     <a href="?ctl=listcomment" class="sidebar-link">
                         <i class="lni lni-popup"></i>
                         <span>Bình Luận & Đánh Giá</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="lni lni-cog"></i>
-                        <span>Setting</span>
-                    </a>
-                </li>
+
             </ul>
             <div class="sidebar-footer">
                 <a href="#" class="sidebar-link">
