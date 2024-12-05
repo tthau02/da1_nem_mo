@@ -4,7 +4,7 @@ class Comment extends BaseModel
 {
   // Lấy danh sách tất cả comments
   public function all()
-{
+  {
     $sql = "
         SELECT comments.*, users.username 
         FROM comments
@@ -13,7 +13,7 @@ class Comment extends BaseModel
     $stmt = $this->conn->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+  }
 
   // Thêm comment mới
   public function create($data)
