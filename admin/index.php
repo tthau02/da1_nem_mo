@@ -15,6 +15,7 @@ require_once __DIR__ . "/../models/Product.php";
 require_once __DIR__ . "/../models/User.php";
 require_once __DIR__ . "/../models/Comment.php";
 require_once __DIR__ . "/../models/Order.php";
+require_once __DIR__ . "/../models/StatisticsModel.php";
 
 //include controllers
 require_once __DIR__ . "/../controllers/admin/AdminProductController.php";
@@ -22,6 +23,7 @@ require_once __DIR__ . "/../controllers/admin/AdminCategoryController.php";
 require_once __DIR__ . "/../controllers/admin/AdminUserController.php";
 require_once __DIR__ . "/../controllers/admin/AdminCommentController.php";
 require_once __DIR__ . "/../controllers/OrderController.php";
+require_once __DIR__ . "/../controllers/admin/AdminStatisticsController.php";
 
 $ctl = $_GET['ctl'] ?? "";
 
@@ -31,7 +33,7 @@ if ($_SESSION['user_role'] !== 'admin') {
 }
 
 match ($ctl) {
-    '' => view("admin.dashboard"),
+    '' => (new AdminStatisticsController)->index(),
 
     // sản phẩm
     'profile' => (new AdminUserController)->profile(),
