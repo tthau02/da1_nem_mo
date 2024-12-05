@@ -6,21 +6,33 @@ class CartController
   {
 
     if (!isset($_SESSION['user_id'])) {
-      // Chuyển hướng người dùng đến trang đăng nhập nếu chưa đăng nhập
+      
       $_SESSION['error'] = "Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng.";
       header("Location: " . ROOT_URL . "?ctl=login");
       exit();
-  }
+    }
 
-    $carts = $_SESSION['cart'] ?? []; // Tạo giỏ hàng nếu chưa có
+    
+
+    $carts = $_SESSION['cart'] ?? []; 
     $id = $_GET['id'] ?? null; // Lấy ID sản phẩm từ GET
 
-    // Kiểm tra ID hợp lệ
+   
+    
 
 
     // Lấy sản phẩm theo ID
     $product = (new Product())->find($id);
 
+
+     
+     $cartQuantity = isset($carts[$id]) ? $carts[$id]['quantity'] : 0;
+     $totalRequested = $cartQuantity + 1; 
+ 
+     if ($totalRequested > $product['quantity']) {
+        
+         return view('client.payment_fail', ['message' => 'Sản phẩm trong kho không đủ số lượng!']);
+     }
 
     // Kiểm tra sản phẩm có trong giỏ hàng
     if (isset($carts[$id])) {
@@ -36,6 +48,7 @@ class CartController
 
     // Lưu giỏ hàng vào session
     $_SESSION['cart'] = $carts;
+    
 
     // $_SESSION['totalQuantity'] = $this->totalQuantityCart();
     // Lấy URI hoặc gán giá trị mặc định
@@ -58,65 +71,68 @@ class CartController
     return $totalQuantity;
   }
 
-    public function showCart(){
-      //Lấy giỏ hàng từ session:
-      $title = 'Giỏ Hàng';
-      
-        $carts = $_SESSION['cart'] ?? [];
-        $totalQuantity = $this->totalQuantityCart();
-        $totalPrice =0;
+  public function showCart()
+  {
+    //Lấy giỏ hàng từ session:
+    $title = 'Giỏ Hàng';
 
-      foreach($carts as $cart){
-           $totalPrice += $cart['price'] * $cart['quantity'];
+    $carts = $_SESSION['cart'] ?? [];
+    $totalQuantity = $this->totalQuantityCart();
+    $totalPrice = 0;
+
+    foreach ($carts as $cart) {
+      $totalPrice += $cart['price'] * $cart['quantity'];
+    }
+
+    return view(
+      'client.cart',
+      compact('title', 'carts', 'totalQuantity', 'totalPrice')
+
+
+    );
+  }
+
+  public function removeCart()
+  {
+    $id = $_GET['id'] ?? null;
+    $carts = $_SESSION['cart'] ?? [];
+
+    if ($id && isset($carts[$id])) {
+      unset($carts[$id]);
+    }
+
+    $_SESSION['cart'] = $carts;
+    $uri = $_SERVER['HTTP_REFERER'] ?? ROOT_URL;
+    header("Location: " . $uri);
+    exit();
+  }
+
+  public function inCreaseQuantity()
+  {
+    $id = $_GET['id'] ?? null;
+    $carts = $_SESSION['cart'] ?? [];
+
+    if ($id && isset($carts)) {
+      $carts[$id]['quantity']++;
+    }
+
+    $_SESSION['cart'] = $carts;
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+  }
+
+  public function deCreaseQuantity()
+  {
+    $id = $_GET['id'] ?? null;
+    $carts = $_SESSION['cart'] ?? [];
+
+    if ($id && isset($carts)) {
+      $carts[$id]['quantity']--;
+      if ($carts[$id]['quantity'] <= 0) {
+        unset($carts[$id]);
       }
-
-        return view(
-          'client.cart',
-          compact( 'title', 'carts', 'totalQuantity', 'totalPrice')
-          
-
-      );
     }
 
-    public function removeCart(){
-        $id = $_GET['id'] ?? null;
-        $carts = $_SESSION['cart'] ?? [];
-
-        if($id && isset($carts[$id])){
-          unset($carts[$id]);
-        }
-
-        $_SESSION['cart'] = $carts;
-        $uri = $_SERVER['HTTP_REFERER'] ?? ROOT_URL;
-        header("Location: " . $uri);
-        exit(); 
-
-    }
-
-    public function inCreaseQuantity(){
-      $id = $_GET['id'] ?? null;
-      $carts = $_SESSION['cart'] ?? [];
-
-      if($id && isset($carts)){
-        $carts[$id]['quantity'] ++;
-      }
-
-      $_SESSION['cart'] = $carts;
-      header('Location: ' . $_SERVER['HTTP_REFERER']);
-    }
-
-    public function deCreaseQuantity(){
-      $id = $_GET['id'] ?? null;
-      $carts = $_SESSION['cart'] ?? [];
-
-      if($id && isset($carts)){
-        $carts[$id]['quantity'] --;
-        if($carts[$id]['quantity'] <=0){
-          unset($carts[$id]);
-        }
-      }
-
-      $_SESSION['cart'] = $carts;
-      header('Location: ' . $_SERVER['HTTP_REFERER']);
-    }
+    $_SESSION['cart'] = $carts;
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+  }
 }
