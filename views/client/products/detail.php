@@ -50,7 +50,7 @@
                     <input type="number" id="quantity" class="form-control text-center" value="1" min="1" style="max-width: 70px;">
                     <button class="btn btn-outline-secondary" type="button" id="increaseQuantity">+</button>
                 </div>
-                
+
                 <div class="d-flex gap-5">
                     <a href="<?= isset($_SESSION['user_id']) ? ROOT_URL . '?ctl=add-cart&id=' . $product['id'] : '#' ?>"
                         class="btn btn-outline-danger btn-add-cart mt-3"
@@ -147,7 +147,7 @@
                 <?php
                 $user = (new User)->find($comment['user_id']);
                 $username = $user['fullname'];
-                $userImage = ROOT_URL . $user['image']; 
+                $userImage = ROOT_URL . $user['image'];
                 ?>
                 <div class="review-card mb-3 d-flex align-items-start p-3">
                     <img src="<?= htmlspecialchars($userImage) ?>" alt="Avatar" class="rounded-circle me-3" style="width: 40px; height: 40px;">
@@ -165,6 +165,12 @@
         <?php endif; ?>
 
         <div class="mt-4">
+            <?php if (!empty($_SESSION['error_message_comment'])): ?>
+                <div id="error-message" class="alert alert-danger alert-dismissible fade show p-2 small ">
+                    <?= $_SESSION['error_message_comment']; ?>
+                </div>
+                <?php unset($_SESSION['error_message_comment']); ?>
+            <?php endif; ?>
             <h5>Viết Đánh Giá Của Bạn</h5>
             <form id="commentForm" action="?ctl=add-comment" method="POST">
                 <div class="mb-3">

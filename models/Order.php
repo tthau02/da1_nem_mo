@@ -30,7 +30,8 @@ class Order extends BaseModel
     }
 
     // danh sách sản phẩm của hoá đơn
-    public function listOrderDetail($id){
+    public function listOrderDetail($id)
+    {
         $sql = "SELECT od.*, name, image FROM order_details od JOIN products p on od.product_id = p.id WHERE od.order_id=:id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['id' => $id]);
@@ -66,7 +67,8 @@ class Order extends BaseModel
 
     //Chi tiết hóa đơn theo user
 
-    public function findUserOrderDetails($user_id) {
+    public function findUserOrderDetails($user_id)
+    {
         $sql = "
             SELECT 
                 o.id AS order_id,
@@ -85,18 +87,31 @@ class Order extends BaseModel
             WHERE o.user_id = :user_id
             ORDER BY o.created_at DESC
         ";
-    
+
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['user_id' => $user_id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function findByIdAndUser($order_id, $user_id) {
+    public function findByIdAndUser($order_id, $user_id)
+    {
         $sql = "SELECT * FROM orders WHERE id = :order_id AND user_id = :user_id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['order_id' => $order_id, 'user_id' => $user_id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    
+    public function getOrderByUserIdAndProductId()
+    {
+        $user_id = $_SESSION['user_id'];
+        $product_id = $_POST['product_id'];
+        $sql = "SELECT o.id 
+                    AS order_id, o.user_id, o.status, o.payment, o.total_price, o.created_at, od.product_id, od.price, od.quantity 
+                    FROM `orders` o 
+                    INNER JOIN `order_details` od 
+                    ON o.id = od.order_id 
+                    WHERE o.user_id = :user_id AND od.product_id = :product_id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(['user_id' => $user_id, 'product_id' => $product_id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
-?>

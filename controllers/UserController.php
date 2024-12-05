@@ -7,7 +7,7 @@ class UserController
     $categories = (new Category)->all();
     if (empty($_SESSION['user_id'])) {
       $_SESSION['error_message'] = "Bạn chưa đăng nhập!";
-      header("Location: " . ROOT_URL . "?ctl=login");
+      header("Location: " . ROOT_URL);
       exit();
     }
 
@@ -22,7 +22,7 @@ class UserController
     $title = "Thông tin người dùng";
     return view(
       "client.users.profile",
-      compact('user','categories', 'title')
+      compact('user', 'categories', 'title')
     );
   }
 

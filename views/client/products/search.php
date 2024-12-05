@@ -22,7 +22,7 @@
                                 Giá: <strong><?= number_format($product['price'], 0, ',', '.'); ?> VND</strong>
                             </p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <a href="<?= ROOT_URL . "?ctl=product&id=" . $product['id']; ?>" class="btn btn-outline-primary btn-sm">
+                                <a href="<?= ROOT_URL . "?ctl=detail&id=" . $product['id']; ?>" class="btn btn-outline-primary btn-sm">
                                     Xem chi tiết
                                 </a>
                                 <a href="<?= isset($_SESSION['user_id']) ? ROOT_URL . '?ctl=add-cart&id=' . $product['id'] : '#' ?>"
