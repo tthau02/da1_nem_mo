@@ -1,20 +1,20 @@
 <?php include_once ROOT_DIR . "views/client/header.php"; ?>
-<?php 
-    
-    // Nếu giỏ hàng trống và có thông tin sản phẩm từ GET
-    if (empty($carts) && isset($_GET['id'])) {
-        // Lấy thông tin sản phẩm từ ID
-        $product = (new Product())->find($_GET['id']);
-        
-        // Lưu thông tin sản phẩm vào session
-    if ($product) {
-            $_SESSION['product'] = [
-                'id' => $product['id'],
-                'name' => $product['name'],
-                'price' => $product['price']
-            ];
-        }
-}
+<?php
+
+// // Nếu giỏ hàng trống và có thông tin sản phẩm từ GET
+// if (empty($carts) && isset($_GET['id'])) {
+//     // Lấy thông tin sản phẩm từ ID
+//     $product = (new Product())->find($_GET['id']);
+
+//     // Lưu thông tin sản phẩm vào session
+//     if ($product) {
+//         $_SESSION['product'] = [
+//             'id' => $product['id'],
+//             'name' => $product['name'],
+//             'price' => $product['price']
+//         ];
+//     }
+// }
 
 ?>
 
@@ -130,13 +130,13 @@
                     <div class="d-flex justify-content-between mt-4 pt-3 border-top">
                         <strong>Tổng cộng</strong>
                         <strong><?php if (empty($carts)) {
-                            // Nếu giỏ hàng trống, hiển thị giá gốc của sản phẩm
-                            echo number_format($product['price'], 0, ',', '.') . ' VNĐ';
-                        } else {
-                            // Nếu giỏ hàng không trống, hiển thị tổng giá trị giỏ hàng
-                            echo number_format($totalPrice, 0, ',', '.') . ' VNĐ';
-                        }
-                        ?></strong>
+                                    // Nếu giỏ hàng trống, hiển thị giá gốc của sản phẩm
+                                    echo number_format($product['price'], 0, ',', '.') . ' VNĐ';
+                                } else {
+                                    // Nếu giỏ hàng không trống, hiển thị tổng giá trị giỏ hàng
+                                    echo number_format($totalPrice, 0, ',', '.') . ' VNĐ';
+                                }
+                                ?></strong>
                     </div>
                 </div>
             </div>

@@ -6,33 +6,33 @@ class CartController
   {
 
     if (!isset($_SESSION['user_id'])) {
-      
+
       $_SESSION['error'] = "Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng.";
       header("Location: " . ROOT_URL . "?ctl=login");
       exit();
     }
 
-    
 
-    $carts = $_SESSION['cart'] ?? []; 
+
+    $carts = $_SESSION['cart'] ?? [];
     $id = $_GET['id'] ?? null; // Lấy ID sản phẩm từ GET
 
-   
-    
+
+
 
 
     // Lấy sản phẩm theo ID
     $product = (new Product())->find($id);
 
 
-     
-     $cartQuantity = isset($carts[$id]) ? $carts[$id]['quantity'] : 0;
-     $totalRequested = $cartQuantity + 1; 
- 
-     if ($totalRequested > $product['quantity']) {
-        
-         return view('client.payment_fail', ['message' => 'Sản phẩm trong kho không đủ số lượng!']);
-     }
+
+    $cartQuantity = isset($carts[$id]) ? $carts[$id]['quantity'] : 0;
+    $totalRequested = $cartQuantity + 1;
+
+    if ($totalRequested > $product['quantity']) {
+
+      return view('client.payment_fail', ['message' => 'Sản phẩm trong kho không đủ số lượng!']);
+    }
 
     // Kiểm tra sản phẩm có trong giỏ hàng
     if (isset($carts[$id])) {
@@ -48,7 +48,7 @@ class CartController
 
     // Lưu giỏ hàng vào session
     $_SESSION['cart'] = $carts;
-    
+
 
     // $_SESSION['totalQuantity'] = $this->totalQuantityCart();
     // Lấy URI hoặc gán giá trị mặc định
