@@ -129,7 +129,7 @@ class Product extends BaseModel
         $sql = "SELECT products.*, categories.cate_name AS category_name
             FROM products
             LEFT JOIN categories ON products.category_id = categories.id
-            WHERE products.name LIKE :keyword OR categories.cate_name LIKE :keyword";
+            WHERE (products.name LIKE :keyword OR categories.cate_name LIKE :keyword) AND products.status = 1";
 
         $stmt = $this->conn->prepare($sql);
         $param = "%$keyword%";
@@ -137,7 +137,7 @@ class Product extends BaseModel
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
- 
+
     public function delete($id)
     {
         $sql = "UPDATE products  SET status=0  WHERE id=:id";
@@ -147,8 +147,8 @@ class Product extends BaseModel
 
 
     public function filterProducts($minPrice = 0, $maxPrice = PHP_INT_MAX, $rating = null, $limit = 15, $offset = 0)
-{
-    $sql = "
+    {
+        $sql = "
         SELECT p.*, c.cate_name, COALESCE(AVG(cm.rating), 0) AS avg_rating
         FROM products p
         JOIN categories c ON p.category_id = c.id
@@ -157,26 +157,26 @@ class Product extends BaseModel
         GROUP BY p.id
     ";
 
-    if (!is_null($rating)) {
-        $sql .= " HAVING avg_rating >= :rating";
+        if (!is_null($rating)) {
+            $sql .= " HAVING avg_rating >= :rating";
+        }
+
+        $sql .= " LIMIT :limit OFFSET :offset";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(':minPrice', $minPrice, PDO::PARAM_INT);
+        $stmt->bindValue(':maxPrice', $maxPrice, PDO::PARAM_INT);
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+
+        if (!is_null($rating)) {
+            $stmt->bindValue(':rating', $rating, PDO::PARAM_INT);
+        }
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-    $sql .= " LIMIT :limit OFFSET :offset";
-
-    $stmt = $this->conn->prepare($sql);
-    $stmt->bindValue(':minPrice', $minPrice, PDO::PARAM_INT);
-    $stmt->bindValue(':maxPrice', $maxPrice, PDO::PARAM_INT);
-    $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-    $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-
-    if (!is_null($rating)) {
-        $stmt->bindValue(':rating', $rating, PDO::PARAM_INT);
-    }
-
-    $stmt->execute();
-
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
 
     public function countFilteredProducts($minPrice = 0, $maxPrice = PHP_INT_MAX, $rating = null)
     {
@@ -187,21 +187,21 @@ class Product extends BaseModel
             LEFT JOIN comments cm ON p.id = cm.product_id
             WHERE p.price BETWEEN :minPrice AND :maxPrice
         ";
-    
+
         if (!is_null($rating)) {
             $sql .= " GROUP BY p.id HAVING AVG(cm.rating) >= :rating";
         }
-    
+
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(':minPrice', $minPrice, PDO::PARAM_INT);
         $stmt->bindValue(':maxPrice', $maxPrice, PDO::PARAM_INT);
-    
+
         if (!is_null($rating)) {
             $stmt->bindValue(':rating', $rating, PDO::PARAM_INT);
         }
-    
+
         $stmt->execute();
-    
+
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result ? (int)$result['total'] : 0;
     }

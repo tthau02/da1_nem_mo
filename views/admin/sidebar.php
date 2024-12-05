@@ -10,6 +10,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="../assets/css/theme.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -39,7 +42,6 @@
                         </li>
                     </ul>
                 </li>
-
                 <li class="sidebar-item">
                     <a href="?ctl=list-order" class="sidebar-link">
                         <i class="lni lni-cart"></i>
@@ -49,7 +51,7 @@
                 <li class="sidebar-item">
                     <a href="?ctl=listuser" class="sidebar-link">
                         <i class="lni lni-users"></i>
-                        <span>Danh Sách Người Dùng</span>
+                        <span>Quản lý người dùng</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
