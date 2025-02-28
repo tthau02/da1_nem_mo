@@ -6,6 +6,9 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 
+require_once __DIR__ . "/libraries/PHPMailer/PHPMailer.php";
+require_once __DIR__ . "/libraries/PHPMailer/SMTP.php";
+require_once __DIR__ . "/libraries/PHPMailer/Exception.php";
 
 require_once __DIR__ . "/env.php";
 require_once __DIR__ . "/common/function.php";
@@ -27,7 +30,6 @@ require_once __DIR__ . "/controllers/CommentController.php";
 require_once __DIR__ . "/controllers/UserController.php";
 require_once __DIR__ . "/controllers/PaymentController.php";
 require_once __DIR__ . "/controllers/OrderController.php";
-
 
 
 

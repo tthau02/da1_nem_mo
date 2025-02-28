@@ -14,36 +14,39 @@ class User extends BaseModel
   // Thêm user mới
   public function create($data)
   {
-      try {
-          $sql = "INSERT INTO users (fullname, username, password, email, phone, address, role, created_at, updated_at)
+    try {
+      $sql = "INSERT INTO users (fullname, username, password, email, phone, address, role, created_at, updated_at)
                   VALUES (:fullname, :username, :password, :email, :phone, :address, :role, :created_at, :updated_at)";
-          $stmt = $this->conn->prepare($sql);
-  
-          // Gắn các giá trị
-          $stmt->bindParam(':fullname', $data['fullname']);
-          $stmt->bindParam(':username', $data['username']);
-          $stmt->bindParam(':password', $data['password']);
-          $stmt->bindParam(':email', $data['email']);
-          $stmt->bindParam(':phone', $data['phone']);
-          $stmt->bindParam(':address', $data['address']);
-          $stmt->bindParam(':role', $data['role']);
-  
-          // Gắn thời gian
-          $created_at = date('Y-m-d H:i:s');
-          $updated_at = date('Y-m-d H:i:s');
-          $stmt->bindParam(':created_at', $created_at);
-          $stmt->bindParam(':updated_at', $updated_at);
-  
-          $stmt->execute();
-          return true;
-      } catch (PDOException $e) {
-          throw new Exception("Lỗi SQL: " . $e->getMessage());
-      }
+      $stmt = $this->conn->prepare($sql);
+
+      // Gắn các giá trị
+      $stmt->bindParam(':fullname', $data['fullname']);
+      $stmt->bindParam(':username', $data['username']);
+      $stmt->bindParam(':password', $data['password']);
+      $stmt->bindParam(':email', $data['email']);
+      $stmt->bindParam(':phone', $data['phone']);
+      $stmt->bindParam(':address', $data['address']);
+      $stmt->bindParam(':role', $data['role']);
+
+      // Gắn thời gian
+      $created_at = date('Y-m-d H:i:s');
+      $updated_at = date('Y-m-d H:i:s');
+      $stmt->bindParam(':created_at', $created_at);
+      $stmt->bindParam(':updated_at', $updated_at);
+
+      $stmt->execute();
+      return true;
+    } catch (PDOException $e) {
+      throw new Exception("Lỗi SQL: " . $e->getMessage());
+    }
   }
-  
+
   // Cập nhật user theo id
   public function update($id, $data)
-{
+  {
+    //Nếu trường nào thiếu thì lấy dữ liệu cũ
+    $user = $this->find($id);
+    $data = array_merge($user, $data);
     // Bỏ cột password nếu không nhập mật khẩu mới
     $sql = "UPDATE users SET 
             fullname = :fullname, 
@@ -53,9 +56,9 @@ class User extends BaseModel
             phone = :phone, 
             address = :address, 
             updated_at = :updated_at";
-    
+
     if (!empty($data['password'])) {
-        $sql .= ", password = :password"; // Cập nhật nếu có mật khẩu mới
+      $sql .= ", password = :password"; // Cập nhật nếu có mật khẩu mới
     }
 
     $sql .= " WHERE id = :id";
@@ -65,12 +68,27 @@ class User extends BaseModel
 
     // Xóa key không cần thiết
     if (empty($data['password'])) {
-        unset($data['password']);
+      unset($data['password']);
     }
 
     $stmt = $this->conn->prepare($sql);
-    return $stmt->execute($data); // Chạy câu lệnh với dữ liệu phù hợp
-}
+
+    // Gắn các giá trị
+    $stmt->bindParam(':fullname', $data['fullname']);
+    $stmt->bindParam(':username', $data['username']);
+    $stmt->bindParam(':email', $data['email']);
+    $stmt->bindParam(':image', $data['image']);
+    $stmt->bindParam(':phone', $data['phone']);
+    $stmt->bindParam(':address', $data['address']);
+    $stmt->bindParam(':updated_at', $data['updated_at']);
+    $stmt->bindParam(':id', $data['id']);
+
+    if (!empty($data['password'])) {
+      $stmt->bindParam(':password', $data['password']);
+    }
+
+    return $stmt->execute(); // Chạy câu lệnh với dữ liệu phù hợp
+  }
 
 
   // Xóa user theo id

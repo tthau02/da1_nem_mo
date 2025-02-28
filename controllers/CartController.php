@@ -74,6 +74,7 @@ class CartController
 
   public function showCart()
   {
+    $categories = (new Category())->all();
     //Lấy giỏ hàng từ session:
     $title = 'Giỏ Hàng';
 
@@ -87,7 +88,7 @@ class CartController
 
     return view(
       'client.cart',
-      compact('title', 'carts', 'totalQuantity', 'totalPrice')
+      compact('title', 'carts', 'totalQuantity', 'totalPrice', 'categories')
 
 
     );

@@ -2,14 +2,14 @@
 <div class="main">
     <?php include_once ROOT_DIR . "views/admin/header.php" ?>
     <div class="container mt-5">
-        <?php if($message) : ?>
+        <?php if ($message) : ?>
             <div class="alert alert-success">
                 <?= $message ?>
             </div>
-        <?php  endif ?>
+        <?php endif ?>
         <div class="card">
-            <div class="card-header bg-dark text-white">
-                <h4>Chi tiết đơn hàng</h4>
+            <div class="card-header bg-dark">
+                <h4 class="text-white">Chi tiết đơn hàng</h4>
             </div>
             <div class="card-body">
                 <!-- Thông tin đơn hàng -->
@@ -42,17 +42,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($order_details as $stt => $detail) : ?>
-                            <tr>
-                                <td><?= $stt +1 ?></td>
-                                <td><?= $detail['name'] ?></td>
-                                <td>
-                                    <img src="<?= ROOT_URL . $detail['image'] ?>" width="60" alt="">
-                                </td>
-                                <td><?= number_format($detail['price']) ?></td>
-                                <td><?= $detail['quantity'] ?></td>
-                                <td><?= number_format($detail['price'] * $detail['quantity']) ?> VNĐ</td>
-                            </tr>
+                            <?php foreach ($order_details as $stt => $detail) : ?>
+                                <tr>
+                                    <td><?= $stt + 1 ?></td>
+                                    <td><?= $detail['name'] ?></td>
+                                    <td>
+                                        <img src="<?= ROOT_URL . $detail['image'] ?>" width="60" alt="">
+                                    </td>
+                                    <td><?= number_format($detail['price']) ?></td>
+                                    <td><?= $detail['quantity'] ?></td>
+                                    <td><?= number_format($detail['price'] * $detail['quantity']) ?> VNĐ</td>
+                                </tr>
                             <?php endforeach ?>
                         </tbody>
                         <tfoot>
@@ -71,20 +71,20 @@
                         <div class="mb-3">
                             <label for="orderStatus" class="form-label">Trạng thái đơn hàng</label>
                             <select id="orderStatus" name="status" class="form-select">
-                                <?php foreach($status as $key =>$value) : ?>
-                                <option value="<?= $key ?>" <?= $order['status'] == $key ? 'selected' : '' ?>
-                                    <?php 
-                                        if($order['status']== 2 && in_array($key, [1,4]) ){
+                                <?php foreach ($status as $key => $value) : ?>
+                                    <option value="<?= $key ?>" <?= $order['status'] == $key ? 'selected' : '' ?>
+                                        <?php
+                                        if ($order['status'] == 2 && in_array($key, [1, 4])) {
                                             echo "disabled";
-                                        }elseif($order['status']== 3 && in_array($key, [1,2,4])){
+                                        } elseif ($order['status'] == 3 && in_array($key, [1, 2, 4])) {
                                             echo "disabled";
-                                        }elseif($order['status']== 4 && in_array($key, [1,2,3])){
+                                        } elseif ($order['status'] == 4 && in_array($key, [1, 2, 3])) {
                                             echo "disabled";
                                         }
-                                    ?>  >
-                                
-                                    <?= $value ?>
-                                </option>
+                                        ?>>
+
+                                        <?= $value ?>
+                                    </option>
                                 <?php endforeach ?>
                             </select>
                         </div>
@@ -100,7 +100,7 @@
             </div>
         </div>
     </div>
-    
+
 </div>
 
 
